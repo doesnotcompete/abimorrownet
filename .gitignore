@@ -1,3 +1,4 @@
+.DS_Store
 *.rbc
 capybara-*.html
 .rspec
@@ -16,6 +17,7 @@ config/secrets.yml
 ## Environment normalisation:
 /.bundle
 /vendor/bundle
+/vendor/assets
 
 # these should all be checked in to normalise the environment:
 # Gemfile.lock, .ruby-version, .ruby-gemset

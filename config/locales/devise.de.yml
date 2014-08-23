@@ -1,0 +1,65 @@
+# Additional translations at https://github.com/plataformatec/devise/wiki/I18n
+
+de:
+  devise:
+    confirmations:
+      confirmed: "Dein Account wurde erfolgreich bestätigt."
+      send_instructions: "In Kürze wirst du Informationen dazu, wie du dein Konto bestätigen kannst, per E-Mail erhalten."
+      send_paranoid_instructions: "Wenn deine E-Mail-Adresse in unserer Datenbank gespeichert ist, wirst du Informationen zur Bestätigung deines Kontos in wenigen Minuten erhalten."
+    failure:
+      already_authenticated: "Du bist bereits angemeldet."
+      inactive: "Dein Account ist noch nicht aktiviert. Bitte überprüfe dein Postfach."
+      invalid: "Die E-Mail-Adresse oder das Passwort sind falsch."
+      locked: "Dein Account ist gesperrt."
+      last_attempt: "Du hast noch einen Versuch, bevor dein Account gesperrt wird."
+      not_found_in_database: "Die E-Mail-Adresse oder das Passwort sind falsch."
+      timeout: "Deine Sitzung ist abgelaufen. Bitte melde dich erneut an."
+      unauthenticated: "Du musst dich anmelden, um fortzufahren."
+      unconfirmed: "Du musst deinen Account bestätigen, bevor du fortfahren kannst."
+    mailer:
+      confirmation_instructions:
+        subject: "Accountbestätigung"
+      invitation_instructions:
+        subject: 'Einladung'
+        hello: 'Hallo,'
+        someone_invited_you: 'du wurdest eingeladen, das Jahrgangsportal "abimorrownet" zu benutzen. Bitte benutze den folgenden Link, um die Einladung anzunehmen.'
+        accept: 'Einladung annehmen'
+        ignore: 'Wenn du die Einladung nicht annehmen möchtest, brauchst du nichts weiter zu tun.<br /><br />Viele Grüße<br />das abimorrownet-Team'
+      reset_password_instructions:
+        subject: "Passwort zurücksetzen"
+      unlock_instructions:
+        subject: "Account entsperren"
+    omniauth_callbacks:
+      failure: "Wir konnten dich nicht via %{kind} anmelden: \"%{reason}\"."
+      success: "Wir haben dich erfolgreich über %{kind} angemeldet."
+    passwords:
+      no_token: "You can't access this page without coming from a password reset email. If you do come from a password reset email, please make sure you used the full URL provided."
+      send_instructions: "In Kürze erhältst du Informationen dazu, wie du dein Passwort zurücksetzen kannst."
+      send_paranoid_instructions: Sofern deine E-Mail-Adresse in unserer Datenbank gespeichert ist, wirst du in wenigen Minuten eine Nachricht mit einem Link erhalten, über den du dein Passwort zurücksetzen kannst."
+      updated: "Dein Passwort wurde erfolgreich geändert; du bist jetzt angemeldet."
+      updated_not_active: "Dein Passwort wurde erfolgreich geändert."
+    registrations:
+      destroyed: "Bye! Your account was successfully cancelled. We hope to see you again soon."
+      signed_up: "Welcome! You have signed up successfully."
+      signed_up_but_inactive: "You have signed up successfully. However, we could not sign you in because your account is not yet activated."
+      signed_up_but_locked: "You have signed up successfully. However, we could not sign you in because your account is locked."
+      signed_up_but_unconfirmed: "A message with a confirmation link has been sent to your email address. Please open the link to activate your account."
+      update_needs_confirmation: "You updated your account successfully, but we need to verify your new email address. Please check your email and click on the confirm link to finalize confirming your new email address."
+      updated: "You updated your account successfully."
+    sessions:
+      signed_in: "Signed in successfully."
+      signed_out: "Signed out successfully."
+    unlocks:
+      send_instructions: "You will receive an email with instructions about how to unlock your account in a few minutes."
+      send_paranoid_instructions: "If your account exists, you will receive an email with instructions about how to unlock it in a few minutes."
+      unlocked: "Your account has been unlocked successfully. Please sign in to continue."
+  errors:
+    messages:
+      already_confirmed: "was already confirmed, please try signing in"
+      confirmation_period_expired: "needs to be confirmed within %{period}, please request a new one"
+      expired: "has expired, please request a new one"
+      not_found: "not found"
+      not_locked: "was not locked"
+      not_saved:
+        one: "1 Fehler verhinderte, dass diese Angaben gespeichert werden:"
+        other: "%{count} Fehler verhinderten, dass diese Angaben gespeichert werden:"
