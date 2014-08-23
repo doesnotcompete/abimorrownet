@@ -1,13 +1,44 @@
 <!DOCTYPE html>
-<html>
+<html lang="de">
 <head>
   <title>Abimorrownet</title>
   <script src='https://use.edgefonts.net/lancelot;rosario.js'></script>
+  <meta charset='utf-8'>
+  <meta content='width=device-width, initial-scale=1' name='viewport'>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
 </head>
 <body>
+  <nav class='navbar navbar-default navbar-fixed-top' role='navigation'>
+    <div class='container-fluid'>
+      <div class='navbar-header'>
+        <button class='navbar-toggle' data-target='#main-navigation' data-toggle='collapse' type='button'>
+          <span class='sr-only'>
+            Navigation ein-/ausblenden
+          </span>
+          <span class='icon-bar'></span>
+          <span class='icon-bar'></span>
+          <span class='icon-bar'></span>
+        </button>
+        <a class='navbar-brand' href='#'>
+          <%= image_tag "abimorrowland-small.png", class: "logo-small" %>
+        </a>
+      </div>
+      <div class='collapse navbar-collapse' id='main-navigation'>
+        <ul class='nav navbar-nav'>
+          <li class='active'>
+            <a href='/'>
+              Startseite
+            </a>
+          </li>
+          <li id="veranstaltungen-link" class="link first"><a href="/veranstaltungen">Veranstaltungen</a></li>
+          <li id="impressum-link" class="link last"><a href="/impressum">Impressum</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
   <div class="container">
     <p class="text-warning"><%= notice %></p>
     <p class="text-danger"><%= alert %></p>
@@ -20,36 +51,6 @@
       <%= link_to "Registrieren", new_user_registration_path %> |
       <%= link_to "Anmelden", new_user_session_path %>
     <% end %>
-
-    <nav class='navbar navbar-default navbar-fixed-top' role='navigation'>
-      <div class='container-fluid'>
-        <div class='navbar-header'>
-          <button class='navbar-toggle' data-target='#main-navigation' data-toggle='collapse' type='button'>
-            <span class='sr-only'>
-              Navigation ein-/ausblenden
-            </span>
-            <span class='icon-bar'></span>
-            <span class='icon-bar'></span>
-            <span class='icon-bar'></span>
-          </button>
-          <a class='navbar-brand' href='#'>
-            <%= image_tag "abimorrowland-small.png", class: "logo-small" %>
-          </a>
-        </div>
-        <div class='collapse navbar-collapse' id='main-navigation'>
-          <ul class='nav navbar-nav'>
-            <li class='active'>
-              <a href='/'>
-                Startseite
-              </a>
-            </li>
-            <li id="veranstaltungen-link" class="link first"><a href="/veranstaltungen">Veranstaltungen</a></li>
-    <li id="impressum-link" class="link last"><a href="/impressum">Impressum</a></li>
-          </ul>
-        </div>
-      </div>
-    </nav>
-
 
     <%= yield %>
   </div>

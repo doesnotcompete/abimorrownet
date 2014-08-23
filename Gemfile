@@ -49,8 +49,11 @@ group :test do
 end
 
 group :development do
-  gem "better_errors"
-  gem "binding_of_caller"
+  gem 'better_errors'
+  gem 'binding_of_caller'
+  gem 'guard'
+  gem 'guard-livereload'
+  gem 'rack-livereload'
 end
 
 # Use ActiveModel has_secure_password

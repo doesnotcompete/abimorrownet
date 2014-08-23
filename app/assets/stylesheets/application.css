@@ -45,6 +45,9 @@ b {
   margin-right: auto;
 }
 
+#error_explanation {
+}
+
 body {
   padding-top: 70px;
 }
