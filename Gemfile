@@ -2,7 +2,7 @@ source 'https://rubygems.org'
 
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '4.1.4'
+gem 'rails', '4.1.5'
 # Use sqlite3 as the database for Active Record
 gem 'sqlite3'
 # Use SCSS for stylesheets
@@ -32,10 +32,10 @@ gem 'omniauth-facebook'
 gem 'bower-rails'
 gem 'bootstrap_form'
 
-gem 'activeadmin', github: 'gregbell/active_admin'
-gem 'polyamorous', github: 'activerecord-hackery/polyamorous'
-gem 'ransack', github: 'activerecord-hackery/ransack'
-gem 'formtastic', github: 'justinfrench/formtastic'
+gem 'activeadmin',         github: 'gregbell/active_admin'
+gem 'ransack',             github: 'ernie/ransack'
+gem 'inherited_resources'
+gem 'formtastic'
 
 gem 'rails-i18n', '~> 4.0.0' # For 4.0.x
 

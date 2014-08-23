@@ -1,5 +1,5 @@
 # abimorrownet
-abimorrownet is a social network developed for [abimorrowland](https://abimorrowland.de/).
+abimorrownet is a social network developed for the students of [abimorrowland](https://abimorrowland.de/).
 
 ## Features
 * Profiles

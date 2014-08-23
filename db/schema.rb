@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140810204125) do
+ActiveRecord::Schema.define(version: 20140823171628) do
 
   create_table "active_admin_comments", force: true do |t|
     t.string   "namespace"
@@ -46,6 +46,54 @@ ActiveRecord::Schema.define(version: 20140810204125) do
   add_index "admin_users", ["email"], name: "index_admin_users_on_email", unique: true
   add_index "admin_users", ["reset_password_token"], name: "index_admin_users_on_reset_password_token", unique: true
 
+  create_table "comments", force: true do |t|
+    t.text     "text"
+    t.integer  "profile_id"
+    t.integer  "author_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "committee_roles", force: true do |t|
+    t.string   "title"
+    t.text     "description"
+    t.integer  "user_id"
+    t.integer  "committee_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "committees", force: true do |t|
+    t.string   "title"
+    t.text     "description"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "groups", force: true do |t|
+    t.string   "title"
+    t.text     "description"
+    t.integer  "teacher_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "profiles", force: true do |t|
+    t.text     "about_me"
+    t.integer  "profileable_id"
+    t.string   "profileable_type"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "teachers", force: true do |t|
+    t.string   "name"
+    t.string   "email"
+    t.text     "description"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "users", force: true do |t|
     t.string   "email",                  default: "", null: false
     t.string   "encrypted_password",     default: ""
@@ -78,5 +126,22 @@ ActiveRecord::Schema.define(version: 20140810204125) do
   add_index "users", ["invitations_count"], name: "index_users_on_invitations_count"
   add_index "users", ["invited_by_id"], name: "index_users_on_invited_by_id"
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+
+  create_table "votes", force: true do |t|
+    t.string   "option"
+    t.integer  "user_id"
+    t.integer  "voting_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "votings", force: true do |t|
+    t.string   "title"
+    t.text     "description"
+    t.string   "options",      default: "--- []\n"
+    t.integer  "committee_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
 end
