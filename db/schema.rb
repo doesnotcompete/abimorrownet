@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140823171628) do
+ActiveRecord::Schema.define(version: 20140823215135) do
 
   create_table "active_admin_comments", force: true do |t|
     t.string   "namespace"
@@ -82,6 +82,14 @@ ActiveRecord::Schema.define(version: 20140823171628) do
     t.text     "about_me"
     t.integer  "profileable_id"
     t.string   "profileable_type"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "quotes", force: true do |t|
+    t.text     "text"
+    t.integer  "quotable_id"
+    t.string   "quotable_type"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

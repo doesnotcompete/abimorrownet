@@ -46,6 +46,7 @@ group :test do
   gem 'cucumber-rails'
   gem 'pickle'
   gem 'database_cleaner'
+  gem 'factory_girl'
 end
 
 group :development do
