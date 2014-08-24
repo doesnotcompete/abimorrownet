@@ -16,7 +16,9 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable, :confirmable,
          :omniauthable, :omniauth_providers => [:facebook]
 
-  validates :first_name, :last_name, :email, presence: true
+  validates :email, presence: true
+
+  delegate :first_name, :last_name, to: :profile
 
 
   def self.from_omniauth(auth)

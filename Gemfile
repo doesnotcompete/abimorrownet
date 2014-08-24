@@ -43,11 +43,8 @@ gem 'rails-i18n', '~> 4.0.0' # For 4.0.x
 group :test do
   gem 'rspec'
   gem 'rspec-rails'
-  gem 'webrat'
-  gem 'cucumber-rails'
-  gem 'pickle'
   gem 'database_cleaner'
-  gem 'factory_girl'
+  gem 'factory_girl_rails'
 end
 
 group :development do

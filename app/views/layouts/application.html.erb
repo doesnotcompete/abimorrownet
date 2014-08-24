@@ -6,7 +6,6 @@
   <meta charset='utf-8'>
   <meta content='width=device-width, initial-scale=1' name='viewport'>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
-  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
 </head>
 <body>
@@ -35,6 +34,23 @@
           <li id="veranstaltungen-link" class="link first"><a href="/veranstaltungen">Veranstaltungen</a></li>
           <li id="impressum-link" class="link last"><a href="/impressum">Impressum</a></li>
         </ul>
+        <ul class="nav navbar-nav navbar-right">
+          <% if user_signed_in? %>
+          <li class="dropdown" data-no-turbolink>
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Angemeldet: <strong><% if current_user.profile %><%= current_user.profile.first_name %> <%= current_user.profile.last_name %><% else %><%= current_user.email %><% end %></strong> <span class="caret"></span></a>
+            <ul class="dropdown-menu" role="menu">
+              <% if current_user.admin? %><li><%= link_to 'Einladen', new_user_invitation_path %></li><% end %>
+              <% if current_user.profile %><li><%= link_to 'Mein Profil', profile_path(current_user.profile) %></li><% end %>
+              <li><%= link_to 'Account bearbeiten', edit_user_registration_path %></li>
+              <li class="divider"></li>
+              <li><%= link_to "Abmelden", destroy_user_session_path, method: :delete %></li>
+            </ul>
+          </li>
+          <% else %>
+            <li><%= link_to "Anmelden", new_user_session_path %></li>
+            <li><%= link_to "Registrieren", new_user_registration_path %></li>
+          <% end %>
+        </ul>
       </div>
     </div>
   </nav>
@@ -42,17 +58,9 @@
   <div class="container">
     <p class="text-warning"><%= notice %></p>
     <p class="text-danger"><%= alert %></p>
-    <% if user_signed_in? %>
-      <p>Angemeldet als <strong><%= current_user.email %></strong>.</p>
-      <%= link_to 'Einladen', new_user_invitation_path %> |
-      <%= link_to 'Account bearbeiten', edit_user_registration_path %> |
-      <%= link_to "Abmelden", destroy_user_session_path, method: :delete %>
-    <% else %>
-      <%= link_to "Registrieren", new_user_registration_path %> |
-      <%= link_to "Anmelden", new_user_session_path %>
-    <% end %>
-    <br />
     <%= yield %>
   </div>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 </body>
 </html>

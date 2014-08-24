@@ -1,4 +1,6 @@
 <div class="alert alert-warning"><p><strong>Hinweis: </strong>Du hast noch kein Profil. Bitte fülle das nachfolgende Formular aus; alle Angaben kannst du später noch ändern.</p></div>
 <%= bootstrap_form_for :profile, url: {action: 'create'} do |f| %>
+  <%= f.text_field :first_name, label: "Vorname" %>
+  <%= f.text_field :last_name, label: "Nachname" %>
   <%= f.submit %>
 <% end %>

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140824141908) do
+ActiveRecord::Schema.define(version: 20140824165011) do
 
   create_table "active_admin_comments", force: true do |t|
     t.string   "namespace"
@@ -78,8 +78,15 @@ ActiveRecord::Schema.define(version: 20140824141908) do
     t.datetime "updated_at"
   end
 
-# Could not dump table "profiles" because of following NoMethodError
-#   undefined method `[]' for nil:NilClass
+  create_table "profiles", force: true do |t|
+    t.text     "about"
+    t.integer  "profileable_id"
+    t.string   "profileable_type"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "first_name"
+    t.string   "last_name"
+  end
 
   create_table "quotes", force: true do |t|
     t.text     "text"
@@ -122,8 +129,6 @@ ActiveRecord::Schema.define(version: 20140824141908) do
     t.integer  "invited_by_id"
     t.string   "invited_by_type"
     t.integer  "invitations_count",      default: 0
-    t.string   "first_name"
-    t.string   "last_name"
     t.boolean  "admin",                  default: false
     t.boolean  "moderator",              default: false
     t.string   "provider"
