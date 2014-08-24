@@ -18,4 +18,10 @@
   <%= f.submit "Aktualisieren" %>
 <% end %>
 
-<%= link_to "Zurück", :back %>
+<% if current_user.has_identity? %>
+<p>Dein Account ist derzeit mit <em>Facebook</em> verknüpft.</p>
+<%= link_to 'Aufheben', remove_association_url,
+            :confirm => 'Bist du sicher?', :method => :delete %>
+<% else %>
+<%= link_to 'Mit Facebook verknüpfen', user_omniauth_authorize_path(:facebook) %>
+<% end %>
