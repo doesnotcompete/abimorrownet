@@ -10,4 +10,6 @@
   <% end -%>
 
   <div><%= f.submit "Anmelden" %></div>
+  <hr />
+  <%= link_to "Mit Facebook anmelden", user_omniauth_authorize_path(:facebook) %>
 <% end %>
