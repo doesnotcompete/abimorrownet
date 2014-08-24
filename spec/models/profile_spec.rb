@@ -1,11 +1,12 @@
 require 'rails_helper'
 
 RSpec.describe Profile, :type => :model do
-  it "should be invalid without a name" do
-    expect(subject).not_to be_valid
+  context "when it does not have a name" do
+    it { is_expected.to be_invalid }
   end
-  it "should be valid with a name" do
-    profile = build(:profile)
-    expect(profile).to be_valid
+
+  context "when it has a name" do
+    subject { build(:profile) }
+    it { is_expected.to be_valid }
   end
 end

@@ -1,12 +1,9 @@
 class ProfilesController < ApplicationController
   before_filter :authenticate_user!
+  around_filter :catch_not_found
 
   def show
     @profile = Profile.find(params[:id])
-
-    unless @profile
-      redirect_to root_url, alert: "Profil nicht gefunden."
-    end
   end
 
   def new
@@ -50,4 +47,11 @@ class ProfilesController < ApplicationController
   def profile_params
     params.require(:profile).permit(:first_name, :last_name, :about)
   end
+
+  def catch_not_found
+    yield
+  rescue ActiveRecord::RecordNotFound
+    redirect_to root_url, alert: "Profil nicht gefunden."
+  end
+
 end
