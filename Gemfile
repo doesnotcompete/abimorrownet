@@ -31,6 +31,7 @@ gem 'devise_invitable', '~> 1.3.6'
 gem 'omniauth-facebook'
 gem 'bower-rails'
 gem 'bootstrap_form'
+gem 'pundit'
 
 gem 'activeadmin',         github: 'gregbell/active_admin'
 gem 'ransack',             github: 'ernie/ransack'
