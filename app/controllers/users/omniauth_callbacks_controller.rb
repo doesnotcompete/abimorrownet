@@ -6,7 +6,7 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
     if @user.present?
       sign_in_and_redirect @user, :event => :authentication #this will throw if @user is not activated
       set_flash_message(:notice, :success, :kind => "Facebook") if is_navigational_format?
-    elsif current_user.present?
+    elsif user_signed_in?
       current_user.associate_identity(request.env["omniauth.auth"])
       redirect_to root_url, notice: "Wir haben deinen Account mit Facebook verknüpft."
     else

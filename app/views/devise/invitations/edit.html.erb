@@ -1,12 +1,19 @@
 <h2>Einladung annehmen</h2>
 
+<div class="alert alert-info"><p><strong>Information: </strong>Das Jahrgangsportal "abimorrownet" wird von den Komitees für Abstimmungen und Mitteilungen genutzt. Außerdem kannst du (geheime) Kommentare auf den Profilseiten von Mitschülern hinterlassen, die nach einer Auswahl der jeweiligen Person und der Redaktion in die Abizeitung übernommen werden. Nach deiner Registrierung hast du die
+  Möglichkeit, deine Benachrichtigungseinstellungen anzupassen und dein Profil anzupassen.</p></div>
+<p class ="text-info">Wir nehmen Datenschutz ernst: Die Daten, die du uns bereitstellst, werden nur zu unseren Servern in Frankreich und Deutschland gesendet und spätestens am <strong>31. September 2015</strong> gelöscht, es sei denn, du verlängerst deine Erlaubnis zur Datenspeicherung.</p>
+<hr />
 <%= bootstrap_form_for resource, :as => resource_name, :url => invitation_path(resource_name), :html => { :method => :put } do |f| %>
   <%= devise_error_messages! %>
   <%= f.hidden_field :invitation_token %>
 
-  <%= f.password_field :password %>
+  <%= f.text_field :first_name, label: "Vorname" %>
+  <%= f.text_field :last_name, label: "Nachname" %>
 
-  <%= f.password_field :password_confirmation %>
+  <%= f.password_field :password, label: "Passwort" %>
+
+  <%= f.password_field :password_confirmation, label: "Passwort bestätigen" %>
 
   <p><%= f.submit "Registrieren" %></p>
 <% end %>

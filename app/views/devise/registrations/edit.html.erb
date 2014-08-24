@@ -3,7 +3,10 @@
 <%= bootstrap_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
   <%= devise_error_messages! %>
 
-  <%= f.email_field :email, autofocus: true %>
+  <%= f.text_field :first_name, autofocus: true, label: "Vorname" %>
+  <%= f.text_field :last_name, label: "Nachname" %>
+
+  <%= f.email_field :email %>
 
   <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
     <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
@@ -17,11 +20,11 @@
 
   <%= f.submit "Aktualisieren" %>
 <% end %>
-
+<hr />
 <% if current_user.has_identity? %>
 <p>Dein Account ist derzeit mit <em>Facebook</em> verknüpft.</p>
 <%= link_to 'Aufheben', remove_association_url,
-            :confirm => 'Bist du sicher?', :method => :delete %>
+            confirm: 'Bist du sicher?', method: :delete %>
 <% else %>
 <%= link_to 'Mit Facebook verknüpfen', user_omniauth_authorize_path(:facebook) %>
 <% end %>

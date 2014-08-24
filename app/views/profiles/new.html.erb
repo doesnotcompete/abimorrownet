@@ -1,0 +1,4 @@
+<div class="alert alert-warning"><p><strong>Hinweis: </strong>Du hast noch kein Profil. Bitte fülle das nachfolgende Formular aus; alle Angaben kannst du später noch ändern.</p></div>
+<%= bootstrap_form_for :profile, url: {action: 'create'} do |f| %>
+  <%= f.submit %>
+<% end %>
