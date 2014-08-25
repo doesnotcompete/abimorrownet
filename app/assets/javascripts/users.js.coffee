@@ -2,6 +2,7 @@
 # All this logic will automatically be available in application.js.
 # You can use CoffeeScript in this file: http://coffeescript.org/
 //= require 'datatables'
+//= require 'dataTables.bootstrap'
 $(document).on "page:change", ->
   $('#invited-users-table').dataTable
     processing: true

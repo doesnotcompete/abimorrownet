@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   root to: "home#index"
 
   resources :profiles
+  resources :committees
 
   delete "users/identity" => "users#remove_association", as: :remove_association
   get "users/invited" => "users#list_invited", as: :invited_users

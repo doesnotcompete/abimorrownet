@@ -34,6 +34,9 @@
           <li class="<%= 'active' if current_page?(profiles_path) %>">
             <%= link_to "Jahrgang", profiles_path %>
           </li>
+          <li class="<%= 'active' if current_page?(committees_path) %>">
+            <%= link_to "Komitees", committees_path %>
+          </li>
         </ul>
         <ul class="nav navbar-nav navbar-right">
           <% if user_signed_in? %>

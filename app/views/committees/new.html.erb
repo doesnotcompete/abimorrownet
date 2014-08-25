@@ -1,0 +1,5 @@
+<%= bootstrap_form_for :committee, url: {action: 'create'} do |f| %>
+  <%= f.text_field :title, label: "Titel" %>
+  <%= f.text_area :description, label: "Beschreibung" %>
+  <%= f.submit %>
+<% end %>
