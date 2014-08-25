@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   resources :profiles
 
   delete "users/identity" => "users#remove_association", as: :remove_association
+  get "users/invited" => "users#list_invited", as: :invited_users
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

@@ -20,6 +20,8 @@ class User < ActiveRecord::Base
 
   delegate :first_name, :last_name, to: :profile
 
+  scope :invited, -> { where("invitation_token IS NOT NULL") }
+
 
   def self.from_omniauth(auth)
     where(provider: auth.provider, uid: auth.uid).first do |user|

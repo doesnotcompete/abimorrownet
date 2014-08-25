@@ -9,3 +9,13 @@
 
   <%= f.submit "Senden" %>
 <% end %>
+<hr />
+<table id="invited-users-table", data-source="<%= invited_users_path(format: :json) %>">
+  <thead>
+    <tr>
+      <th>E-Mail</th>
+    </tr>
+  </thead>
+  <tbody>
+  </tbody>
+</table>
