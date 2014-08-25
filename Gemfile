@@ -38,6 +38,8 @@ gem 'pg'
 gem 'kaminari'
 gem 'ajax-datatables-rails'
 
+gem 'friendly_id', github: 'norman/friendly_id'
+
 gem 'activeadmin',         github: 'gregbell/active_admin'
 gem 'ransack',             github: 'ernie/ransack'
 gem 'inherited_resources'
