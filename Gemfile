@@ -33,6 +33,11 @@ gem 'bower-rails'
 gem 'bootstrap_form'
 gem 'pundit'
 
+gem 'pg'
+
+gem 'kaminari'
+gem 'ajax-datatables-rails'
+
 gem 'activeadmin',         github: 'gregbell/active_admin'
 gem 'ransack',             github: 'ernie/ransack'
 gem 'inherited_resources'
@@ -52,6 +57,7 @@ group :development do
   gem 'binding_of_caller'
   gem 'guard'
   gem 'guard-livereload'
+   gem 'guard-rspec'
   gem 'rack-livereload'
 end
 

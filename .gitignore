@@ -20,6 +20,7 @@ config/secrets.yml
 /.bundle
 /vendor/cache
 /vendor/bundle
+/vendor/assets/bower_components
 /public
 
 # these should all be checked in to normalise the environment:

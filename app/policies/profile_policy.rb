@@ -8,6 +8,14 @@ class ProfilePolicy < ApplicationPolicy
     @user.admin? || @user.profile == @profile
   end
 
+  def show?
+    true
+  end
+
+  def create?
+    @user.admin? || !@user.profile
+  end
+
   class Scope < Scope
     def resolve
       scope

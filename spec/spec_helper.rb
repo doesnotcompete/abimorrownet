@@ -17,6 +17,7 @@
 require 'factory_girl_rails'
 require 'devise'
 require 'support/controller_macros'
+require "pundit/rspec"
 
 RSpec.configure do |config|
   config.include FactoryGirl::Syntax::Methods
