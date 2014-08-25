@@ -5,7 +5,7 @@ class ProfilesController < ApplicationController
   respond_to :html, :json
 
   def show
-    @profile = Profile.friendly.find(params[:id]) || Profile.find(params[:id])
+    @profile = find_profile
     respond_with @profile
   end
 
@@ -21,7 +21,7 @@ class ProfilesController < ApplicationController
   end
 
   def edit
-    if @profile = Profile.find(params[:id])
+    if @profile = find_profile
       authorize @profile
     else
       redirect_to root_url, alert: "Profil nicht gefunden."
@@ -29,7 +29,7 @@ class ProfilesController < ApplicationController
   end
 
   def update
-    @profile = Profile.find(params[:id])
+    @profile = find_profile
     authorize @profile
 
     if @profile.update(profile_params)
@@ -60,6 +60,10 @@ class ProfilesController < ApplicationController
 
 
   private
+
+  def find_profile
+    Profile.friendly.find(params[:id]) || Profile.find(params[:id])
+  end
 
   def profile_params
     params.require(:profile).permit(:id, :first_name, :last_name, :about)

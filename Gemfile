@@ -40,11 +40,6 @@ gem 'ajax-datatables-rails'
 
 gem 'friendly_id', github: 'norman/friendly_id'
 
-gem 'activeadmin',         github: 'gregbell/active_admin'
-gem 'ransack',             github: 'ernie/ransack'
-gem 'inherited_resources'
-gem 'formtastic'
-
 gem 'rails-i18n', '~> 4.0.0' # For 4.0.x
 
 group :test do
