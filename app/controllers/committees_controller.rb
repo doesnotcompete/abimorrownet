@@ -1,5 +1,6 @@
 class CommitteesController < ApplicationController
   before_filter :authenticate_user!
+  around_filter :catch_errors
 
   def index
     @committees = Committee.all
@@ -7,6 +8,23 @@ class CommitteesController < ApplicationController
 
   def new
 
+  end
+
+  def edit
+    authorize :committee, :edit?
+
+    @committee = find_committee
+  end
+
+  def update
+    @committee = find_committee
+    authorize @committee
+
+    if @committee.update(committee_params)
+      redirect_to @committee
+    else
+      render :edit
+    end
   end
 
   def create
@@ -24,6 +42,14 @@ class CommitteesController < ApplicationController
     authorize @committee
   end
 
+  def destroy
+    @committee = find_committee
+    authorize @committee
+
+    @committee.destroy
+    redirect_to committees_path
+  end
+
   private
 
   def find_committee
@@ -32,5 +58,13 @@ class CommitteesController < ApplicationController
 
   def committee_params
     params.require(:committee).permit(:title, :description)
+  end
+
+  def catch_errors
+    yield
+  rescue ActiveRecord::RecordNotFound
+    redirect_to committees_url, alert: "Komitee nicht gefunden."
+  rescue Pundit::NotAuthorizedError
+    redirect_to committees_url, alert: "Diese Aktion ist nur Administratoren erlaubt."
   end
 end

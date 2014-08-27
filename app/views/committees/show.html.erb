@@ -1,4 +1,5 @@
 <h2><%= @committee.title %></h2>
+<p><%= @committee.description %></p>
 <% if current_user.admin? %>
 <hr />
 <%= link_to "Komitee bearbeiten", edit_committee_path(@committee) %>
