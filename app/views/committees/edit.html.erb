@@ -1,8 +1,8 @@
 <h2>Komitee bearbeiten</h2>
-<%= bootstrap_form_for(@committee, method: :patch) do |f| %>
-<%= f.text_field :title %>
-<%= f.text_field :description %>
-<%= f.submit %>
+<%= simple_form_for(@committee, method: :patch, html: {class: 'form-horizontal' }) do |f| %>
+<%= f.input :title, label: "Titel" %>
+<%= f.input :description, label: "Beschreibung" %>
+<%= f.button :submit, "Speichern" %>
 <% end %>
 <hr />
 <%= link_to "Komitee löschen", committee_path(@committee), method: :delete, class: "btn btn-danger", data: { confirm: "Bist du sicher?" } %>

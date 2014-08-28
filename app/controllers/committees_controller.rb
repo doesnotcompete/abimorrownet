@@ -31,7 +31,7 @@ class CommitteesController < ApplicationController
     authorize :committee, :create?
 
     if @committee = Committee.create(committee_params)
-      redirect_to committee_url(@committee)
+      redirect_to @committee
     else
       redirect_to new_committee_url, alert: "Fehler beim Speichern."
     end

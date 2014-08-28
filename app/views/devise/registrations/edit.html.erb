@@ -1,21 +1,21 @@
 <h2>Account bearbeiten</h2>
 
-<%= bootstrap_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+<%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put, class: 'form-horizontal' }) do |f| %>
   <%= devise_error_messages! %>
 
-  <%= f.email_field :email %>
+  <%= f.input :email %>
 
   <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
     <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
   <% end %>
 
-  <%= f.password_field :password, autocomplete: "off", label: "Neues Passwort" %>
+  <%= f.input :password, autocomplete: "off", label: "Neues Passwort" %>
 
-  <%= f.password_field :password_confirmation, autocomplete: "off", label: "Passwort bestätigen" %>
+  <%= f.input :password_confirmation, autocomplete: "off", label: "Passwort bestätigen" %>
 
-  <%= f.password_field :current_password, autocomplete: "off", label: "Aktuelles Passwort" %>
+  <%= f.input :current_password, autocomplete: "off", label: "Aktuelles Passwort" %>
 
-  <%= f.submit "Aktualisieren" %>
+  <%= f.button :submit, "Aktualisieren" %>
 <% end %>
 <hr />
 <% if current_user.has_identity? %>

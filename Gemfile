@@ -30,7 +30,7 @@ gem 'devise'
 gem 'devise_invitable', '~> 1.3.6'
 gem 'omniauth-facebook'
 gem 'bower-rails'
-gem 'bootstrap_form'
+gem 'simple_form', github: 'plataformatec/simple_form', branch: 'master'
 gem 'pundit'
 
 gem 'pg'

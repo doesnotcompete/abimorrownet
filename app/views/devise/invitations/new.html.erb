@@ -1,13 +1,13 @@
 <h2>Einladung senden</h2>
 
-<%= bootstrap_form_for resource, :as => resource_name, :url => invitation_path(resource_name), :html => {:method => :post} do |f| %>
+<%= simple_form_for resource, :as => resource_name, :url => invitation_path(resource_name), :html => {method: :post, class: 'form-horizontal'} do |f| %>
   <%= devise_error_messages! %>
 
 <% resource.class.invite_key_fields.each do |field| -%>
-  <%= f.text_field field %>
+  <%= f.input :email %>
 <% end -%>
 
-  <%= f.submit "Senden" %>
+  <%= f.button :submit, "Senden" %>
 <% end %>
 <hr />
 <table id="invited-users-table" class="table table-striped table-bordered" data-source="<%= invited_users_path(format: :json) %>">

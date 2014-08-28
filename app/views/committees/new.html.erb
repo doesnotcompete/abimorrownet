@@ -1,5 +1,5 @@
-<%= bootstrap_form_for :committee, url: {action: 'create'} do |f| %>
-  <%= f.text_field :title, label: "Titel" %>
-  <%= f.text_area :description, label: "Beschreibung" %>
-  <%= f.submit %>
+<%= simple_form_for :committee, url: {action: 'create'}, html: { class: 'form-horizontal' } do |f| %>
+  <%= f.input :title, label: "Titel" %>
+  <%= f.input :description, label: "Beschreibung" %>
+  <%= f.button :submit %>
 <% end %>

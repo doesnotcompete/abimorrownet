@@ -1,6 +1,6 @@
 <h2>Profil bearbeiten</h2>
-<%= bootstrap_form_for(@profile, method: :patch) do |f| %>
-<%= f.text_field :first_name %>
-<%= f.text_field :last_name %>
-<%= f.submit %>
+<%= simple_form_for(@profile, method: :patch, html: { class: 'form-horizontal' }) do |f| %>
+<%= f.input :first_name, label: "Vorname" %>
+<%= f.input :last_name, label: "Nachname" %>
+<%= f.button :submit, "Speichern" %>
 <% end %>
