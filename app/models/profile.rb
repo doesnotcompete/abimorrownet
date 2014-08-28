@@ -1,10 +1,12 @@
 class Profile < ActiveRecord::Base
   belongs_to :profileable, polymorphic: true
-  belongs_to :user, -> { where(profiles: {profileable_type: 'User'}) }, foreign_key: 'profileable_id'
+  belongs_to :user, class_name: "User", foreign_key: "profileable_id"
   has_many :comments
   has_many :quotes, as: :quotable
 
   validates :first_name, :last_name, presence: true
+
+  delegate :group, to: :user
 
   extend FriendlyId
   friendly_id :slug_candidates, use: :slugged
@@ -15,5 +17,13 @@ class Profile < ActiveRecord::Base
     [
       [:first_name, :last_name]
     ]
+  end
+
+  def should_generate_new_friendly_id?
+    title_changed?
+  end
+
+  def group_title
+    self.user.group.title
   end
 end

@@ -1,5 +1,6 @@
 <h1><%= @profile.first_name %> <%= @profile.last_name %></h1>
 <p><%= @profile.about %></p>
+<p>Seminarfach: <%= link_to @profile.group_title, @profile.group %></p>
 <% if (current_user.profile == @profile || current_user.admin?) %>
 <hr />
 <%= link_to "Profil bearbeiten", edit_profile_path(@profile) %>
