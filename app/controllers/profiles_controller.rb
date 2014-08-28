@@ -66,7 +66,7 @@ class ProfilesController < ApplicationController
   end
 
   def profile_params
-    params.require(:profile).permit(:first_name, :last_name, :about)
+    params.require(:profile).permit(:first_name, :last_name, :about, user_attributes: [:group_id, :id])
   end
 
   def catch_errors

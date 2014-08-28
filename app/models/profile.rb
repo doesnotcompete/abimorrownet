@@ -8,6 +8,8 @@ class Profile < ActiveRecord::Base
 
   delegate :group, to: :user
 
+  accepts_nested_attributes_for :user
+
   extend FriendlyId
   friendly_id :slug_candidates, use: :slugged
 
@@ -20,7 +22,7 @@ class Profile < ActiveRecord::Base
   end
 
   def should_generate_new_friendly_id?
-    title_changed?
+    first_name_changed? || last_name_changed?
   end
 
   def group_title

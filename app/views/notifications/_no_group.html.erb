@@ -1,0 +1,3 @@
+<% unless current_user.group %>
+<div class="alert alert-warning"><p><b>Kein Seminarfach: </b>Du bist derzeit keinem Seminarfach zugeordnet. Bitte ordne dich <%= link_to "hier", edit_profile_path(current_user.profile) %> deinem Seminarfach zu, da du sonst nicht an Diskussionen und Abstimmungen teilnehmen kannst.</p></div>
+<% end %>

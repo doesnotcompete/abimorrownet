@@ -22,11 +22,13 @@ class ProfileDatatable < AjaxDatatablesRails::Base
 
   def data
     records.map do |record|
+      group = record.group.title rescue "???"
       [
         # comma separated list of the values for each cell of a table row
         # example: record.attribute,
         record.first_name,
         record.last_name,
+        group,
         link_to(raw("Ansehen &raquo;"), record)
       ]
     end

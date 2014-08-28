@@ -1,5 +1,9 @@
 <tr>
+  <% if user.profile %>
   <td><%= user.first_name %></td>
   <td><%= user.last_name %></td>
   <td><%= link_to raw("Ansehen &raquo;"), user.profile %></td>
+  <% else %>
+  <td colspan="3">- Benutzer noch ohne Profil -</td>
+  <% end %>
 </tr>
