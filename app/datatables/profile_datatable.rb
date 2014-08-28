@@ -4,7 +4,7 @@ class ProfileDatatable < AjaxDatatablesRails::Base
   include AjaxDatatablesRails::Extensions::Kaminari
   # include AjaxDatatablesRails::Extensions::WillPaginate
   # include AjaxDatatablesRails::Extensions::SimplePaginator
-  def_delegator :@view, :link_to
+  def_delegators :@view, :link_to, :raw
 
   def sortable_columns
     # list columns inside the Array in string dot notation.
@@ -27,7 +27,7 @@ class ProfileDatatable < AjaxDatatablesRails::Base
         # example: record.attribute,
         record.first_name,
         record.last_name,
-        link_to("Ansehen", record)
+        link_to(raw("Ansehen &raquo;"), record)
       ]
     end
   end

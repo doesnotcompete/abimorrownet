@@ -4,5 +4,4 @@
 <%= f.input :description, label: "Beschreibung" %>
 <%= f.button :submit, "Speichern" %>
 <% end %>
-<hr />
-<%= link_to "Komitee löschen", committee_path(@committee), method: :delete, class: "btn btn-danger", data: { confirm: "Bist du sicher?" } %>
+<%= render partial: 'admin/deletable', locals: {model_name: "Komitee", path: @committee} %>

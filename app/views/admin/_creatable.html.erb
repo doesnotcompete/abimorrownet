@@ -1,0 +1,4 @@
+<% if current_user.admin? %>
+<hr />
+<%= link_to "#{model_name} erstellen", path %>
+<% end %>

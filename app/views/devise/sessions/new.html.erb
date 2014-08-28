@@ -6,7 +6,7 @@
   <%= f.input :password, autocomplete: "off", label: 'Passwort' %>
 
   <% if devise_mapping.rememberable? -%>
-    <div><%= f.input :remember_me %></div>
+    <div><%= f.input :remember_me, as: :boolean, label: "Angemeldet bleiben" %></div>
   <% end -%>
 
   <div><%= f.button :submit, "Anmelden" %></div>

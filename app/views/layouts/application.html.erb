@@ -28,15 +28,10 @@
       </div>
       <div class='collapse navbar-collapse' id='main-navigation'>
         <ul class='nav navbar-nav'>
-          <li class="<%= 'active' if current_page?(root_path) %>">
-            <%= link_to "Dashboard", root_path %>
-          </li>
-          <li class="<%= 'active' if current_page?(profiles_path) %>">
-            <%= link_to "Jahrgang", profiles_path %>
-          </li>
-          <li class="<%= 'active' if current_page?(committees_path) %>">
-            <%= link_to "Komitees", committees_path %>
-          </li>
+          <%= render partial: 'layouts/navigation_element', locals: {text: "Dashboard", path: root_path} %>
+          <%= render partial: 'layouts/navigation_element', locals: {text: "Jahrgang", path: profiles_path} %>
+          <%= render partial: 'layouts/navigation_element', locals: {text: "Komitees", path: committees_path} %>
+          <%= render partial: 'layouts/navigation_element', locals: {text: "Seminarfächer", path: groups_path} %>
         </ul>
         <ul class="nav navbar-nav navbar-right">
           <% if user_signed_in? %>

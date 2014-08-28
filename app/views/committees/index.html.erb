@@ -1,20 +1,7 @@
 <%
-if @committees
-@committees.each do |committee| %>
-<div id="committee-<%= committee.id %>" class="row committee-box">
-  <div class="col-md-6">
-    <h3><%= committee.title %></h3>
-    <p><%= committee.description %></p>
-    <%= link_to raw("Anzeigen &raquo;"), committee_path(committee), class: 'btn btn-primary' %>
-  </div>
-  <div class="col-md-6">
-  </div>
-</div>
-<% end %>
-<% if current_user.admin? %>
-<hr />
-<%= link_to "Neues Komitee", new_committee_path %>
-<% end %>
+if @committees %>
+<%= render partial: 'committee', collection: @committees %>
 <% else %>
 <p>Keine Komitees.</p>
 <% end %>
+<%= render partial: 'admin/creatable', locals: {model_name: "Komitee", path: new_committee_path} %>

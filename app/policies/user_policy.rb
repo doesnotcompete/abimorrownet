@@ -8,6 +8,10 @@ class UserPolicy < ApplicationPolicy
     @current.admin?
   end
 
+  def destroy?
+    @current.admin?
+  end
+
   class Scope < Scope
     def resolve
       scope

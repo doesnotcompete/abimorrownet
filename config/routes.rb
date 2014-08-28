@@ -4,6 +4,9 @@ Rails.application.routes.draw do
 
   resources :profiles
   resources :committees
+  resources :groups
+
+  delete "users/:id" => "users#destroy", as: :user
 
   delete "users/identity" => "users#remove_association", as: :remove_association
   get "users/invited" => "users#list_invited", as: :invited_users

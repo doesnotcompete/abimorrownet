@@ -1,7 +1,7 @@
 class InvitedUserDatatable < AjaxDatatablesRails::Base
   # uncomment the appropriate paginator module,
   # depending on gems available in your project.
-include AjaxDatatablesRails::Extensions::Kaminari
+  include AjaxDatatablesRails::Extensions::Kaminari
   # include AjaxDatatablesRails::Extensions::WillPaginate
   # include AjaxDatatablesRails::Extensions::SimplePaginator
 
@@ -24,7 +24,8 @@ include AjaxDatatablesRails::Extensions::Kaminari
       [
         # comma separated list of the values for each cell of a table row
         # example: record.attribute,
-        record.email
+        record.email,
+        @view.link_to("Löschen", @view.user_path(record), method: :delete, data: { confirm: 'Sicher?' })
       ]
     end
   end

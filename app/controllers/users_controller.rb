@@ -2,6 +2,15 @@ class UsersController < ApplicationController
   before_filter :authenticate_user!
   before_filter :ensure_profile!
 
+  def destroy
+    user = User.find(params[:id])
+    authorize user
+
+    user.destroy!
+
+    redirect_to root_path, notice: "Benutzer gelöscht."
+  end
+
   def list_invited
     authorize :user, :list_invited?
     respond_to do |format|

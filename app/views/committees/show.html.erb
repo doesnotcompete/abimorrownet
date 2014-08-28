@@ -1,6 +1,3 @@
 <h2><%= @committee.title %></h2>
 <p><%= @committee.description %></p>
-<% if current_user.admin? %>
-<hr />
-<%= link_to "Komitee bearbeiten", edit_committee_path(@committee) %>
-<% end %>
+<%= render partial: 'admin/editable', locals: {model_name: "Komitee", path: edit_committee_path(@committee)} %>
