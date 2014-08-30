@@ -13,7 +13,6 @@ class ProfilesController < ApplicationController
   end
 
   def index
-    @profiles = Profile.all
     respond_to do |format|
       format.html
       format.json { render json: ProfileDatatable.new(view_context) }

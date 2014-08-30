@@ -1,6 +1,6 @@
 <div id="committee-<%= committee.id %>" class="row committee-box">
   <div class="col-md-6">
-    <h3><%= committee.title %></h3>
+    <h3><%= committee.title %><% if current_user.committees.include?(committee) %> <span class="label label-success">Mitglied</span><% end %></h3>
     <p><%= committee.description %></p>
     <%= link_to raw("Anzeigen &raquo;"), committee_path(committee), class: 'btn btn-primary' %>
   </div>

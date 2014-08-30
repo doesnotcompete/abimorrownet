@@ -9,7 +9,7 @@
     <th>Aktion</th>
   </thead>
   <tbody>
-    <%= render partial: 'students', collection: @group.users, as: :user %>
+    <%= render partial: 'student', collection: @group.users, as: :user %>
   </tbody>
 </table>
 <%= render partial: 'admin/editable', locals: {model_name: "Seminarfach", path: edit_group_path(@group)} %>

@@ -1,5 +1,5 @@
 class User < ActiveRecord::Base
-  has_many :committee_roles
+  has_many :committee_roles, dependent: :destroy
   has_many :committees, through: :committee_roles
 
   has_many :comments

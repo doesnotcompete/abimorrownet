@@ -1,5 +1,5 @@
 class Committee < ActiveRecord::Base
-  has_many :committee_roles
+  has_many :committee_roles, dependent: :destroy
   has_many :users, through: :committee_roles
 
   extend FriendlyId

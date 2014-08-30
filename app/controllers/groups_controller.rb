@@ -20,7 +20,7 @@ class GroupsController < ApplicationController
   end
 
   def show
-    @group = find_friendly(Group)
+    @group = find_friendly(Group.includes(users: :profile))
   end
 
   def edit
