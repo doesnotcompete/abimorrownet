@@ -1,0 +1,3 @@
+<h1><%= "#{@teacher.first_name} #{@teacher.last_name}" %></h2>
+<p>E-Mail: <%= mail_to @teacher.email %></p>
+<%= render partial: 'admin/editable', locals: {model_name: "Lehrer", path: edit_teacher_path(@teacher)} %>

@@ -55,8 +55,9 @@ group :development do
   gem 'binding_of_caller'
   gem 'guard'
   gem 'guard-livereload'
-   gem 'guard-rspec'
+  gem 'guard-rspec'
   gem 'rack-livereload'
+  gem 'meta_request'
 end
 
 # Use ActiveModel has_secure_password

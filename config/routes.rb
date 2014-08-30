@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   resources :profiles
   resources :committees
   resources :groups
+  resources :teachers
 
   delete "users/:id" => "users#destroy", as: :user
 

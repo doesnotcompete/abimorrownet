@@ -1,11 +1,11 @@
 class ProfilesController < ApplicationController
   before_filter :authenticate_user!
-  around_filter :catch_errors
+  before_filter :ensure_profile!, except: :new
 
   respond_to :html, :json
 
   def show
-    @profile = find_profile
+    @profile = find_friendly(Profile)
     respond_with @profile
   end
 
@@ -21,7 +21,7 @@ class ProfilesController < ApplicationController
   end
 
   def edit
-    if @profile = find_profile
+    if @profile = find_friendly(Profile)
       authorize @profile
     else
       redirect_to root_url, alert: "Profil nicht gefunden."
@@ -29,7 +29,7 @@ class ProfilesController < ApplicationController
   end
 
   def update
-    @profile = find_profile
+    @profile = find_friendly(Profile)
     authorize @profile
 
     if @profile.update(profile_params)
@@ -61,20 +61,9 @@ class ProfilesController < ApplicationController
 
   private
 
-  def find_profile
-    Profile.friendly.find(params[:id]) || Profile.find(params[:id])
-  end
 
   def profile_params
     params.require(:profile).permit(:first_name, :last_name, :about, user_attributes: [:group_id, :id])
-  end
-
-  def catch_errors
-    yield
-  rescue ActiveRecord::RecordNotFound
-    redirect_to root_url, alert: "Profil nicht gefunden."
-  rescue Pundit::NotAuthorizedError
-    redirect_to root_url, alert: "Du kannst kein weiteres Profil anlegen."
   end
 
 end

@@ -2,6 +2,7 @@
 <%= f.input :title %>
 <%= f.input :description %>
 <%= f.association :users, label_method: lambda { |item| "#{item.first_name} #{item.last_name}".html_safe rescue "#{item.email}" } %>
+<%= f.association :teacher, label_method: lambda { |item| "#{item.first_name} #{item.last_name}".html_safe rescue "#{item.email}" } %>
 <%= f.button :submit %>
 <% end %>
 <%= render partial: 'admin/deletable', locals: {model_name: "Seminarfach", path: group_path(@group)} %>
