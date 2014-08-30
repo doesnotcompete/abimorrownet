@@ -20,7 +20,11 @@ class CommitteesController < ApplicationController
     @committee = find_committee
     authorize @committee
 
-    if @committee.update(committee_params)
+    @committee.assign_attributes(committee_params)
+    users = User.find(params[:committee][:user_ids].reject! { |c| c.empty? })
+    @committee.users = users
+
+    if @committee.save
       redirect_to @committee
     else
       render :edit
@@ -38,8 +42,10 @@ class CommitteesController < ApplicationController
   end
 
   def show
-    @committee = find_committee
+    @committee = find_friendly(Committee.includes(users: :profile))
     authorize @committee
+
+    @members = @committee.users rescue []
   end
 
   def destroy
@@ -48,6 +54,28 @@ class CommitteesController < ApplicationController
 
     @committee.destroy
     redirect_to committees_path
+  end
+
+  def prepare_participation
+    @committee = find_committee
+  end
+
+  def participate
+    @committee = find_committee
+    authorize @committee
+
+    current_user.committees << @committee
+
+    redirect_to @committee, notice: "Herzlichen Glückwunsch! Du nimmst jetzt an diesem Komitee teil."
+  end
+
+  def departicipate
+    @committee = find_committee
+    authorize @committee
+
+    current_user.committees.delete(@committee)
+
+    redirect_to @committee, notice: "Wir haben deine Mitgliedschaft beendet."
   end
 
   private

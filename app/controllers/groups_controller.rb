@@ -3,7 +3,7 @@ class GroupsController < ApplicationController
   before_filter :ensure_profile!
 
   def index
-    @groups = Group.all
+    @groups = Group.includes(:teacher).all
   end
 
   def new

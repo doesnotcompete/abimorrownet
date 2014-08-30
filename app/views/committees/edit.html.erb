@@ -2,6 +2,7 @@
 <%= simple_form_for(@committee, method: :patch, html: {class: 'form-horizontal' }) do |f| %>
 <%= f.input :title, label: "Titel" %>
 <%= f.input :description, label: "Beschreibung" %>
+<%= f.association :users, label_method: lambda { |item| "#{item.first_name} #{item.last_name}".html_safe rescue "#{item.email}" } %>
 <%= f.button :submit, "Speichern" %>
 <% end %>
 <%= render partial: 'admin/deletable', locals: {model_name: "Komitee", path: @committee} %>

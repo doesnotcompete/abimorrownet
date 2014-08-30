@@ -28,6 +28,14 @@ class CommitteePolicy < ApplicationPolicy
     @user.admin?
   end
 
+  def participate?
+    !@user.committees.include?(@committee)
+  end
+
+  def departicipate?
+    @user.committees.include?(@committee)
+  end
+
   class Scope < Scope
     def resolve
       scope

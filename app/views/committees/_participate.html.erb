@@ -1,0 +1,5 @@
+<% if current_user.committees.include?(@committee) %>
+<%= link_to "Teilnahme beenden", departicipate_path, method: :delete, class: "btn btn-sm btn-danger", data: {confirm: "Bist du sicher? Deine Teilnahme wird sofort beendet."} %>
+<% else %>
+<%= link_to "Mitmachen", prepare_participation_path, class: "btn btn-sm btn-success" %>
+<% end %>

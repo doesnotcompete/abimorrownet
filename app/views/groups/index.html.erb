@@ -1,2 +1,4 @@
+<% cache do %>
 <%= render partial: 'group', collection: @groups %>
+<% end %>
 <%= render partial: 'admin/creatable', locals: {model_name: "Seminarfach", path: new_group_path} %>

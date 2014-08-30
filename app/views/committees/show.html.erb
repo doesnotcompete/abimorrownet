@@ -1,3 +1,15 @@
 <h2><%= @committee.title %></h2>
 <p><%= @committee.description %></p>
+<h3>Mitglieder</h3>
+<table class="table table-striped table-bordered">
+  <thead>
+    <th>Vorname</th>
+    <th>Nachname</th>
+    <th>Aktion</th>
+  </thead>
+  <tbody>
+    <%= render partial: 'members', collection: @members, as: :member %>
+  </tbody>
+</table>
+<%= render partial: 'participate' %>
 <%= render partial: 'admin/editable', locals: {model_name: "Komitee", path: edit_committee_path(@committee)} %>

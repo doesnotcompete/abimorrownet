@@ -9,6 +9,10 @@ Rails.application.routes.draw do
 
   delete "users/:id" => "users#destroy", as: :user
 
+  get "committee/:id/participate" => "committees#prepare_participation", as: :prepare_participation
+  post "committee/:id/participate" => "committees#participate", as: :participate
+  delete "committee/:id/participate" => "committees#departicipate", as: :departicipate
+
   delete "users/identity" => "users#remove_association", as: :remove_association
   get "users/invited" => "users#list_invited", as: :invited_users
   # The priority is based upon order of creation: first created -> highest priority.

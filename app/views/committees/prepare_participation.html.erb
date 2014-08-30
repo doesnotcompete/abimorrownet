@@ -1,0 +1,6 @@
+<h2>Teilnahme bestätigen</h2>
+<p>Wir freuen uns, dass du im Komitee "<%= @committee.title %>" mithelfen möchtest, bitten dich jedoch, nur dann deine Teilnahme zu erklären, wenn du tatsächlich bereit bist, dich an dessen Arbeit zu beteiligen.
+Du kannst deine Teilnahme jederzeit beenden; bitte berücksichtige aber, dass sich das Komitee auf deine Mithilfe verlässt.</p>
+<hr />
+<p>Ich möchte mich an der Arbeit des Komitees beteiligen. Ich erhalte sofort den Status "Mitglied" zugewiesen.</p>
+<%= link_to "Ja, wirklich teilnehmen", participate_path, method: :post, class: 'btn btn-success' %> <%= link_to "Nein, lieber nicht", root_url, class: 'btn btn-danger' %>

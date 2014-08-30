@@ -1,0 +1,11 @@
+<% if member.profile %>
+<tr>
+  <td><%= member.first_name %></td>
+  <td><%= member.last_name %></td>
+  <td><%= link_to raw("Ansehen &raquo;"), member.profile %></td>
+</tr>
+<% else %>
+<tr>
+  <td colspan="3">???</td>
+</tr>
+<% end %>
