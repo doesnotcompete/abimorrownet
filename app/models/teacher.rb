@@ -1,6 +1,8 @@
 class Teacher < ActiveRecord::Base
   has_one :group
 
+  has_many :quotes, as: :quotable
+
   validates :email, :first_name, :last_name, presence: true
 
   extend FriendlyId

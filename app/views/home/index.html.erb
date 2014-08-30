@@ -1,3 +1,10 @@
 <h1>Hallo, <%= current_user.profile.first_name %>.</h1>
 <p>Wir haben gerade keine Nachrichten für dich; du kannst dich aber dennoch gerne umschauen.</p>
 <%= render partial: 'notifications/no_group' %>
+<% unless current_user.committees.empty? %>
+<h3>Deine Komitees</h3>
+<ul>
+<%= render partial: 'notifications/my_committees', collection: current_user.committees, as: :committee %>
+</ul>
+<% end %>
+<%= render partial: 'notifications/quotes_to_approve' %>

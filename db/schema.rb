@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140830124810) do
+ActiveRecord::Schema.define(version: 20140830171801) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -119,7 +119,11 @@ ActiveRecord::Schema.define(version: 20140830124810) do
     t.string   "quotable_type"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "creator_id"
+    t.boolean  "approved",      default: false
   end
+
+  add_index "quotes", ["creator_id"], name: "index_quotes_on_creator_id", using: :btree
 
   create_table "teachers", force: true do |t|
     t.string   "name"

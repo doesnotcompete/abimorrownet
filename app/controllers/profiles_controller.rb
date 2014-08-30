@@ -6,7 +6,7 @@ class ProfilesController < ApplicationController
 
   def show
     @profile = find_friendly(Profile)
-    respond_with @profile
+    @quotes = @profile.quotes
   end
 
   def new

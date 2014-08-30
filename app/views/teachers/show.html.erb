@@ -1,3 +1,10 @@
 <h1><%= "#{@teacher.first_name} #{@teacher.last_name}" %></h2>
 <p>E-Mail: <%= mail_to @teacher.email %></p>
+<% unless @quotes.empty? %>
+<h2>Zitate</h2>
+<div>
+<%= render partial: 'quotes/teacher_quote', collection: @quotes, as: :quote %>
+<% end %>
+<div>
+<%= link_to "Neues Zitat", new_teacher_quote_path(@teacher), class: "btn btn-success btn-sm" %>
 <%= render partial: 'admin/editable', locals: {model_name: "Lehrer", path: edit_teacher_path(@teacher)} %>

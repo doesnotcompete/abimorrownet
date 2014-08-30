@@ -2,12 +2,19 @@ Rails.application.routes.draw do
   devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }
   root to: "home#index"
 
-  resources :profiles
+  resources :profiles do
+    resources :quotes
+  end
   resources :committees
   resources :groups
-  resources :teachers
+  resources :teachers do
+    resources :quotes
+  end
 
   delete "users/:id" => "users#destroy", as: :user
+
+  post "profiles/:profile_id/quotes/:quote_id/approve" => "quotes#approve", as: :approve_profile_quote
+  post "teachers/:teacher_id/quotes/:quote_id/approve" => "quotes#approve", as: :approve_teacher_quote
 
   get "committees/:id/participate" => "committees#prepare_participation", as: :prepare_participation
   post "committees/:id/participate" => "committees#participate", as: :participate

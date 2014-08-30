@@ -44,6 +44,7 @@ class TeachersController < ApplicationController
 
   def show
     @teacher = find_friendly(Teacher)
+    @quotes = @teacher.quotes
     respond_with @teacher
   end
 
