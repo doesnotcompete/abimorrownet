@@ -9,7 +9,10 @@ class QuotesController < ApplicationController
 
   def create
     authorize :quote, :create?
-    if quote = @quotable.quotes.create(text: params[:quote][:text], author: current_user)
+
+    quote = @quotable.quotes.create(text: params[:quote][:text], author: current_user)
+
+    if quote.persisted?
       redirect_to @quotable
     else
       render :new
@@ -27,7 +30,7 @@ class QuotesController < ApplicationController
     @quote.approved = true
     @quote.save!
 
-    redirect_to @quotable
+    redirect_to :back
   end
 
   def destroy
@@ -35,16 +38,20 @@ class QuotesController < ApplicationController
     authorize @quote
 
     if @quote.destroy
-      redirect_to @quotable, notice: "Zitat gelöscht."
+      redirect_to :back, notice: "Zitat gelöscht."
     else
       render :show
     end
+  end
+
+  def show_pending
+    @pending_quotes = Quote.pending_overview(current_user)
   end
 
   private
 
   def load_quotable
     klass = [Profile, Teacher].detect { |c| params["#{c.name.underscore}_id"]}
-    @quotable = klass.friendly.find(params["#{klass.name.underscore}_id"]) || klass.find(params["#{klass.name.underscore}_id"])
+    @quotable = klass.friendly.find(params["#{klass.name.underscore}_id"]) || klass.find(params["#{klass.name.underscore}_id"]) if klass
   end
 end

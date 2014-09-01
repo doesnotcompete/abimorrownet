@@ -13,6 +13,8 @@ Rails.application.routes.draw do
 
   delete "users/:id" => "users#destroy", as: :user
 
+  get "quotes/approve" => "quotes#show_pending", as: :pending_quotes
+
   post "profiles/:profile_id/quotes/:quote_id/approve" => "quotes#approve", as: :approve_profile_quote
   post "teachers/:teacher_id/quotes/:quote_id/approve" => "quotes#approve", as: :approve_teacher_quote
 

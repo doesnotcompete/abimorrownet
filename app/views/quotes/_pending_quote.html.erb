@@ -1,0 +1,3 @@
+<p>für <%= "#{quote.quotable.first_name} #{quote.quotable.last_name}" %>:</p>
+<%= render partial: 'student_quote', locals: {quote: quote} if quote.quotable.class.to_s == "Profile" %>
+<%= render partial: 'teacher_quote', locals: {quote: quote} if quote.quotable.class.to_s == "Teacher" %>

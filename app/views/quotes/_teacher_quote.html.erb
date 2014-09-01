@@ -2,9 +2,9 @@
 <blockquote><%= quote.text %><br /><small>zuletzt aktualisiert am <%= quote.updated_at.strftime("%d.%m.%Y") %></small></blockquote>
 <% end %>
 <% if quote.author == current_user || current_user.moderator? %>
-<%= link_to "Löschen", teacher_quote_path(@teacher, quote), method: :delete, data: {confirm: "Sicher?"} %>
+<%= link_to "Löschen", teacher_quote_path(quote.quotable, quote), method: :delete, data: {confirm: "Sicher?"} %>
 <% end %>
 <% if !quote.approved? && current_user.moderator? %>
-<%= link_to "Freigeben", approve_teacher_quote_path(@teacher, quote), method: :post unless quote.approved? %>
+<%= link_to "Freigeben", approve_teacher_quote_path(quote.quotable, quote), method: :post unless quote.approved? %>
 <% end %>
 <hr />

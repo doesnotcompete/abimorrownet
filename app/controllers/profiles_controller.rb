@@ -1,11 +1,12 @@
 class ProfilesController < ApplicationController
   before_filter :authenticate_user!
-  before_filter :ensure_profile!, except: :new
+  before_filter :ensure_profile!, except: [:new, :create]
 
   respond_to :html, :json
 
   def show
     @profile = find_friendly(Profile)
+    @quotable = @profile
     @quotes = @profile.quotes
   end
 
