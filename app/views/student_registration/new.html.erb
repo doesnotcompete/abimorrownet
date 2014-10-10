@@ -1,0 +1,15 @@
+<div class="alert alert-info"><p><b>Danke, dass du vorbeigekommen bist.</b> Wir vom Abizeitungskomitee bitten dich, über das nachfolgende Formular deinen Namen und eine E-Mail-Adresse anzugeben, über die wir dich erreichen können.
+  Diese Daten benötigen wir, um dir eine Einladung zum Informationssystem des Komitees zuzusenden. Wir übertragen deine Daten über eine gesicherte Verbindung und löschen sie spätestens
+  zum <em>31. Oktober 2015</em>, es sei denn, wir vereinbaren bis dahin etwas anderes mit dir.</p></div>
+<div class="container">
+<div class="row">
+  <div class="col-md-6 col-md-offset-3">
+<%= simple_form_for :student_registration, url: {action: 'create'}, html: { class: 'form-horizontal' } do |f| %>
+  <%= f.input :first_name, label: "Vorname" %>
+  <%= f.input :last_name, label: "Nachname" %>
+  <%= f.input :email, label: "E-Mail" %>
+  <%= f.button :submit, "Eintragen" %>
+<% end %>
+</div>
+</div>
+</div>

@@ -2,10 +2,10 @@
 <p><%= @profile.about %></p>
 <p>Seminarfach: <%= link_to @profile.group_title, @profile.group rescue "???" %></p>
 <% unless @quotes.empty? %>
-<h2>Zitate</h2>
+<h2>Kommentare</h2>
 <%= render partial: 'quotes/student_quote', collection: @quotes, as: :quote %>
 <% end %>
-<%= link_to "Neues Zitat", new_profile_quote_path(@profile), class: "btn btn-success btn-sm" %>
+<%= link_to "Neuer Kommentar", new_profile_quote_path(@profile), class: "btn btn-success btn-sm" %>
 <% if (current_user.profile == @profile || current_user.admin?) %>
 <%= render partial: 'notifications/no_group' %>
 <hr />

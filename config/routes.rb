@@ -15,6 +15,10 @@ Rails.application.routes.draw do
 
   get "quotes/approve" => "quotes#show_pending", as: :pending_quotes
 
+  get "eintragen" => "student_registration#new"
+  post "eintragen" => "student_registration#create"
+  get "eintragen/abgeschlossen" => "student_registration#finished", as: :finished_registration
+
   post "profiles/:profile_id/quotes/:quote_id/approve" => "quotes#approve", as: :approve_profile_quote
   post "teachers/:teacher_id/quotes/:quote_id/approve" => "quotes#approve", as: :approve_teacher_quote
 
