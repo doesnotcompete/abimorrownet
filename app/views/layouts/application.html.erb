@@ -7,6 +7,7 @@
   <meta content='width=device-width, initial-scale=1' name='viewport'>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+  <%= stylesheet_link_tag    'bootstrap', media: 'all', 'data-turbolinks-track' => true %>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
 </head>
@@ -35,7 +36,6 @@
           <%= render partial: 'layouts/navigation_element', locals: {text: "Lehrer", path: teachers_path} %>
         </ul>
         <ul class="nav navbar-nav navbar-right">
-          <% cache do %>
           <% if user_signed_in? %>
           <li class="dropdown" data-no-turbolink>
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">Angemeldet: <strong><% if current_user.profile %><%= current_user.profile.first_name %> <%= current_user.profile.last_name %><% else %><%= current_user.email %><% end %></strong> <span class="caret"></span></a>
@@ -49,7 +49,6 @@
           </li>
           <% else %>
             <li><%= link_to "Anmelden", new_user_session_path %></li>
-          <% end %>
           <% end %>
         </ul>
       </div>

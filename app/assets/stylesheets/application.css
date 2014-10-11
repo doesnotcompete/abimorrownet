@@ -12,17 +12,14 @@
  *
  *= require_self
  */
-#= require bootstrap
 #= require 'chosen.min'
 
-p,
-a,
-strong,
-label,
-adress,
-table,
-b {
-  font-family: rosario;
+h1,
+h2,
+h3,
+h4,
+h5 {
+  font-family: lancelot !important;
 }
 
 .navbar-brand {

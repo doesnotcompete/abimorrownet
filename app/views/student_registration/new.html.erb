@@ -1,5 +1,5 @@
 <div class="alert alert-info"><p><b>Danke, dass du vorbeigekommen bist.</b> Wir vom Abizeitungskomitee bitten dich, über das nachfolgende Formular deinen Namen und eine E-Mail-Adresse anzugeben, über die wir dich erreichen können.
-  Diese Daten benötigen wir, um dir eine Einladung zum Informationssystem des Komitees zuzusenden. Wir übertragen deine Daten über eine gesicherte Verbindung und löschen sie spätestens
+  Diese Daten benötigen wir, um dir eine Einladung zum Jahrgangsinformationssystem zuzusenden. Wir übertragen deine Daten über eine gesicherte Verbindung und verarbeiten sie ausschließlich in Mitgliedsländern des Europäischen Wirtschaftsraumes; wir löschen erfasste E-Mail-Adressen spätestens
   zum <em>31. Oktober 2015</em>, es sei denn, wir vereinbaren bis dahin etwas anderes mit dir.</p></div>
 <div class="container">
 <div class="row">
@@ -8,7 +8,7 @@
   <%= f.input :first_name, label: "Vorname" %>
   <%= f.input :last_name, label: "Nachname" %>
   <%= f.input :email, label: "E-Mail" %>
-  <%= f.button :submit, "Eintragen" %>
+  <%= f.button :submit, raw("Eintragen &raquo;"), class: "btn-primary" %>
 <% end %>
 </div>
 </div>
