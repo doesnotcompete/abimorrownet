@@ -7,7 +7,7 @@ class UsersController < ApplicationController
 
     user.destroy!
 
-    redirect_to root_path, notice: "Benutzer gelöscht."
+    redirect_to :back, notice: "Benutzer gelöscht."
   end
 
   def list_invited

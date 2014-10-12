@@ -29,4 +29,7 @@ test: &test
 
 production:
   <<: *default
-  database: db/production.sqlite3
+  adapter: postgresql
+  encoding: unicode
+  database: abimorrownet_dev
+  pool: 5

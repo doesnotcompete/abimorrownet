@@ -6,5 +6,5 @@
 <%= render partial: 'quotes/teacher_quote', collection: @quotes, as: :quote %>
 <% end %>
 <div>
-<%= link_to "Neues Zitat", new_teacher_quote_path(@teacher), class: "btn btn-success btn-sm" %>
+<%= link_to "Neuer Kommentar", new_teacher_quote_path(@teacher), class: "btn btn-success btn-sm" %>
 <%= render partial: 'admin/editable', locals: {model_name: "Lehrer", path: edit_teacher_path(@teacher)} %>
