@@ -6,6 +6,8 @@
 <%= render partial: 'quotes/student_quote', collection: @quotes, as: :quote %>
 <% end %>
 <%= link_to "Neuer Kommentar", new_profile_quote_path(@profile), class: "btn btn-success btn-sm" %>
+<hr />
+<%= render partial: 'quotes/description' %>
 <% if (current_user.profile == @profile || current_user.admin?) %>
 <%= render partial: 'notifications/no_group' %>
 <hr />
