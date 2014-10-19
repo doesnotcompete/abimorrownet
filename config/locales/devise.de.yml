@@ -21,10 +21,10 @@ de:
         subject: "Accountbestätigung"
       invitation_instructions:
         subject: 'Einladung'
-        hello: 'Hallo,'
-        someone_invited_you: 'du wurdest eingeladen, das Jahrgangsportal "abimorrownet" zu benutzen. Bitte benutze den folgenden Link, um die Einladung anzunehmen.'
+        hello: 'Hallo %{name},'
+        someone_invited_you: 'vielen Dank, dass du uns deine E-Mail-Adresse bereitgestellt hast. Wir vom Abizeitungskomitee laden dich ein, unser Jahrgangsportal "abimorrownet" zu benutzen. Bitte benutze den folgenden Link, um die Einladung anzunehmen.'
         accept: 'Einladung annehmen'
-        ignore: 'Wenn du die Einladung nicht annehmen möchtest, brauchst du nichts weiter zu tun.<br /><br />Viele Grüße<br />das abimorrownet-Team'
+        ignore: 'Du erhälts deine Einladung vor den anderen Mitgliedern des Jahrgangs, weil du Mitglied der Schülervertretung oder des Finanzkomitees bist. Beachte bitte unbedingt, dass die Entwicklung des Jahrgangsportals längst nicht abgeschlossen ist. Es kommen ständig neue Funktionen hinzu und die Verfügbarkeit der bestehenden Funktionalität ist nicht ständig garantiert.<br />Wir haben dir zudem die E-Mail-Adresse %{email} zugewiesen. E-Mails an deine neue @abimorrowland.de-Adresse werden direkt an deine bei uns hinterlegte Adresse weitergeleitet und nicht bei uns gespeichert. <br />Wenn du noch Fragen oder Vorschläge zum Jahrgangsportal hast, antworte einfach auf diese E-Mail. Bei technischen Fragen kannst du dich auch an <a href="mailto: kevin.koopmann@abimorrowland.de">den Administrator</a> wenden.<br /><br />Viele Grüße<br />das Abizeitungskomitee'
       reset_password_instructions:
         subject: "Passwort zurücksetzen"
       unlock_instructions:
@@ -47,8 +47,8 @@ de:
       update_needs_confirmation: "You updated your account successfully, but we need to verify your new email address. Please check your email and click on the confirm link to finalize confirming your new email address."
       updated: "You updated your account successfully."
     sessions:
-      signed_in: "Signed in successfully."
-      signed_out: "Signed out successfully."
+      signed_in: "Angemeldet."
+      signed_out: "Abgemeldet."
     unlocks:
       send_instructions: "You will receive an email with instructions about how to unlock your account in a few minutes."
       send_paranoid_instructions: "If your account exists, you will receive an email with instructions about how to unlock it in a few minutes."
