@@ -10,3 +10,6 @@
   <tbody>
   </tbody>
 </table>
+<% if current_user.moderator? || current_user.admin? %>
+<%= link_to 'Verteilerliste herunterladen', profiles_path(format: :csv) %>
+<% end %>

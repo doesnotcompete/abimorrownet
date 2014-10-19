@@ -21,6 +21,13 @@ class GroupsController < ApplicationController
 
   def show
     @group = find_friendly(Group.includes(users: :profile))
+    respond_to do |format|
+      format.html
+      format.csv do
+        headers['Content-Disposition'] = "attachment"
+        headers['Content-Type'] ||= 'text/csv'
+      end
+    end
   end
 
   def edit

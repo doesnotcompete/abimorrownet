@@ -6,7 +6,7 @@ class Profile < ActiveRecord::Base
 
   validates :first_name, :last_name, presence: true
 
-  delegate :group, to: :user
+  delegate :group, :email, to: :user
 
   accepts_nested_attributes_for :user
 
