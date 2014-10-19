@@ -22,9 +22,9 @@ de:
       invitation_instructions:
         subject: 'Einladung'
         hello: 'Hallo,'
-        someone_invited_you: 'vielen Dank, dass du uns deine E-Mail-Adresse bereitgestellt hast. Wir vom Abizeitungskomitee laden dich ein, unser Jahrgangsportal "abimorrownet" zu benutzen. Bitte benutze den folgenden Link, um die Einladung anzunehmen.'
+        someone_invited_you: 'vielen Dank, dass du uns deine E-Mail-Adresse bereitgestellt hast. Wir vom Abizeitungskomitee laden dich nun ein, unser Jahrgangsportal "abimorrownet" zu benutzen. Bitte benutze den folgenden Link, um die Einladung anzunehmen.'
         accept: 'Einladung annehmen'
-        ignore: 'Du erhälts deine Einladung vor den anderen Mitgliedern des Jahrgangs, weil du Mitglied der Schülervertretung oder des Finanzkomitees bist. Beachte bitte unbedingt, dass die Entwicklung des Jahrgangsportals längst nicht abgeschlossen ist. Es kommen ständig neue Funktionen hinzu und die Verfügbarkeit der bestehenden Funktionalität ist nicht ständig garantiert.<br />Wir haben dir zudem die E-Mail-Adresse %{email} zugewiesen. E-Mails an deine neue @abimorrowland.de-Adresse werden direkt an deine bei uns hinterlegte Adresse weitergeleitet und nicht bei uns gespeichert. Bitte verwende diese neue Adresse auch, um dich anzumelden. <br />Wenn du noch Fragen oder Vorschläge zum Jahrgangsportal hast, antworte einfach auf diese E-Mail. Bei technischen Fragen kannst du dich auch an <a href="mailto: kevin.koopmann@abimorrowland.de">den Administrator</a> wenden.<br /><br />Viele Grüße<br />das Abizeitungskomitee'
+        ignore: 'Du erhälts deine Einladung vor den anderen Mitgliedern des Jahrgangs, weil du Mitglied der Schülervertretung oder des Finanzkomitees bist. Als solches haben wir dir erweiterte Rechte, wie z.B. den Download von Verteilerlisten oder das Bearbeiten von Profilen eingeräumt. Beachte bitte unbedingt, dass die Entwicklung des Jahrgangsportals längst nicht abgeschlossen ist. Es kommen ständig neue Funktionen hinzu und die Verfügbarkeit der bestehenden Funktionalität ist nicht ständig garantiert.<br />Wir haben dir zudem die E-Mail-Adresse %{email} zugewiesen. E-Mails an deine neue @abimorrowland.de-Adresse werden direkt an deine bei uns hinterlegte Adresse weitergeleitet und nicht bei uns gespeichert. Bitte verwende diese neue Adresse auch, um dich anzumelden. <br />Wenn du noch Fragen oder Vorschläge zum Jahrgangsportal hast, antworte einfach auf diese E-Mail. Bei technischen Fragen kannst du dich auch an <a href="mailto: kevin.koopmann@abimorrowland.de">den Administrator</a> wenden.<br /><br />Viele Grüße<br />das Abizeitungskomitee'
       reset_password_instructions:
         subject: "Passwort zurücksetzen"
       unlock_instructions:
@@ -40,7 +40,7 @@ de:
       updated_not_active: "Dein Passwort wurde erfolgreich geändert."
     registrations:
       destroyed: "Bye! Your account was successfully cancelled. We hope to see you again soon."
-      signed_up: "Welcome! You have signed up successfully."
+      signed_up: "Willkommen!"
       signed_up_but_inactive: "You have signed up successfully. However, we could not sign you in because your account is not yet activated."
       signed_up_but_locked: "You have signed up successfully. However, we could not sign you in because your account is locked."
       signed_up_but_unconfirmed: "A message with a confirmation link has been sent to your email address. Please open the link to activate your account."
