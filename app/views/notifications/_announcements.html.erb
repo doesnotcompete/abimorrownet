@@ -1,0 +1,6 @@
+<div id="announcements">
+<% unless @announcements.empty? %>
+<%= render partial: 'notifications/announcement', collection: @announcements, as: :announcement %>
+<% end %>
+<%= render partial: 'admin/creatable', locals: {model_name: "Ankündigung", path: new_announcement_path, hide_ruler: true} %>
+</div>

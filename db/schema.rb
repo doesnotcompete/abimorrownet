@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141012151938) do
+ActiveRecord::Schema.define(version: 20141020182025) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -48,6 +48,15 @@ ActiveRecord::Schema.define(version: 20141012151938) do
 
   add_index "admin_users", ["email"], name: "index_admin_users_on_email", unique: true, using: :btree
   add_index "admin_users", ["reset_password_token"], name: "index_admin_users_on_reset_password_token", unique: true, using: :btree
+
+  create_table "announcements", force: true do |t|
+    t.string   "title"
+    t.string   "text"
+    t.string   "file"
+    t.boolean  "present"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "comments", force: true do |t|
     t.text     "text"
@@ -121,9 +130,11 @@ ActiveRecord::Schema.define(version: 20141012151938) do
     t.datetime "updated_at"
     t.integer  "creator_id"
     t.boolean  "approved",      default: false
+    t.datetime "deleted_at"
   end
 
   add_index "quotes", ["creator_id"], name: "index_quotes_on_creator_id", using: :btree
+  add_index "quotes", ["deleted_at"], name: "index_quotes_on_deleted_at", using: :btree
 
   create_table "student_registrations", force: true do |t|
     t.string   "first_name"

@@ -1,4 +1,4 @@
 <% if current_user.admin? %>
-<hr />
-<%= link_to "#{model_name} erstellen", path %>
+<% unless hide_ruler %><hr /><% end %>
+<%= link_to "#{model_name} erstellen", path, class: 'btn btn-sm btn-success' %>
 <% end %>

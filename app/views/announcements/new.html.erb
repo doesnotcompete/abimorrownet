@@ -1,0 +1,8 @@
+<%= simple_form_for :announcement, url: {action: 'create'}, html: { class: 'form-horizontal' } do |f| %>
+  <%= f.input :title %>
+  <%= f.input :text %>
+  <%= f.input :file, label: "Datei-Link" %>
+  <%= f.input :present, label: "Auf Dashboard zeigen?", as: :boolean %>
+  <hr />
+  <%= f.button :submit, "Erstellen" %>
+<% end %>

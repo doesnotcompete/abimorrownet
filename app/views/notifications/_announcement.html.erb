@@ -1,0 +1,7 @@
+<h3><%= announcement.title %></h3>
+<p><%= announcement.text %></p>
+<% unless announcement.file.empty? %>
+<a href="<%= announcement.file %>">Datei herunterladen</a>
+<% end %>
+<%= render partial: 'admin/deletable', locals: {model_name: "Ankündigung", path: announcement, hide_ruler: true} %>
+<hr />

@@ -11,6 +11,8 @@ Rails.application.routes.draw do
     resources :quotes
   end
 
+  resources :announcements
+
   delete "users/:id" => "users#destroy", as: :user
 
   get "quotes/approve" => "quotes#show_pending", as: :pending_quotes

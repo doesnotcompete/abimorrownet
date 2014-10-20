@@ -5,5 +5,7 @@ class HomeController < ApplicationController
   def index
     @pending_quotes = Quote.pending_overview(current_user)
     @quotes_pending |= @pending_quotes.present?
+
+    @announcements = Announcement.dashboard
   end
 end
