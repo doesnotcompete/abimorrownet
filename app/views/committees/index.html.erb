@@ -4,4 +4,4 @@ if @committees %>
 <% else %>
 <p>Keine Komitees.</p>
 <% end %>
-<%= render partial: 'admin/creatable', locals: {model_name: "Komitee", path: new_committee_path} %>
+<%= render partial: 'admin/creatable', locals: {model_name: "Komitee", path: new_committee_path, hide_ruler: false} %>

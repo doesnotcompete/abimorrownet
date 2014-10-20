@@ -4,4 +4,5 @@
 <a href="<%= announcement.file %>">Datei herunterladen</a>
 <% end %>
 <%= render partial: 'admin/deletable', locals: {model_name: "Ankündigung", path: announcement, hide_ruler: true} %>
+<%= render partial: 'admin/editable', locals: {model_name: "Ankündigung", path: edit_announcement_path(announcement), hide_ruler: true} %>
 <hr />

@@ -31,6 +31,22 @@ class AnnouncementsController < ApplicationController
     redirect_to root_url, notice: "Ankündigung gelöscht."
   end
 
+  def edit
+    @announcement = Announcement.find(params[:id])
+  end
+
+  def update
+    @announcement = Announcement.find(params[:id])
+    authorize @announcement
+
+    if @announcement.update(announcement_params)
+      redirect_to root_url
+    else
+      flash[:notice] = "Fehler beim Speichern."
+      render :edit
+    end
+  end
+
   private
 
   def announcement_params

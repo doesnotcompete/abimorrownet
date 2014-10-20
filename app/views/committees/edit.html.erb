@@ -5,4 +5,4 @@
 <%= f.association :users, label_method: lambda { |item| "#{item.first_name} #{item.last_name}".html_safe rescue "#{item.email}" } %>
 <%= f.button :submit, "Speichern" %>
 <% end %>
-<%= render partial: 'admin/deletable', locals: {model_name: "Komitee", path: @committee} %>
+<%= render partial: 'admin/deletable', locals: {model_name: "Komitee", path: @committee, hide_ruler: false} %>

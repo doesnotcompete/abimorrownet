@@ -12,4 +12,4 @@
   </tbody>
 </table>
 <%= render partial: 'participate' %>
-<%= render partial: 'admin/editable', locals: {model_name: "Komitee", path: edit_committee_path(@committee)} %>
+<%= render partial: 'admin/editable', locals: {model_name: "Komitee", path: edit_committee_path(@committee), hide_ruler: false} %>

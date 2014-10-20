@@ -13,4 +13,4 @@
   </tbody>
 </table>
 <%= link_to 'Verteilerliste herunterladen', group_path(@group, format: :csv) %>
-<%= render partial: 'admin/editable', locals: {model_name: "Seminarfach", path: edit_group_path(@group)} %>
+<%= render partial: 'admin/editable', locals: {model_name: "Seminarfach", path: edit_group_path(@group), hide_ruler: false} %>

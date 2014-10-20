@@ -1,4 +1,4 @@
 <% if current_user.admin? %>
-<hr />
+<% unless hide_ruler %><hr /><% end %>
 <%= link_to "#{model_name} bearbeiten", path %>
 <% end %>
