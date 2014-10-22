@@ -1,5 +1,5 @@
 <h2>Ankündigung bearbeiten</h2>
-<%= simple_form_for(@announcement, method: :patch, html: {class: 'form-horizontal' }) do |f| %>
+<%= simple_form_for(@announcement, method: :patch) do |f| %>
 <%= f.input :title %>
 <%= f.input :text %>
 <%= f.input :file, label: "Datei-Link" %>

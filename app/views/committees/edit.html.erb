@@ -1,5 +1,5 @@
 <h2>Komitee bearbeiten</h2>
-<%= simple_form_for(@committee, method: :patch, html: {class: 'form-horizontal' }) do |f| %>
+<%= simple_form_for(@committee, method: :patch) do |f| %>
 <%= f.input :title, label: "Titel" %>
 <%= f.input :description, label: "Beschreibung" %>
 <%= f.association :users, label_method: lambda { |item| "#{item.first_name} #{item.last_name}".html_safe rescue "#{item.email}" } %>

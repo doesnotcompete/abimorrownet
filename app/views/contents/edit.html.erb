@@ -1,4 +1,4 @@
-<%= simple_form_for(@content, method: :patch, html: {class: 'form-horizontal' }) do |f| %>
+<%= simple_form_for(@content, method: :patch) do |f| %>
 <%= f.input :title %>
 <%= f.input :kind %>
 <%= f.input :text, label: "Beschreibung (nutze für längere Texte den Dateiupload)"  %>
