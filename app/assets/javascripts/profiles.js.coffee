@@ -9,6 +9,9 @@ $(document).on "page:change", ->
     serverSide: true
     ajax: $('#profiles-table').data('source')
     pagingType: 'full_numbers'
+    language: {
+      url: '//cdn.datatables.net/plug-ins/380cb78f450/i18n/German.json'
+    }
     # optional, if you want full pagination controls.
     # Check dataTables documentation to learn more about
     # available options.

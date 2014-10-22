@@ -9,3 +9,6 @@ $(document).on "page:change", ->
     serverSide: true
     ajax: $('#teachers-table').data('source')
     pagingType: 'full_numbers'
+    language: {
+      url: '//cdn.datatables.net/plug-ins/380cb78f450/i18n/German.json'
+    }

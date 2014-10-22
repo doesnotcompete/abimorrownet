@@ -2,6 +2,7 @@
 <p>Wir haben gerade keine Nachrichten für dich; du kannst dich aber dennoch gerne umschauen.</p>
 <%= render partial: 'notifications/no_group' %>
 <%= render partial: 'notifications/quotes_to_approve' %>
+<%= link_to raw("Einführung erneut ansehen &raquo;"), intro_path %>
 <% unless current_user.committees.empty? %>
 <h3>Deine Komitees</h3>
 <ul>

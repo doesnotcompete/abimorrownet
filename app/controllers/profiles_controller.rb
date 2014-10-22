@@ -18,10 +18,6 @@ class ProfilesController < ApplicationController
     respond_to do |format|
       format.html
       format.json { render json: ProfileDatatable.new(view_context) }
-      format.csv do
-        headers['Content-Disposition'] = "attachment; filename=\"Jahrgang\""
-        headers['Content-Type'] ||= 'text/csv'
-      end
     end
   end
 
