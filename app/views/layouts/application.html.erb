@@ -39,7 +39,7 @@
             <ul class="dropdown-menu" role="menu">
               <li><a href="#"><b>- Abizeitung -</b></a></li>
               <%= render partial: 'layouts/navigation_element', locals: {text: "Inhalte und Zitate einreichen", path: new_content_path} %>
-              <% if current_user.moderator? %><%= render partial: 'layouts/navigation_element', locals: {text: "Back-Office", path: contents_path} %><% end %>
+              <% if current_user && current_user.moderator? %><%= render partial: 'layouts/navigation_element', locals: {text: "Back-Office", path: contents_path} %><% end %>
             </ul>
           </li>
         </ul>
