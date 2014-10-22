@@ -1,0 +1,13 @@
+<%= simple_form_for :content, url: {action: 'create'}, :html => { :multipart => true } do |f| %>
+  <h3>Einen Inhalt einreichen</h3>
+  <p>Danke, dass du an der Erstellung der Abizeitung mitwirken möchtest. Nachfolgend kannst du einen Inhalt, den du selbst erstellt hast, oder ein denkwürdiges Zitat einreichen.</p>
+  <%= f.input :title, label: "Titel" %>
+  <%= f.input :kind, label: "Art (z.B. Zitat, Gedicht, ...)" %>
+  <p>Gib bei Zitaten bitte unbedingt den/die Urheber im Beschreibungsfeld an.</p>
+  <%= f.input :text, label: "Beschreibung (nutze für längere Texte den Dateiupload)"  %>
+  <p>Wenn du möchtest, kannst du eine Datei hochladen. Beachte aber bitte, dass die Formatierung von Texten bei der Übernahme in die Abizeitung verloren geht.</p>
+  <%= f.file_field :file %>
+  <hr />
+  <p>Stelle bitte sicher, dass alle Angaben korrekt sind. Du kannst deine Einreichung nach dem Erstellen selbst nicht mehr ändern. Reiche deinen Inhalt bitte erneut ein, wenn du einen Fehler gemacht hast.</p>
+  <%= f.button :submit, raw("Einreichen &raquo;"), class: 'btn-primary' %>
+<% end %>

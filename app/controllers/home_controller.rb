@@ -8,4 +8,7 @@ class HomeController < ApplicationController
 
     @announcements = Announcement.dashboard
   end
+
+  def intro
+  end
 end

@@ -2,6 +2,8 @@ Rails.application.routes.draw do
   devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }
   root to: "home#index"
 
+  get "intro" => "home#intro", as: :intro
+
   resources :profiles do
     resources :quotes
   end
@@ -12,6 +14,9 @@ Rails.application.routes.draw do
   end
 
   resources :announcements
+
+  resources :contents
+  get "contents/new/thanks" => "contents#complete", as: :content_complete
 
   delete "users/:id" => "users#destroy", as: :user
 

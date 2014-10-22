@@ -34,6 +34,14 @@
           <%= render partial: 'layouts/navigation_element', locals: {text: "Komitees", path: committees_path} %>
           <%= render partial: 'layouts/navigation_element', locals: {text: "Seminarfächer", path: groups_path} %>
           <%= render partial: 'layouts/navigation_element', locals: {text: "Lehrer", path: teachers_path} %>
+          <li class="dropdown" data-no-turbolink>
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Werkzeuge <span class="caret"></a>
+            <ul class="dropdown-menu" role="menu">
+              <li><a href="#"><b>- Abizeitung -</b></a></li>
+              <%= render partial: 'layouts/navigation_element', locals: {text: "Inhalte und Zitate einreichen", path: new_content_path} %>
+              <% if current_user.moderator? %><%= render partial: 'layouts/navigation_element', locals: {text: "Back-Office", path: contents_path} %><% end %>
+            </ul>
+          </li>
         </ul>
         <ul class="nav navbar-nav navbar-right">
           <% if user_signed_in? %>

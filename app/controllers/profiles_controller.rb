@@ -57,7 +57,7 @@ class ProfilesController < ApplicationController
     end
 
     if @profile.persisted?
-      redirect_to profile_url(@profile)
+      redirect_to intro_url
     else
       redirect_to new_profile_url
     end
