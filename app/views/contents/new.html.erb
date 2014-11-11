@@ -4,7 +4,7 @@
   <%= f.input :title, label: "Titel" %>
   <%= f.input :kind, label: "Art (z.B. Zitat, Gedicht, ...)" %>
   <p>Gib bei Zitaten bitte unbedingt den/die Urheber im Beschreibungsfeld an.</p>
-  <%= f.input :text, label: "Beschreibung (nutze für längere Texte den Dateiupload)"  %>
+  <%= f.input :text, as: :text, label: "Beschreibung (nutze für längere Texte den Dateiupload)"  %>
   <p>Wenn du möchtest, kannst du eine Datei hochladen. Beachte aber bitte, dass die Formatierung von Texten bei der Übernahme in die Abizeitung verloren geht.</p>
   <%= f.file_field :file %>
   <hr />
