@@ -16,7 +16,7 @@ class ContentsController < ApplicationController
     if @content.save
       redirect_to content_complete_path
     else
-      flash[:notice] = "Fehler beim Speichern. Bitte stelle sicher, dass alle erforderlichen Felder ausgefüllt sind. Dateien dürfen max. 5 MB groß sein. Möchtest du größere Dateien bereitstellen, kontaktiere uns."
+      flash[:notice] = "Fehler beim Speichern. Bitte stelle sicher, dass alle erforderlichen Felder ausgefüllt sind. Dateien dürfen max. 10 MB groß sein. Möchtest du größere Dateien bereitstellen, kontaktiere uns."
       render :new
     end
   end
@@ -33,9 +33,8 @@ class ContentsController < ApplicationController
   end
 
   def show
-    authorize :content, :show?
-
     @content = Content.find(params[:id])
+    authorize @content
   end
 
   def edit

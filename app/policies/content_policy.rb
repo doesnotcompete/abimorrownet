@@ -4,10 +4,6 @@ class ContentPolicy < ApplicationPolicy
     @content = content
   end
 
-  def edit?
-    @user.moderator? || @content.user == current_user
-  end
-
   def create?
     true
   end
@@ -17,15 +13,15 @@ class ContentPolicy < ApplicationPolicy
   end
 
   def show?
-    @user.moderator?
+    @user.moderator? || @content.user == user
   end
 
   def edit?
-    @user.moderator?
+    @user.moderator? || @content.user == user
   end
 
   def update?
-    @user.moderator?
+    @user.moderator? || @content.user == user
   end
 
   def destroy?
