@@ -35,11 +35,14 @@
           <%= render partial: 'layouts/navigation_element', locals: {text: "Seminarfächer", path: groups_path} %>
           <%= render partial: 'layouts/navigation_element', locals: {text: "Lehrer", path: teachers_path} %>
           <li class="dropdown" data-no-turbolink>
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Werkzeuge <span class="caret"></a>
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Weiteres <span class="caret"></a>
             <ul class="dropdown-menu" role="menu">
               <li><a href="#"><b>- Abizeitung -</b></a></li>
               <%= render partial: 'layouts/navigation_element', locals: {text: "Inhalte und Zitate einreichen", path: new_content_path} %>
               <% if current_user && current_user.moderator? %><%= render partial: 'layouts/navigation_element', locals: {text: "Back-Office", path: contents_path} %><% end %>
+              <li class="divider"></li>
+              <li><a href="#"><b>Rechtliche Informationen</b></a></li>
+              <%= render partial: 'layouts/navigation_element', locals: {text: "Impressum", path: "https://abimorrowland.de/impressum"} %>
             </ul>
           </li>
         </ul>

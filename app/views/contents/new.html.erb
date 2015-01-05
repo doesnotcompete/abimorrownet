@@ -1,11 +1,12 @@
 <%= simple_form_for :content, url: {action: 'create'}, :html => { :multipart => true } do |f| %>
   <h3>Einen Inhalt einreichen</h3>
-  <p>Danke, dass du an der Erstellung der Abizeitung mitwirken möchtest. Nachfolgend kannst du einen Inhalt, den du selbst erstellt hast, oder ein denkwürdiges Zitat einreichen.</p>
-  <%= f.input :title, label: "Titel" %>
-  <%= f.input :kind, label: "Art (z.B. Zitat, Gedicht, ...)" %>
-  <p>Gib bei Zitaten bitte unbedingt den/die Urheber im Beschreibungsfeld an.</p>
-  <%= f.input :text, as: :text, label: "Beschreibung (nutze für längere Texte den Dateiupload)"  %>
-  <p>Wenn du möchtest, kannst du eine Datei hochladen. Beachte aber bitte, dass die Formatierung von Texten bei der Übernahme in die Abizeitung verloren geht.</p>
+  <p>Danke, dass du an der Erstellung der Abizeitung mitwirken möchtest. Über dieses Formular kannst du einen Inhalt, den du selbst erstellt hast, oder ein denkwürdiges Zitat einreichen.</p>
+  <p>Nutze das Titelfeld für eine aussagekräftige Beschreibung. Halte dich bei Zitaten bitte an die Konvention "Kurs: Lehrkraft".</p>
+  <%= f.input :title, label: 'Titel (z.B. "Bio-LK: Niehaus" bei einem Zitat)' %>
+  <%= f.input :kind, label: "Art (z.B. Zitat, Foto, Karikatur, ...)" %>
+  <p>Nutze das Textfeld für deinen Inhalt. Stelle bei Zitaten sicher, dass sich der Kontext der Aussage aus deiner Darstellung ergibt. Stelle sicher, dass die Urheberschaft deutlich wird. Bitte nutze für besonders lange Inhalte oder Inhalte mit Bildern den Dateiupload.</p>
+  <%= f.input :text, as: :text, label: "Text (nutze für größere Inhalte den Dateiupload)"  %>
+  <p>Wenn du möchtest, kannst du eine Datei hochladen. Nutze diese Funktion für umfangreiche Inhalte und Bilder. Solltest du sehr große Inhalte oder Videos an uns senden wollen, wende dich bitte kurz an <a href="mailto:zeitung@abimorrowland.de">zeitung@abimorrowland.de</a>, damit wir einen Austausch über eine geeignete Plattform organisieren können. Sende uns Bilder und Videos bitte immer in bestmöglicher Qualität.<p>
   <%= f.file_field :file %>
   <hr />
   <p>Stelle bitte sicher, dass alle Angaben korrekt sind. Du kannst deine Einreichung nach dem Erstellen selbst nicht mehr ändern. Reiche deinen Inhalt bitte erneut ein, wenn du einen Fehler gemacht hast.</p>
