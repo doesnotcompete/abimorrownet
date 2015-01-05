@@ -3,7 +3,7 @@
 <% if @content.file.exists? %>
 <p><%= link_to "Datei herunterladen", @content.file.url %></p>
 <% end %>
-<p><small>Eingereicht von <%= @content.user.profile.first_name %> <%= @content.user.profile.last_name %> (<%= mail_to @content.user.email %>).</small></p>
+<p><small>Eingereicht von <%= @content.user.profile.first_name %> <%= @content.user.profile.last_name %> (<%= mail_to @content.user.email, "Rückfrage senden", subject: "[Rückfrage] abimorrownet: Inhalt " + @content.id.to_s + " (" + @content.title + ")", body: "Hallo " + @content.user.first_name + ",\n\nbezüglich deiner Einreichung " + @content.title + " in abimorrownet würde ich gerne eine Rückfrage an dich richten:\n\nVielen Dank für deine Mithilfe.\n\nViele Grüße\n" + current_user.first_name + " " + current_user.last_name %>).</small></p>
 
 <%= render partial: 'admin/editable', locals: {model_name: "Inhalt", path: edit_content_path(@content), hide_ruler: false} %> |
 <%= render partial: 'admin/deletable', locals: {model_name: "Inhalt", path: content_path(@content), hide_ruler: true} %>
