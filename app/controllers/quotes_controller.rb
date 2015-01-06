@@ -46,6 +46,10 @@ class QuotesController < ApplicationController
 
   def show_pending
     @pending_quotes = Quote.pending_overview(current_user)
+
+    if @pending_quotes.empty?
+      redirect_to root_url, notice: "Es gibt keine weiteren Kommentare, die auf Freigaben warten."
+    end
   end
 
   private

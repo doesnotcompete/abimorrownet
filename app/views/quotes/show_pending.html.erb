@@ -1,3 +1,5 @@
+<h2>Ausstehende Kommentare</h2>
+<p>Nachfolgend siehst du eine Übersicht über alle noch nicht freigegebenen Kommentare für dich. Bitte gib Kommentare frei, damit sie auf deinem Steckbrief erscheinen.</p>
 <% if current_user.moderator? || current_user.admin? %>
 <%= render partial: 'pending_quote', collection: @pending_quotes.where(quotable: current_user.profile), as: :quote %>
 <div class="alert alert-info">
