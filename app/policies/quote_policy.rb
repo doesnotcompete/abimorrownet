@@ -5,7 +5,11 @@ class QuotePolicy < ApplicationPolicy
   end
 
   def edit?
-    @user.moderator? || @quote.author == current_user
+    (!@quote.approved? && @quote.author == @user) || @user.moderator? || @user.profile == @quote.quotable
+  end
+
+  def update?
+    (!@quote.approved? && @quote.author == @user) || @user.moderator? || @user.profile == @quote.quotable
   end
 
   def create?
@@ -13,7 +17,7 @@ class QuotePolicy < ApplicationPolicy
   end
 
   def destroy?
-    @user.moderator? || @quote.author == @user || @user.profile == @quote.quotable
+    @user.moderator? || (!@quote.approved? && @quote.author == @user) || @user.profile == @quote.quotable
   end
 
   def approve?

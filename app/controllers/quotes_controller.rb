@@ -19,6 +19,22 @@ class QuotesController < ApplicationController
     end
   end
 
+  def edit
+    @quote = Quote.find(params[:id])
+
+    authorize @quote
+  end
+
+  def update
+    @quote = Quote.find(params[:quote_id])
+    authorize @quote
+    if @quote.update(quote_params)
+      redirect_to @quote.quotable
+    else
+      render :edit, notice: "Fehler."
+    end
+  end
+
   def index
     @quotes = @quotable.quotes
   end
@@ -57,5 +73,9 @@ class QuotesController < ApplicationController
   def load_quotable
     klass = [Profile, Teacher].detect { |c| params["#{c.name.underscore}_id"]}
     @quotable = klass.friendly.find(params["#{klass.name.underscore}_id"]) || klass.find(params["#{klass.name.underscore}_id"]) if klass
+  end
+
+  def quote_params
+    params.require(:quote).permit(:text)
   end
 end

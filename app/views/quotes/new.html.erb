@@ -1,7 +1,7 @@
 <h3>Neuer Kommentar für <%= "#{@quotable.first_name} #{@quotable.last_name}" %></h3>
 <div class="alert alert-info"><b>Hinweis: </b>Dein Name wird neben dem Kommentar, den du abgibst, <em>nicht</em> angezeigt.</div>
 <%= render partial: 'description' %>
-<%= simple_form_for :quote, url: {action: 'create'}, html: { class: 'form-horizontal' } do |f| %>
-  <%= f.input :text, label: "Text" %>
+<%= simple_form_for :quote, url: {action: 'create'} do |f| %>
+  <%= f.input :text, as: :text, label: "Text" %>
   <%= f.button :submit, "Erstellen" %>
 <% end %>

@@ -29,6 +29,8 @@ Rails.application.routes.draw do
   post "profiles/:profile_id/quotes/:quote_id/approve" => "quotes#approve", as: :approve_profile_quote
   post "teachers/:teacher_id/quotes/:quote_id/approve" => "quotes#approve", as: :approve_teacher_quote
 
+  patch "profiles/:profile_id/quotes/:quote_id/edit" => "quotes#update", as: :update_profile_quote
+
   get "committees/:id/participate" => "committees#prepare_participation", as: :prepare_participation
   post "committees/:id/participate" => "committees#participate", as: :participate
   delete "committees/:id/participate" => "committees#departicipate", as: :departicipate

@@ -1,10 +1,13 @@
 <% if quote.author == current_user || current_user.moderator? || current_user.profile == quote.quotable || quote.approved? %>
 <blockquote><%= quote.text %><br /><small>zuletzt aktualisiert am <%= quote.updated_at.strftime("%d.%m.%Y") %></small></blockquote>
 <% end %>
-<% if quote.author == current_user || current_user.moderator? || current_user.profile == quote.quotable %>
+<% if (!quote.approved? && quote.author == current_user) || current_user.moderator? || current_user.profile == quote.quotable %>
 <%= link_to "Löschen", profile_quote_path(quote.quotable, quote), method: :delete, data: {confirm: "Sicher?"} %>
 <% end %>
-<% if !quote.approved? && (current_user.moderator? || current_user.profile == @profile) %>
+<% if (!quote.approved? && quote.author == current_user) || current_user.moderator? || current_user.profile == quote.quotable %>
+<%= link_to "Ändern", edit_profile_quote_path(quote.quotable, quote) %>
+<% end %>
+<% if !quote.approved? && (current_user.moderator? || current_user.profile == quote.quotable) %>
 <%= link_to "Freigeben", approve_profile_quote_path(quote.quotable, quote), method: :post unless quote.approved? %>
 <% end %>
 <hr />
