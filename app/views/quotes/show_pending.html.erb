@@ -1,1 +1,7 @@
+<% if current_user.moderator? || current_user.admin? %>
+<%= render partial: 'pending_quote', collection: @pending_quotes.where(quotable: current_user.profile), as: :quote %>
+<div class="alert alert-info">
+  <p>Weil du Moderator oder Administrator bist, siehst du nachfolgend neben den Kommentaren zu dir auch alle anderen nicht freigegebenen Kommentare. Beachte bitte, dass Kommentare regelhaft durch die kommentierte Person freigegeben werden sollten. Gib Kommentare für andere nur frei, wenn es erfoderlich erscheint.</p>
+</div>
+<% end %>
 <%= render partial: 'pending_quote', collection: @pending_quotes, as: :quote %>
