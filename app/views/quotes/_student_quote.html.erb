@@ -11,7 +11,7 @@
 <%= link_to "Freigeben", approve_profile_quote_path(quote.quotable, quote), method: :post %>
 <% unless current_user.moderator? %><p><small>Hinweis: Nach der Freigabe ist eine Änderung nur noch durch Administratoren und Moderatoren möglich.</small></p><% end %>
 <% end %>
-<% if quote.author == quote.quotable && !quote.approved? %>
+<% if quote.author.profile == quote.quotable && !quote.approved? %>
 <p><small>Hinweis: Kommentare, die du für dich selbst geschrieben hast, müssen von einem Moderator freigegeben werden.</small></p>
 <% end %>
 <hr />

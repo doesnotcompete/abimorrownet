@@ -1,5 +1,5 @@
 <h2>Passwort vergessen?</h2>
-
+<div class="alert alert-info"><b>Hinweis: </b>Bitte gib deine @abimorrowland.de-Adresse an. Deine Adresse hat die Form "&lt;vorname&gt;.&lt;nachname&gt;@abimorrowland.de".</div>
 <%= simple_form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
   <%= devise_error_messages! %>
 
@@ -7,3 +7,6 @@
 
   <%= f.button :submit, "Passwort zurücksetzen" %>
 <% end %>
+<hr />
+<h3>Probleme bei der Anmeldung?</h3>
+<p>Wenn du dich auch nach dem Zurücksetzen deines Passworts nicht anmelden kannst, oder wenn du noch eine Einladung zu abimorrow.net benötigst, wende dich einfach kurz an <%= mail_to "hallo@abimorrow.net" %>.</p>
