@@ -5,11 +5,11 @@ class QuotePolicy < ApplicationPolicy
   end
 
   def edit?
-    (!@quote.approved? && @quote.author == @user) || @user.moderator? || @user.profile == @quote.quotable
+    (!@quote.approved? && (@quote.author == @user || @user.profile == @quote.quotable)) || @user.moderator?
   end
 
   def update?
-    (!@quote.approved? && @quote.author == @user) || @user.moderator? || @user.profile == @quote.quotable
+    (!@quote.approved? && (@quote.author == @user || @user.profile == @quote.quotable)) || @user.moderator?
   end
 
   def create?
@@ -17,11 +17,11 @@ class QuotePolicy < ApplicationPolicy
   end
 
   def destroy?
-    @user.moderator? || (!@quote.approved? && @quote.author == @user) || @user.profile == @quote.quotable
+    @user.moderator? || (!@quote.approved? && (@quote.author == @user || @user.profile == @quote.quotable))
   end
 
   def approve?
-    @user.moderator? || @user.profile == @quote.quotable
+    @user.moderator? || (@user.profile == @quote.quotable && @user != @quote.author)
   end
 
   class Scope < Scope
