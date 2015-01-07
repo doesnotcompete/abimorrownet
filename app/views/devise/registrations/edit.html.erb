@@ -20,7 +20,7 @@
 <hr />
 <% if current_user.has_identity? %>
 <p>Dein Account ist derzeit mit <em>Facebook</em> verknüpft.</p>
-<%= link_to 'Aufheben', remove_association_url, method: :delete, data: {confirm: "Bist du sicher?"} %>
+<%= link_to 'Aufheben', remove_association_url, method: :post, data: {confirm: "Bist du sicher?"} %>
 <% else %>
 <%= link_to 'Mit Facebook verknüpfen', user_omniauth_authorize_path(:facebook) %>
 <% end %>

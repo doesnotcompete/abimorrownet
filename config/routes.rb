@@ -35,7 +35,7 @@ Rails.application.routes.draw do
   post "committees/:id/participate" => "committees#participate", as: :participate
   delete "committees/:id/participate" => "committees#departicipate", as: :departicipate
 
-  delete "users/identity" => "users#remove_association", as: :remove_association
+  post "users/identity/disassociate" => "users#remove_association", as: :remove_association
   get "users/invited" => "users#list_invited", as: :invited_users
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
