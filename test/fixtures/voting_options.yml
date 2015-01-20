@@ -3,13 +3,11 @@
 one:
   title: MyString
   description: MyText
-  start_time: 2015-01-20 15:30:23
-  end_time: 2015-01-20 15:30:23
-  interactive: false
+  voting_id: 
+  user_id: 
 
 two:
   title: MyString
   description: MyText
-  start_time: 2015-01-20 15:30:23
-  end_time: 2015-01-20 15:30:23
-  interactive: false
+  voting_id: 
+  user_id: 

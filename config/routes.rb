@@ -15,6 +15,11 @@ Rails.application.routes.draw do
 
   resources :announcements
 
+  resources :votings do
+    resources :voting_options
+    resources :votes
+  end
+
   resources :contents
   get "contents/new/thanks" => "contents#complete", as: :content_complete
 

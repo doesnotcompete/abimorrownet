@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141111212043) do
+ActiveRecord::Schema.define(version: 20150120161955) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -212,22 +212,50 @@ ActiveRecord::Schema.define(version: 20141111212043) do
   add_index "users", ["invited_by_id"], name: "index_users_on_invited_by_id", using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
+  create_table "voted_options", force: true do |t|
+    t.integer "vote_id"
+    t.integer "voting_option_id"
+  end
+
+  add_index "voted_options", ["vote_id"], name: "index_voted_options_on_vote_id", using: :btree
+  add_index "voted_options", ["voting_option_id"], name: "index_voted_options_on_voting_option_id", using: :btree
+
   create_table "votes", force: true do |t|
-    t.boolean  "used"
-    t.integer  "count"
-    t.string   "options",    default: [], array: true
-    t.integer  "vote_id"
+    t.integer  "user_id"
+    t.integer  "voting_id"
+    t.integer  "voting_option_id"
+    t.string   "uid"
+    t.boolean  "locked"
+    t.integer  "max_choices"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "votes", ["user_id"], name: "index_votes_on_user_id", using: :btree
+  add_index "votes", ["voting_id"], name: "index_votes_on_voting_id", using: :btree
+  add_index "votes", ["voting_option_id"], name: "index_votes_on_voting_option_id", using: :btree
+
+  create_table "voting_options", force: true do |t|
+    t.string   "title"
+    t.text     "description"
+    t.integer  "voting_id"
     t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
+  add_index "voting_options", ["user_id"], name: "index_voting_options_on_user_id", using: :btree
+  add_index "voting_options", ["voting_id"], name: "index_voting_options_on_voting_id", using: :btree
+
   create_table "votings", force: true do |t|
     t.string   "title"
-    t.datetime "start_date"
-    t.datetime "end_date"
+    t.text     "description"
+    t.datetime "start_time"
+    t.datetime "end_time"
+    t.boolean  "interactive"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "election"
   end
 
 end

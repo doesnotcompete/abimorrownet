@@ -1,0 +1,21 @@
+<h2><%= @voting.title %></h2>
+<p><%= @voting.description %></p>
+
+<% if @voting.election? %>
+<span class="label label-primary">Wahl</span>
+<% else %>
+<span class="label label-default">Optionsabstimmung</span>
+<% end %>
+<% if current_user.admin? && !@voting.election? %>
+<h3>Optionen</h3>
+<ul>
+  <% @voting.voting_options.each do |option| %>
+  <li><%= option.title %></li>
+  <% end %>
+</ul>
+<%= link_to  "Neue Option", new_voting_voting_option_path(@voting.id) %>
+<% end %>
+<% if current_user.admin? %>
+<h2>Stimmkarten</h2>
+<%= link_to "Stimmkarten versenden", new_voting_vote_path(@voting.id) %>
+<% end %>

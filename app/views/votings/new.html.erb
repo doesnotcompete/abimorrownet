@@ -1,0 +1,12 @@
+<%= simple_form_for :voting, url: {action: 'create'}, :html => { :multipart => true } do |f| %>
+<h3>Abstimmung erstellen</h3>
+<%= f.input :title, label: 'Titel der Abstimmung' %>
+<%= f.input :start_time, as: :datetime, label: "Beginn der Abstimmung (wenigstens 30min in der Zukunft)" %>
+<%= f.input :end_time, as: :datetime, label: "Ende der Abstimmung" %>
+<%= f.input :description, as: :text, label: "Beschreibung"  %>
+<p>Wähle das nachfolgende Feld aus, wenn du eine Award-Wahl oder eine andere Art von Wahl, bei der SchülerInnen gewählt werden können, starten willst. Du kannst dann keine Optionen hinzufügen.</p>
+<%= f.input :election, as: :boolean, label: "Wahl?" %>
+  <hr />
+  <p>Nach dem Anlegen der Abstimmung kannst du Optionen hinzufügen und Wahlkarten erstellen.</p>
+  <%= f.button :submit, raw("Erstellen &raquo;"), class: 'btn-primary' %>
+  <% end %>

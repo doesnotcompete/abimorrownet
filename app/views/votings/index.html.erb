@@ -1,0 +1,13 @@
+<h3>Laufende Abstimmungen</h3>
+<table class="table table-striped table-bordered">
+  <thead>
+    <th>Titel</th>
+    <th>Enddatum</th>
+    <th>Aktion</th>
+  </thead>
+  <tbody>
+    <%= render partial: 'voting_list_entry', collection: @votings, as: :voting %>
+  </tbody>
+</table>
+<% unless current_user.votes.empty? %><p>Im <%= link_to root_url, 'Dashboard' %> liegen Wahlkarten für dich bereit.</p><% end %>
+<%= render partial: 'admin/creatable', locals: {model_name: "Abstimmung", path: new_voting_path, hide_ruler: false} %>

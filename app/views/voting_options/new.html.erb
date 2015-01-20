@@ -1,0 +1,6 @@
+<%= simple_form_for :voting_option, url: {action: 'create'}, :html => { :multipart => true } do |f| %>
+<h3>Abstimmungsoption anlegen</h3>
+<%= f.input :title, label: 'Titel der Option' %>
+<%= f.input :description, as: :text, label: "Beschreibung"  %>
+<%= f.button :submit, raw("Erstellen &raquo;"), class: 'btn-primary' %>
+<% end %>
