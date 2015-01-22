@@ -12,6 +12,9 @@
 <b>Notiere dir bitte deine individuelle Stimmkartennummer "#<%= @vote.uid %>"; nur mit dieser Nummer kannst du das Stimmergebnis prüfen.</b>
 <p>Deine Stimmabgabe ist einmalig. Du kannst deine Stimme nicht mehr ändern, da wir deine Stimmkarte anonymisieren, indem wir sie von deinem Nutzerkonto trennen.</p>
 <hr />
+<% if @voting.description %>
+<p><b>Beschreibung:</b> <%= @voting.description %></p>
+<% end %>
 <% if @voting.election? %>
 <p>Diese Abstimmung ist eine Wahl. Du kannst für Menschen stimmen.</p>
 <% else %>
