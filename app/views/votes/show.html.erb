@@ -24,6 +24,9 @@
   <% end %>
 </ul>
 <% end %>
+<% if @voting.interactive? %>
+  <%= link_to "Option hinzufügen", new_voting_voting_option_path(@voting) %>
+<% end %>
 <% end %>
 <hr />
 <% if @vote.voted_options.count < @vote.max_choices %>

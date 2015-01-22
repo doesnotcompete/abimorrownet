@@ -4,20 +4,47 @@ class VotingOptionsController < ApplicationController
   before_filter :load_voting
 
   def new
+    unless current_user.admin? || @voting.interactive?
+      redirect_to root_url
+      return false
+    end
   end
 
   def create
-    unless current_user.admin?
+    unless current_user.admin? || @voting.interactive?
       redirect_to root_url
+      return false
+    end
+
+    if @voting.voting_options.count > 60
+      redirect_to root_url, notice: "Zu viele Optionen!"
       return false
     end
 
     @quote = @voting.voting_options.create(title: params[:voting_option][:title], description: params[:voting_option][:description])
 
     if @quote.persisted?
-      redirect_to @voting
+      redirect_to (current_user.admin? ? @voting : voting_vote_path(@voting, Vote.find_by(user: current_user, voting: @voting)))
     else
       render :new
+    end
+  end
+
+  def destroy
+    unless current_user.admin?
+      redirect_to root_url
+      return false
+    end
+
+    @option = VotingOption.find(params[:id])
+    unless @option.votes.count > 0
+      if @option.destroy
+        redirect_to @voting, notice: "Option gelöscht."
+      else
+        redirect_to @voting, notice: "Fehler beim Löschen."
+      end
+    else
+      redirect_to @voting, notice: "Für diese Option wurde bereits gestimmt."
     end
   end
 

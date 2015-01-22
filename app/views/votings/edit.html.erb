@@ -4,5 +4,6 @@
   <%= f.input :start_time, as: :datetime, label: "Beginn der Abstimmung (wenigstens 30min in der Zukunft)" %>
   <%= f.input :end_time, as: :datetime, label: "Ende der Abstimmung" %>
   <%= f.input :description, as: :text, label: "Beschreibung"  %>
+  <%= f.input :interactive, as: :boolean, label: "Vorschläge erlauben?" %>
   <%= f.button :submit, "Speichern" %>
   <% end %>

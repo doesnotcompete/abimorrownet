@@ -43,6 +43,6 @@ class VotingsController < ApplicationController
   end
 
   def voting_params
-    params.require(:voting).permit(:title, :description, :start_time, :end_time, :election)
+    params.require(:voting).permit(:title, :description, :start_time, :end_time, :election, :interactive)
   end
 end
