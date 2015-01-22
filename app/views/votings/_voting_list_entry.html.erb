@@ -1,5 +1,5 @@
 <tr>
   <td><%= voting.title %></td>
-  <td></td>
+  <td><%= voting.active? ? "Ja" : "Nein" %></td>
   <td><%= link_to raw("Ansehen &raquo;"), voting %></td>
 </tr>

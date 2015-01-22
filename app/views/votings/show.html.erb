@@ -1,6 +1,6 @@
 <h2><%= @voting.title %></h2>
 <p><%= @voting.description %></p>
-
+<p>Startzeitpunkt: <%= @voting.start_time.strftime('%d.%m.%Y um %H:%M Uhr') rescue "???" %> | Endzeitpunkt: <%= @voting.end_time.strftime('%d.%m.%Y um %H:%M Uhr') rescue "???" %></p>
 <% if @voting.election? %>
 <span class="label label-primary">Wahl</span>
 <% else %>
@@ -20,3 +20,4 @@
 <p><%= @voting.votes.count %> Stimmkarte(n) sind mit dieser Abstimmung verknüpft. <%= link_to raw("Alle verknüpften Stimmkarten ansehen &raquo;"), voting_votes_path(@voting) %></p>
 <%= if @voting.votes.empty? then link_to "Stimmkarten versenden", new_voting_vote_path(@voting.id) end %>
 <% end %>
+<%= render partial: 'admin/editable', locals: {model_name: "Abstimmung", path: edit_voting_path(@voting), hide_ruler: false} %>

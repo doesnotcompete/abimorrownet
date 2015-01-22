@@ -4,6 +4,8 @@ class Vote < ActiveRecord::Base
   has_many  :voted_options, dependent: :destroy
   has_many :voting_options, through: :voted_options
 
+  validates :max_choices, presence: true
+
   class << self
     def create_votes_for_all(voting, max_choices)
       User.all.each do |user|

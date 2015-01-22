@@ -5,8 +5,8 @@
 <hr />
 <% if @selection.empty? %>
 <p>Du kannst diese Option zur Wahl markieren.</p>
-<%= link_to "Option auswählen", select_voting_option_path(@voting, @option) %>
+<%= link_to "Option auswählen", select_voting_option_path(@voting, @option), class: 'btn btn-sm btn-success' %>
 <% else %>
 <p>Du kannst diese Option abwählen.</p>
-<%= link_to "Option abwählen", deselect_voting_option_path(@voting, @option) %>
+<%= link_to "Option abwählen", deselect_voting_option_path(@voting, @option), class: 'btn btn-sm btn-warning' %>
 <% end %>

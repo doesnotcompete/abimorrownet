@@ -4,11 +4,18 @@ class VotesController < ApplicationController
   before_filter :load_voting
 
   def new
-    authorize :vote, :create?
+    unless current_user.admin?
+      redirect_to root_url, notice: "Nicht berechtigt."
+      return false
+    end
   end
 
   def create
-    authorize :vote, :create?
+    #TEMP
+    unless current_user.admin?
+      redirect_to root_url, notice: "Nicht berechtigt."
+      return false
+    end
 
     if Vote.create_votes_for_all(@voting, params[:votes][:max_choices])
       flash[:notice] = "Wahlkarten erstellt."
@@ -20,20 +27,32 @@ class VotesController < ApplicationController
   end
 
   def show
-    authorize :vote, :show?
-
     @vote = Vote.includes(:voted_options).find(params[:id])
+
+    #TEMP
+    unless current_user.admin? || @vote.locked? || @vote.user == current_user
+      redirect_to root_url, notice: "Nicht berechtigt."
+      return false
+    end
   end
 
   def index
-    authorize :vote, :index?
+    #TEMP
+    unless current_user.admin?
+      redirect_to root_url, notice: "Nicht berechtigt."
+      return false
+    end
 
     @votes = Vote.where(voting: params[:voting_id])
   end
 
   def lock
     @vote = Vote.find(params[:vote_id])
-    authorize @vote
+    #TEMP
+    unless @vote.user == current_user
+      redirect_to root_url, notice: "Nicht berechtigt."
+      return false
+    end
 
     @vote.locked = true
     @vote.user = nil

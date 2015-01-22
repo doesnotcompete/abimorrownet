@@ -25,6 +25,23 @@ class VotingsController < ApplicationController
     @voting = Voting.find(params[:id])
   end
 
+  def edit
+    authorize :votings, :edit?
+
+    @voting = Voting.find(params[:id])
+  end
+
+  def update
+    @voting = Voting.find(params[:id])
+    authorize @voting
+
+    if @voting.update(voting_params)
+      redirect_to @voting
+    else
+      render :edit
+    end
+  end
+
   def voting_params
     params.require(:voting).permit(:title, :description, :start_time, :end_time, :election)
   end
