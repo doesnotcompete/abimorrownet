@@ -1,0 +1,1 @@
+<li><%= link_to "#{vote.voting.title} (Wahlkartennr.: #{vote.uid})", voting_vote_path(vote.voting, vote) %> - gültig bis zum <%= vote.voting.end_time.strftime("%d.%m.%Y um %H:%M Uhr") rescue "???" %></li>

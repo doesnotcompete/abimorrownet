@@ -10,12 +10,13 @@
 <h3>Optionen</h3>
 <ul>
   <% @voting.voting_options.each do |option| %>
-  <li><%= option.title %></li>
+  <li><%= option.title %> - <%= option.votes.where(locked: true).count %> Stimme(n)</li>
   <% end %>
 </ul>
 <%= link_to  "Neue Option", new_voting_voting_option_path(@voting.id) %>
 <% end %>
 <% if current_user.admin? %>
 <h2>Stimmkarten</h2>
-<%= link_to "Stimmkarten versenden", new_voting_vote_path(@voting.id) %>
+<p><%= @voting.votes.count %> Stimmkarte(n) sind mit dieser Abstimmung verknüpft. <%= link_to raw("Alle verknüpften Stimmkarten ansehen &raquo;"), voting_votes_path(@voting) %></p>
+<%= if @voting.votes.empty? then link_to "Stimmkarten versenden", new_voting_vote_path(@voting.id) end %>
 <% end %>

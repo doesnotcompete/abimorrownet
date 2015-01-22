@@ -1,23 +1,23 @@
 class VotingPolicy < ApplicationPolicy
-  def initialize(current_user, voting)
-    @current = current_user
+  def initialize(user, voting)
+    @user = user
     @voting = voting
   end
 
   def create?
-    @current.admin?
+    @user.admin?
   end
 
   def edit?
-    @current.admin?
+    @user.admin?
   end
 
   def update?
-    @current.admin?
+    @user.admin?
   end
 
   def destroy?
-    @current.admin?
+    @user.admin?
   end
 
   class Scope < Scope

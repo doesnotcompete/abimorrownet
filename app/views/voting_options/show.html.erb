@@ -1,0 +1,12 @@
+<h2><%= @voting.title %></h2>
+<hr />
+<h3><%= @option.title %></h3>
+<p><%= @option.description %></p>
+<hr />
+<% if @selection.empty? %>
+<p>Du kannst diese Option zur Wahl markieren.</p>
+<%= link_to "Option auswählen", select_voting_option_path(@voting, @option) %>
+<% else %>
+<p>Du kannst diese Option abwählen.</p>
+<%= link_to "Option abwählen", deselect_voting_option_path(@voting, @option) %>
+<% end %>

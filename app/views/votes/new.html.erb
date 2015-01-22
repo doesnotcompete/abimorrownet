@@ -1,2 +1,8 @@
+<%= simple_form_for :votes, url: {action: 'create'}, :html => { :multipart => true } do |f| %>
 <h2>Stimmkarten erstellen</h2>
-<p>Du bist dabei, Stimmkarten für die Abstimmung "<%= @voting.title %>" anzulegen.</p> 
+<p>Du bist dabei, Stimmkarten für die Abstimmung "<%= @voting.title %>" anzulegen.</p>
+<%= f.input :max_choices, as: :integer, label: 'Anzahl der Stimmen je Wahlkarte (>1 für Multiple-Choice)' %>
+<hr />
+<p>Die Wahlkarten werden an alle <%= User.all.count %> Nutzer von abimorrow.net gesendet.</p>
+<%= f.button :submit, raw("Erstellen &raquo;"), class: 'btn-primary' %>
+<% end %>

@@ -9,4 +9,10 @@
 <%= render partial: 'notifications/my_committees', collection: current_user.committees, as: :committee %>
 </ul>
 <% end %>
+<% unless current_user.votes.empty? %>
+<h3>Deine Wahlkarten</h3>
+<ul>
+  <%= render partial: 'notifications/votes', collection: current_user.votes, as: :vote %>
+</ul>
+<% end %>
 <%= render partial: 'notifications/announcements' %>

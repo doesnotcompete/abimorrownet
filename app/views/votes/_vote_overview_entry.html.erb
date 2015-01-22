@@ -1,0 +1,5 @@
+<tr>
+  <td><%= vote.user.full_name rescue "- abgegeben -" %></td>
+  <td><%= vote.uid %></td>
+  <td><%= if vote.locked? then link_to raw("Ansehen &raquo;"), voting_vote_path(vote.voting, vote) end %></td>
+</tr>

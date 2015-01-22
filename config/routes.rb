@@ -21,6 +21,11 @@ Rails.application.routes.draw do
   end
 
   resources :contents
+
+  get "votings/:voting_id/voting_options/:option_id/select" => "voting_options#select", as: :select_voting_option
+  get "votings/:voting_id/voting_options/:option_id/deselect" => "voting_options#deselect", as: :deselect_voting_option
+  get "votings/:voting_id/votes/:vote_id/lock" => "votes#lock", as: :lock_vote
+
   get "contents/new/thanks" => "contents#complete", as: :content_complete
 
   delete "users/:id" => "users#destroy", as: :user

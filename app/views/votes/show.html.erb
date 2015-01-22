@@ -1,0 +1,35 @@
+<h3>Teilnahmebogen für die Abstimmung "<%= @voting.title %>" <small>individuelle Stimmkartennr.: #<%= @vote.uid %></small></h3>
+<p>Du hast <%= @vote.max_choices %> Stimme(n) innerhalb dieser Abstimmung. Deine Stimmabgabe ist einmalig.</p>
+<hr />
+<% if @vote.locked? %>
+<p>Diese Stimme wurde gezählt. Folgende Optionen wurden gewählt:</p>
+<ul>
+  <% @vote.voting_options.each do |option| %>
+  <li><%= option.title %></li>
+  <% end %>
+</ul>
+<% else %>
+<b>Notiere dir bitte deine individuelle Stimmkartennummer "#<%= @vote.uid %>"; nur mit dieser Nummer kannst du das Stimmergebnis prüfen.</b>
+<p>Deine Stimmabgabe ist einmalig. Du kannst deine Stimme nicht mehr ändern, da wir deine Stimmkarte anonymisieren, indem wir sie von deinem Nutzerkonto trennen.</p>
+<hr />
+<% if @voting.election? %>
+<p>Diese Abstimmung ist eine Wahl. Du kannst für Menschen stimmen.</p>
+<% else %>
+<p>Diese Abstimmung ist eine Optionsabstimmung. Du kannst für höchstens <%= @vote.max_choices %> Option(en) stimmen.</p>
+<% unless @voting.voting_options.empty? %>
+<p>Du kannst für diese Optionen abstimmen:</p>
+<ul>
+  <% @voting.voting_options.each do |option| %>
+  <li><%= link_to option.title, voting_voting_option_path(@voting, option) %> <%= if @vote.voted_options.any? {|voted| voted.voting_option == option} then raw("<b>- ausgewählt</b>") end %></li>
+  <% end %>
+</ul>
+<% end %>
+<% end %>
+<hr />
+<% if @vote.voted_options.count < @vote.max_choices %>
+<p>Du hast noch ungenutzte Stimmmöglichkeiten auf deiner Stimmkarte. Wenn du deine Stimmkarte jetzt abschließt, verlierst du die dir noch zustehenden Stimmen.</p>
+<% else %>
+<p>Du hast all deine Stimmmöglichkeiten verwendet. Bitte schließe deine Stimmkarte jetzt ab, damit sie bei der Auszählung berücksichtigt werden kann.</p>
+<% end %>
+<%= link_to "Stimmkarte abschließen", lock_vote_path(@voting, @vote), confirm: "Bist du sicher? Deine Stimmabgabe ist einmalig. Notiere deine Stimmkartennummer vor der Stimmabgabe, wenn du das Ergebnis überprüfen möchtest." %>
+<% end %>

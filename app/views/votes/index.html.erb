@@ -1,0 +1,11 @@
+<h3>Verknüpfte Stimmkarten</h3>
+<table class="table table-striped table-bordered">
+  <thead>
+    <th>Status/Inhaber</th>
+    <th>Stimmkartennummer</th>
+    <th>Aktion</th>
+  </thead>
+  <tbody>
+    <%= render partial: 'vote_overview_entry', collection: @votes, as: :vote %>
+  </tbody>
+</table>
