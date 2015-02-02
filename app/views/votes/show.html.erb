@@ -5,7 +5,7 @@
 <p>Diese Stimme wurde gezählt. Folgende Optionen wurden gewählt:</p>
 <ul>
   <% @vote.voting_options.each do |option| %>
-  <li><%= option.title %></li>
+  <li><%= option.title || option.user.full_name %></li>
   <% end %>
 </ul>
 <% else %>
@@ -17,6 +17,15 @@
 <% end %>
 <% if @voting.election? %>
 <p>Diese Abstimmung ist eine Wahl. Du kannst für Menschen stimmen.</p>
+<%= link_to "Für KandidatInnen abstimmen", new_voting_voting_option_path(@voting) %>
+<% unless @vote.voting_options.empty? %>
+<p>Du hast folgende KandidatInnen ausgewählt:</p>
+<ul>
+<% @vote.voted_options.each do |option| %>
+  <li><%= link_to option.voting_option.user.full_name, voting_voting_option_path(@voting, option) rescue "FEHLER" %></li>
+<% end %>
+</ul>
+<% end %>
 <% else %>
 <p>Diese Abstimmung ist eine Optionsabstimmung. Du kannst für höchstens <%= @vote.max_choices %> Option(en) stimmen.</p>
 <% unless @voting.voting_options.empty? %>

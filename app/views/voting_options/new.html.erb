@@ -1,6 +1,15 @@
+<% if @voting.election? %>
+<h3>Für ein Mitglied stimmen</h3>
+<%= simple_form_for @option, url: {action: 'create'}, :html => { :multipart => true } do |f| %>
+<%= f.association :user, label_method: lambda { |item| "#{item.first_name} #{item.last_name}".html_safe rescue "#{item.email}" } %>
+<p>Wenn du fortfährst, wird diese Person zur Abstimmung markiert. Du kannst markierte Personen vor deiner Stimmabgabe wieder entfernen.</p>
+<%= f.button :submit, raw("Person markieren &raquo;"), class: 'btn-primary' %>
+<% end %>
+<% else %>
 <%= simple_form_for :voting_option, url: {action: 'create'}, :html => { :multipart => true } do |f| %>
 <h3>Abstimmungsoption anlegen</h3>
 <%= f.input :title, label: 'Titel der Option' %>
 <%= f.input :description, as: :text, label: "Beschreibung"  %>
 <%= f.button :submit, raw("Erstellen &raquo;"), class: 'btn-primary' %>
+<% end %>
 <% end %>

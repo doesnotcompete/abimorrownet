@@ -5,5 +5,6 @@ class VotingOption < ActiveRecord::Base
   has_many :voted_options
   has_many :votes, through: :voted_options
 
-  validates :voting_id, :title, presence: true
+  validates :voting_id, presence: true
+
 end

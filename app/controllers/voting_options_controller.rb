@@ -4,27 +4,43 @@ class VotingOptionsController < ApplicationController
   before_filter :load_voting
 
   def new
-    unless current_user.admin? || @voting.interactive?
+    unless current_user.admin? || @voting.interactive? || @voting.election?
       redirect_to root_url
       return false
     end
+
+    @option = VotingOption.new
   end
 
   def create
-    unless current_user.admin? || @voting.interactive?
+    unless current_user.admin? || @voting.interactive? || @voting.election?
       redirect_to root_url
       return false
     end
 
-    if @voting.voting_options.count > 60
+    if @voting.voting_options.count > 80
       redirect_to root_url, notice: "Zu viele Optionen!"
       return false
     end
 
-    @quote = @voting.voting_options.create(title: params[:voting_option][:title], description: params[:voting_option][:description])
+    if @voting.election?
+      @user = User.find(params[:voting_option][:user_id])
+      @existing_option = VotingOption.find_by(user: @user)
+      #@option = @existing_option || @voting.voting_options.create(user: @user)
+      if @existing_option.present?
+        @option = @existing_option
+      else
+        @option = @voting.voting_options.create(user: @user)
+      end
+    else
+      @option = @voting.voting_options.create(title: params[:voting_option][:title], description: params[:voting_option][:description])
+    end
 
-    if @quote.persisted?
-      redirect_to (current_user.admin? ? @voting : voting_vote_path(@voting, Vote.find_by(user: current_user, voting: @voting)))
+    if @option.persisted?
+      if @voting.election?
+        @vote = Vote.find_by(user: current_user, voting: @voting)
+        select_option(@option, @vote)
+      end
     else
       render :new
     end
@@ -54,28 +70,32 @@ class VotingOptionsController < ApplicationController
     @selection = VotedOption.where(vote: @vote, voting_option: @option)
   end
 
-  def select
-    @option = VotingOption.find(params[:option_id])
-    @vote = Vote.find_by(user: current_user, voting: @voting)
-    @selections = VotedOption.where(vote: @vote)
+  def select_option(option, current_vote)
+    @selections = VotedOption.where(vote: current_vote)
 
-    if @selections.count >= @vote.max_choices
-      redirect_to voting_vote_path(@voting, @vote), notice: "Du kannst keine weiteren Optionen wählen."
+    if @selections.count >= current_vote.max_choices
+      redirect_to voting_vote_path(@voting, current_vote), notice: "Du kannst keine weiteren Optionen wählen."
       return false
     end
 
     if @vote.present?
-      @voted = VotedOption.create(vote: @vote, voting_option: @option)
+      @voted = VotedOption.create(vote: current_vote, voting_option: option)
       if @voted.persisted?
         flash[:notice] = "Du hast eine Option gewählt."
-        redirect_to voting_vote_path(@voting, @vote)
+        redirect_to voting_vote_path(@voting, current_vote)
       else
-        redirect_to voting_vote_path(@voting, @vote), notice: 'Fehler beim Speichern. Bitte melde dich bei uns.'
+        redirect_to voting_vote_path(@voting, current_vote), notice: 'Fehler beim Speichern. Bitte melde dich bei uns.'
       end
     else
       flash[:notice] = "Du bist nicht stimmberechtigt."
       redirect_to :root_url
     end
+  end
+
+  def select
+    @option = VotingOption.find(params[:option_id])
+    @vote = Vote.find_by(user: current_user, voting: @voting)
+    select_option(@option, @vote)
   end
 
   def deselect
