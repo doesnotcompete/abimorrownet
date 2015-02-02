@@ -18,7 +18,7 @@ class UsersController < ApplicationController
     return unless current_user.admin?
     @login = User.find(params[:users][:user])
 
-    AdminMailer.notify_admin_of_become(current_user, @login)
+    AdminMailer.notify_admin_of_become(current_user, @login).deliver
 
     sign_in(:user, @login)
 

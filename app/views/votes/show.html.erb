@@ -52,5 +52,5 @@
 <% else %>
 <p>Du hast all deine Stimmmöglichkeiten verwendet. Bitte schließe deine Stimmkarte jetzt ab, damit sie bei der Auszählung berücksichtigt werden kann.</p>
 <% end %>
-<%= link_to "Stimmkarte abschließen", lock_vote_path(@voting, @vote), class: 'btn btn-sm btn-danger', data: {confirm: "Bist du sicher? Deine Stimmabgabe ist einmalig. Notiere deine Stimmkartennummer vor der Stimmabgabe, wenn du das Ergebnis überprüfen möchtest."} %>
+<%= link_to raw('<span class="glyphicon glyphicon-lock" aria-hidden="true"></span> Stimmkarte abschließen'), lock_vote_path(@voting, @vote), class: 'btn btn-sm btn-warning', data: {confirm: "Bist du sicher? Deine Stimmabgabe ist einmalig. Notiere deine Stimmkartennummer vor der Stimmabgabe, wenn du das Ergebnis überprüfen möchtest."} %>
 <% end %>
