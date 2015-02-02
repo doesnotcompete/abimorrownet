@@ -18,7 +18,7 @@ class VotingOptionsController < ApplicationController
       return false
     end
 
-    if @voting.voting_options.count > 80
+    if @voting.voting_options.count > 300
       redirect_to root_url, notice: "Zu viele Optionen!"
       return false
     end
@@ -77,7 +77,7 @@ class VotingOptionsController < ApplicationController
       redirect_to root_url
       return false
     end
-    
+
     @options = VotingOption.where(voting: @voting)
     @options.each do |option|
       if option.voted_options.empty?
