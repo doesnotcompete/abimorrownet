@@ -9,31 +9,13 @@ ready = ->
       url: window.location.href + "/results",
       dataType: 'json'
     }).success((results) ->
-      responsiveOptions = [
-        [
-          'screen and (min-width: 640px)'
-          {
-            chartPadding: 30
-            labelOffset: 100
-            labelDirection: 'explode'
-            labelInterpolationFnc: (value) ->
-              value
-          }
-        ]
-        [
-          'screen and (min-width: 1024px)'
-          {
-            labelOffset: 120
-            chartPadding: 20
-          }
-        ]
-      ]
       new Chartist.Bar('.ct-chart', results, {
-        seriesBarDistance: 10,
+        seriesBarDistance: 60,
         reverseData: true,
         horizontalBars: true,
         axisY: {
-          offset: 70
+          offset: 70,
+          scaleMinSpace: 100
         }
       });
     );
