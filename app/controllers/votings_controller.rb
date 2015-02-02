@@ -46,6 +46,8 @@ class VotingsController < ApplicationController
 
   def results
     @voting = Voting.find(params[:voting_id])
+    authorize @voting
+    
     @results = @voting.voting_options
     if @voting.election?
       @label = []

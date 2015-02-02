@@ -20,6 +20,10 @@ class VotingPolicy < ApplicationPolicy
     @user.admin?
   end
 
+  def results?
+    @user.admin? || @voting.finished?
+  end
+
   class Scope < Scope
     def resolve
       scope

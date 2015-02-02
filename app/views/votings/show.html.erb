@@ -17,8 +17,10 @@
 <%= unless @voting.election? then link_to  "Neue Option", new_voting_voting_option_path(@voting.id) end %>
 <%= link_to  "Aufräumen", cleanup_voting_path(@voting), method: :delete, data: { confirm: "Bist du sicher? Wenn du fortfährst, werden alle Optionen mit 0 Stimmen gelöscht." } %>
 <% end %>
-<% if current_user.admin? %>
+<% if policy(@voting).results? %>
 <div class="ct-chart"></div>
+<% end %>
+<% if current_user.admin? %>
 <h2>Stimmkarten</h2>
 <p><%= @voting.votes.count %> Stimmkarte(n) sind mit dieser Abstimmung verknüpft. <%= link_to raw("Alle verknüpften Stimmkarten ansehen &raquo;"), voting_votes_path(@voting) %></p>
 <%= if @voting.votes.empty? then link_to "Stimmkarten versenden", new_voting_vote_path(@voting.id) end %>
