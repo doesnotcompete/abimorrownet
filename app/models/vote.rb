@@ -18,5 +18,17 @@ class Vote < ActiveRecord::Base
       end
       return true
     end
+
+    def create_votes_for_users(voting, max_choices, users)
+      users.each do |user|
+        vote = self.new
+        vote.user = user
+        vote.voting = voting
+        vote.max_choices = max_choices
+        vote.uid = SecureRandom.base64(8)
+        vote.save
+      end
+      return true
+    end
   end
 end

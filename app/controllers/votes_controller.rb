@@ -10,6 +10,15 @@ class VotesController < ApplicationController
     end
   end
 
+  def new_selection
+    unless current_user.admin?
+      redirect_to root_url, notice: "Nicht berechtigt."
+      return false
+    end
+
+    @max_choices = params[:max_choices]
+  end
+
   def create
     #TEMP
     unless current_user.admin?
@@ -17,12 +26,26 @@ class VotesController < ApplicationController
       return false
     end
 
-    if Vote.create_votes_for_all(@voting, params[:votes][:max_choices])
-      flash[:notice] = "Wahlkarten erstellt."
-      redirect_to @voting
+    if params[:commit] == 'all'
+      if Vote.create_votes_for_all(@voting, params[:votes][:max_choices])
+        flash[:notice] = "Wahlkarten erstellt."
+        redirect_to @voting
+      else
+        flash[:notice] = "Fehler!"
+        redirect_to @voting
+      end
     else
-      flash[:notice] = "Fehler!"
-      redirect_to @voting
+      if params[:votes][:users]
+        if Vote.create_votes_for_users(@voting, params[:votes][:max_choices], User.find(params[:votes][:users].reject! { |c| c.empty? }))
+          flash[:notice] = "Wahlkarten erstellt."
+          redirect_to root_url
+        else
+          flash[:notice] = "Fehler!"
+          redirect_to @voting
+        end
+      else
+        redirect_to new_selective_votes_path(@voting, params[:votes][:max_choices])
+      end
     end
   end
 

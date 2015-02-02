@@ -23,7 +23,7 @@
 <% if current_user.admin? %>
 <h2>Stimmkarten</h2>
 <p><%= @voting.votes.count %> Stimmkarte(n) sind mit dieser Abstimmung verknüpft. <%= link_to raw("Alle verknüpften Stimmkarten ansehen &raquo;"), voting_votes_path(@voting) %></p>
-<%= if @voting.votes.empty? then link_to "Stimmkarten versenden", new_voting_vote_path(@voting.id) end %>
+<%= link_to "Stimmkarten versenden", new_voting_vote_path(@voting.id) %>
 <% else if @voting.active? %>
 <p>Sobald die Abstimmung abgeschlossen ist, kannst du hier die Ergebnisse sehen. Wenn du an dieser Abstimmung teilnehmen möchtest, rufe deine Stimmkarte über das <%= link_to "Dashboard", root_url %> auf.</p>
 <% end %>
