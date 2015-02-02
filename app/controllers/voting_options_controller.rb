@@ -40,6 +40,8 @@ class VotingOptionsController < ApplicationController
       if @voting.election?
         @vote = Vote.find_by(user: current_user, voting: @voting)
         select_option(@option, @vote)
+      else
+        redirect_to @voting
       end
     else
       render :new
@@ -68,6 +70,21 @@ class VotingOptionsController < ApplicationController
     @option = VotingOption.find(params[:id])
     @vote = Vote.where(user: current_user, voting: @voting)
     @selection = VotedOption.where(vote: @vote, voting_option: @option)
+  end
+
+  def cleanup
+    unless current_user.admin?
+      redirect_to root_url
+      return false
+    end
+    
+    @options = VotingOption.where(voting: @voting)
+    @options.each do |option|
+      if option.voted_options.empty?
+        option.destroy
+      end
+    end
+    redirect_to @voting, notice: "Nicht zugeordnete Optionen gelöscht."
   end
 
   def select_option(option, current_vote)

@@ -19,10 +19,10 @@
 <p>Diese Abstimmung ist eine Wahl. Du kannst für Menschen stimmen.</p>
 <%= link_to "Für KandidatInnen abstimmen", new_voting_voting_option_path(@voting) %>
 <% unless @vote.voting_options.empty? %>
-<p>Du hast folgende KandidatInnen ausgewählt:</p>
+<p>Du hast folgende KandidatIn(n)(en) ausgewählt:</p>
 <ul>
 <% @vote.voted_options.each do |option| %>
-  <li><%= link_to option.voting_option.user.full_name, voting_voting_option_path(@voting, option) rescue "FEHLER" %></li>
+  <li><%= link_to(option.voting_option.user.full_name, deselect_voting_option_path(@voting, option.voting_option), data: {confirm: "Möchtest du diese Option abwählen?"}) rescue "FEHLER" %></li>
 <% end %>
 </ul>
 <% end %>

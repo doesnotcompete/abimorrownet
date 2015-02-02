@@ -2,6 +2,8 @@ class VotingsController < ApplicationController
   before_filter :authenticate_user!
   before_filter :ensure_profile!
 
+  respond_to :html, :json
+
   def index
     @votings = Voting.all
   end
@@ -39,6 +41,30 @@ class VotingsController < ApplicationController
       redirect_to @voting
     else
       render :edit
+    end
+  end
+
+  def results
+    @voting = Voting.find(params[:voting_id])
+    @results = @voting.voting_options
+    if @voting.election?
+      @label = []
+      @series = []
+      @results.each do |option|
+        @label << option.user.full_name
+        @series << option.votes.where(locked: true).count
+      end
+    else
+      @label = @results.pluck(:title)
+      @series = []
+      @results.each do |option|
+        @series << option.votes.where(locked: true).count
+      end
+    end
+
+    respond_to do |format|
+      format.html { render json: {labels: @label, series: [@series]} }
+      format.json { render json: {labels: @label, series: [@series]} }
     end
   end
 

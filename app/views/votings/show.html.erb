@@ -6,7 +6,7 @@
 <% else %>
 <span class="label label-default">Optionsabstimmung</span>
 <% end %>
-<% if current_user.admin? && @voting.election? %>
+<% if current_user.admin? %>
 <h3>Optionen</h3>
 <ul>
   <% @voting.voting_options.each do |option| %>
@@ -14,9 +14,11 @@
   <% else %><li><%= link_to option.title, voting_voting_option_path(@voting, option), method: :delete, data: { confirm: "Möchtest du diese Option löschen?"} %> - <%= option.votes.where(locked: true).count %> Stimme(n)</li><% end %>
   <% end %>
 </ul>
-<%= link_to  "Neue Option", new_voting_voting_option_path(@voting.id) %>
+<%= unless @voting.election? then link_to  "Neue Option", new_voting_voting_option_path(@voting.id) end %>
+<%= link_to  "Aufräumen", cleanup_voting_path(@voting), method: :delete, data: { confirm: "Bist du sicher? Wenn du fortfährst, werden alle Optionen mit 0 Stimmen gelöscht." } %>
 <% end %>
 <% if current_user.admin? %>
+<div class="ct-chart"></div>
 <h2>Stimmkarten</h2>
 <p><%= @voting.votes.count %> Stimmkarte(n) sind mit dieser Abstimmung verknüpft. <%= link_to raw("Alle verknüpften Stimmkarten ansehen &raquo;"), voting_votes_path(@voting) %></p>
 <%= if @voting.votes.empty? then link_to "Stimmkarten versenden", new_voting_vote_path(@voting.id) end %>

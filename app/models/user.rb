@@ -23,6 +23,7 @@ class User < ActiveRecord::Base
   delegate :first_name, :last_name, :full_name, to: :profile
 
   scope :invited, -> { where("invitation_token IS NOT NULL") }
+  scope :active, -> { joins(:profile) }
 
 
   def self.from_omniauth(auth)

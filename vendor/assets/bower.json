@@ -1,6 +1,7 @@
 {
   "name": "dsl-generated dependencies",
   "dependencies": {
-    "datatables": "latest"
+    "datatables": "latest",
+    "chartist": "latest"
   }
 }
