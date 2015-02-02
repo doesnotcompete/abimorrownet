@@ -1,0 +1,7 @@
+<%= simple_form_for :users, url: sign_in_as_user_path, :html => { :multipart => true } do |f| %>
+<%= f.input :user, as: :select, collection: User.active, label_method: lambda { |item| "#{item.first_name} #{item.last_name}".html_safe rescue "#{item.email}" }, label: "Mitglied" %>
+<p><b>Über diese Funktion kannst du Aktionen auslösen, die sehr destruktiv sind. Melde dich nur als anderer Nutzer an, wenn es unbedingt erforderlich ist.</b></p>
+<hr />
+<p>Du bist <%= current_user.full_name %>. Deine IP-Adresse lautet <%= request.remote_ip %>.</p>
+<%= f.button :submit, raw("Anmelden &raquo;"), class: 'btn btn-warning' %>
+<% end %>

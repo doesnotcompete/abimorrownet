@@ -69,6 +69,19 @@ class VotesController < ApplicationController
     @votes = Vote.where(voting: params[:voting_id])
   end
 
+  def validate_vote
+  end
+
+  def validate
+    @vote = Vote.find_by(uid: params[:votes][:uid])
+
+    if @vote.present? && @vote.locked?
+      redirect_to voting_vote_path(@vote.voting, @vote)
+    else
+      redirect_to vote_validation_path, notice: "Stimmkennung nicht gefunden oder Stimme noch nicht abgegeben."
+    end
+  end
+
   def lock
     @vote = Vote.find(params[:vote_id])
     #TEMP
@@ -82,7 +95,7 @@ class VotesController < ApplicationController
     @vote.save!
 
     if @vote.persisted?
-      redirect_to root_url, notice: "Deine Stimme wurde gezählt."
+      redirect_to voting_vote_url(@voting, @vote), notice: "Deine Stimme wurde gezählt."
     else
       redirect_to root_url, notice: "Fehler. Bitte melde dich bei uns."
     end
@@ -91,7 +104,7 @@ class VotesController < ApplicationController
   private
 
   def load_voting
-    @voting = Voting.find(params[:voting_id])
+    if params[:voting_id] then @voting = Voting.find(params[:voting_id]) end
   end
 
   #def load_voting

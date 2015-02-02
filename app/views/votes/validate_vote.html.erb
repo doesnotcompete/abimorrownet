@@ -1,0 +1,6 @@
+<%= simple_form_for :votes, url: validate_vote_path, :html => { :multipart => true } do |f| %>
+<p>Bitte gib deine Stimmkartennummer ohne führendes '#' ein.</p>
+<%= f.input :uid, as: :string, label: 'Stimmkartennummer' %>
+<hr />
+<%= f.button :submit, raw("Überprüfen &raquo;"), class: 'btn btn-primary' %>
+<% end %>

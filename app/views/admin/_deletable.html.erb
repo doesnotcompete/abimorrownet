@@ -1,4 +1,4 @@
 <% if current_user.admin? %>
 <% unless hide_ruler %><hr /><% end %>
-<%= link_to "#{model_name} löschen", path, method: :delete, data: {confirm: "Bist du sicher?"} %>
+<%= link_to raw("<span class='glyphicon glyphicon-trash' aria-hidden='true'></span> #{model_name} löschen"), path, class: 'btn btn-sm btn-danger', method: :delete, data: {confirm: 'Bist du sicher?'} %>
 <% end %>

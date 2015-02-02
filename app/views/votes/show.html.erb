@@ -2,12 +2,18 @@
 <p>Du hast <%= @vote.max_choices %> Stimme(n) innerhalb dieser Abstimmung. Deine Stimmabgabe ist einmalig.</p>
 <hr />
 <% if @vote.locked? %>
-<p>Diese Stimme wurde gezählt. Folgende Optionen wurden gewählt:</p>
+<p>Diese Stimme wurde gezählt. Folgende Option(en) wurde(n) gewählt:</p>
 <ul>
   <% @vote.voting_options.each do |option| %>
   <li><%= option.title || option.user.full_name %></li>
   <% end %>
 </ul>
+<p>Die Stimmabgabe erfolgte am <%= @vote.updated_at.strftime('%d.%m.%Y um %H:%M Uhr Ortszeit') rescue "???" %>. Die Stimme wurde endgültig vom Konto der stimmberechtigten Person getrennt und wird bei der Auszählung berücksichtigt.</p>
+<hr />
+<b><span style="font-size: 2rem">Bitte notiere deine Stimmkartennumer: <%= @vote.uid %></span></b>
+<p>Anhand deiner Stimmkartennummer kannst du die Auszählung nachvollziehen; außerdem können wir dir bei Problemen mit deiner Stimme nur weiterhelfen, wenn du uns deine Stimmkartennummer nennen kannst. Berücksichtige bitte unbedingt die Groß-/Kleinschreibung.</p>
+<hr />
+<%= link_to raw("&laquo; Zum Dashboard zurück"), root_url, class: 'btn btn-primary' %>
 <% else %>
 <b>Notiere dir bitte deine individuelle Stimmkartennummer "#<%= @vote.uid %>"; nur mit dieser Nummer kannst du das Stimmergebnis prüfen.</b>
 <p>Deine Stimmabgabe ist einmalig. Du kannst deine Stimme nicht mehr ändern, da wir deine Stimmkarte anonymisieren, indem wir sie von deinem Nutzerkonto trennen.</p>

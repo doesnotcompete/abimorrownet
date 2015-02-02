@@ -1,7 +1,7 @@
-<h3><%= announcement.title %></h3>
+<strong><%= announcement.title %></strong>
 <p><%= announcement.text %></p>
 <% unless announcement.file.empty? %>
-<a href="<%= announcement.file %>">Datei herunterladen</a>
+<%= link_to raw("<span class='glyphicon glyphicon-download' aria-hidden='true'></span> Datei herunterladen"), announcement.file, class: 'btn btn-sm btn-default' %>
 <% end %>
 <%= render partial: 'admin/deletable', locals: {model_name: "Ankündigung", path: announcement, hide_ruler: true} %>
 <%= render partial: 'admin/editable', locals: {model_name: "Ankündigung", path: edit_announcement_path(announcement), hide_ruler: true} %>

@@ -29,6 +29,9 @@ Rails.application.routes.draw do
   get "votings/:voting_id/results" => "votings#results", as: :voting_results
   delete "votings/:voting_id/cleanup" => "voting_options#cleanup", as: :cleanup_voting
 
+  get "votes/validate" => "votes#validate_vote", as: :vote_validation
+  post "votes/validate" => "votes#validate", as: :validate_vote
+
   get "contents/new/thanks" => "contents#complete", as: :content_complete
 
   delete "users/:id" => "users#destroy", as: :user
@@ -50,6 +53,8 @@ Rails.application.routes.draw do
 
   post "users/identity/disassociate" => "users#remove_association", as: :remove_association
   get "users/invited" => "users#list_invited", as: :invited_users
+  get "users/become" => "users#become", as: :become_user
+  post "users/become" => "users#become_user", as: :sign_in_as_user
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

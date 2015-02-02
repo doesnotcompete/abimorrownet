@@ -14,8 +14,8 @@
   <% else %><li><%= link_to option.title, voting_voting_option_path(@voting, option), method: :delete, data: { confirm: "Möchtest du diese Option löschen?"} %> - <%= option.votes.where(locked: true).count %> Stimme(n)</li><% end %>
   <% end %>
 </ul>
-<%= unless @voting.election? then link_to  "Neue Option", new_voting_voting_option_path(@voting.id) end %>
-<%= link_to  "Aufräumen", cleanup_voting_path(@voting), method: :delete, data: { confirm: "Bist du sicher? Wenn du fortfährst, werden alle Optionen mit 0 Stimmen gelöscht." } %>
+<%= unless @voting.election? then link_to  raw('<span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Neue Option'), new_voting_voting_option_path(@voting.id), class: 'btn btn-success btn-sm' end %>
+<%= if @voting.election? then link_to  "Aufräumen", cleanup_voting_path(@voting), method: :delete, class: 'btn btn-danger btn-sm', data: { confirm: "Bist du sicher? Wenn du fortfährst, werden alle Optionen mit 0 Stimmen gelöscht." } end %>
 <% end %>
 <% if policy(@voting).results? %>
 <div class="ct-chart" style="height: <%= "#{@voting.voting_options.count * 35}px" %>"></div>

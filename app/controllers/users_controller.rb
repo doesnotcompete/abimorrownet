@@ -10,6 +10,21 @@ class UsersController < ApplicationController
     redirect_to :back, notice: "Benutzer gelöscht."
   end
 
+  def become
+    return unless current_user.admin?
+  end
+
+  def become_user
+    return unless current_user.admin?
+    @login = User.find(params[:users][:user])
+
+    AdminMailer.notify_admin_of_become(current_user, @login)
+
+    sign_in(:user, @login)
+
+    redirect_to root_url # or user_root_url
+  end
+
   def list_invited
     authorize :user, :list_invited?
     respond_to do |format|

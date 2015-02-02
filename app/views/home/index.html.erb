@@ -1,5 +1,8 @@
 <h1>Ahoi, <%= current_user.profile.first_name %>.</h1>
-<p>Wir haben gerade keine Nachrichten für dich; du kannst dich aber dennoch gerne umschauen.</p>
+<% if current_user.admin? %>
+<p>Du verfügst über administrative Zugriffsrechte. <%= link_to raw('Als anderer Nutzer anmelden &raquo;'), become_user_path %></p>
+<% end %>
+<p>Bitte nutze deinen Besuch, um Kommentare und Inhalte zu hinterlassen; das Abizeitungskomitee ist auf deine Mithilfe angewiesen.</p>
 <%= render partial: 'notifications/no_group' %>
 <%= render partial: 'notifications/quotes_to_approve' %>
 <%= link_to raw("Einführung erneut ansehen &raquo;"), intro_path %>
@@ -15,4 +18,6 @@
   <%= render partial: 'notifications/votes', collection: current_user.votes, as: :vote %>
 </ul>
 <% end %>
+<hr />
+<h3>Ankündigungen</h3>
 <%= render partial: 'notifications/announcements' %>

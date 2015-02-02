@@ -1,4 +1,4 @@
 <% if current_user.admin? %>
 <% unless hide_ruler %><hr /><% end %>
-<%= link_to "#{model_name} erstellen", path, class: 'btn btn-sm btn-success' %>
+<%= link_to raw("<span class='glyphicon glyphicon-plus' aria-hidden='true'></span> #{model_name} erstellen"), path, class: 'btn btn-sm btn-success' %>
 <% end %>

@@ -9,5 +9,6 @@
     <%= render partial: 'voting_list_entry', collection: @votings, as: :voting %>
   </tbody>
 </table>
+<p><%= link_to "Stimme überprüfen", vote_validation_path %></p>
 <% unless current_user.votes.empty? %><p>Im <%= link_to 'Dashboard', root_url %> liegen Wahlkarten für dich bereit.</p><% end %>
 <%= render partial: 'admin/creatable', locals: {model_name: "Abstimmung", path: new_voting_path, hide_ruler: false} %>
