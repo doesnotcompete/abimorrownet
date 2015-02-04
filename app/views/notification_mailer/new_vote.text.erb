@@ -1,6 +1,10 @@
 Hallo <%= @vote.user.profile.first_name %>,
 
 du bist berechtigt, an der Abstimmung "<%= @vote.voting.title %>" teilzunehmen.
+Nachfolgend findest du die Beschreibung der Abstimmung. Lies dir die Beschreibung bitte genau durch, da sie die Fragestellung enthält, über die du abstimmst.
+
+<%= @vote.voting.description %>
+
 Bitte rufe <%= voting_vote_url(@vote.voting, @vote) %> auf, um deine Stimme abzugeben.
 
 Viele Grüße
