@@ -4,14 +4,13 @@ class VotingOptionsController < ApplicationController
   before_filter :load_voting
 
   def new
-    authorize :voting_option, :create?
+    @voting = Voting.find(params[:voting_id])
+    @option = @voting.voting_options.new
 
-    @option = VotingOption.new
+    authorize @option
   end
 
   def create
-    authorize :voting_option, :create?
-
     if @voting.voting_options.count > 300
       redirect_to root_url, notice: "Zu viele Optionen!"
       return false
@@ -24,10 +23,14 @@ class VotingOptionsController < ApplicationController
       if @existing_option.present?
         @option = @existing_option
       else
-        @option = @voting.voting_options.create(user: @user)
+        @option = @voting.voting_options.new(user: @user)
+        authorize @option
+        @option.save
       end
     else
-      @option = @voting.voting_options.create(title: params[:voting_option][:title], description: params[:voting_option][:description])
+      @option = @voting.voting_options.new(title: params[:voting_option][:title], description: params[:voting_option][:description])
+      authorize @option
+      @option.save
     end
 
     if @option.persisted?
