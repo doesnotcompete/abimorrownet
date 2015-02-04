@@ -7,6 +7,7 @@
 <p>Wähle das nachfolgende Feld aus, wenn du eine Award-Wahl oder eine andere Art von Wahl, bei der SchülerInnen gewählt werden können, starten willst. Du kannst dann keine Optionen hinzufügen.</p>
 <%= f.input :election, as: :boolean, label: "Wahl?" %>
 <%= f.input :interactive, as: :boolean, label: "Vorschläge erlauben?" %>
+<%= f.input :premium, as: :boolean, label: "Ergebnisse nur Premium-Nutzern anzeigen?" %>
   <hr />
   <p>Nach dem Anlegen der Abstimmung kannst du Optionen hinzufügen und Wahlkarten erstellen.</p>
   <%= f.button :submit, raw("Erstellen &raquo;"), class: 'btn-primary' %>

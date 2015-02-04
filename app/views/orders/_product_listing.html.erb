@@ -1,0 +1,9 @@
+<ul>
+  <% products.each do |product| %>
+  <li><%= "#{product.title}: #{product.price} €" %></li>
+  <ul>
+    <li><%= "#{product.description}" %></li>
+  </ul>
+  <% end %>
+  <% if shipped %><li>Versandkosten: 5.45 €</li><% end %>
+</ul>

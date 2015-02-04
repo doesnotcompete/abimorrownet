@@ -20,6 +20,11 @@ Rails.application.routes.draw do
     resources :votes
   end
 
+  resources :products
+  resources :orders
+  post "orders/shipping" => "orders#shipping", as: :order_shipping
+  patch "orders/:id/paid" => "orders#paid", as: :mark_order_as_paid
+
   resources :contents
 
   get "votings/:voting_id/voting_options/:option_id/select" => "voting_options#select", as: :select_voting_option

@@ -47,7 +47,7 @@ class VotingsController < ApplicationController
   def results
     @voting = Voting.find(params[:voting_id])
     authorize @voting
-    
+
     @results = @voting.voting_options
     if @voting.election?
       @label = []
@@ -71,6 +71,6 @@ class VotingsController < ApplicationController
   end
 
   def voting_params
-    params.require(:voting).permit(:title, :description, :start_time, :end_time, :election, :interactive)
+    params.require(:voting).permit(:title, :description, :start_time, :end_time, :election, :interactive, :premium)
   end
 end

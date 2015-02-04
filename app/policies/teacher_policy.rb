@@ -9,11 +9,12 @@ class TeacherPolicy < ApplicationPolicy
   end
 
   def update?
-    @user.admin? || @user.moderator?
+    #@user.admin? || @user.moderator?
+    true
   end
 
   def create?
-    @user.admin?
+    true
   end
 
   def destroy?

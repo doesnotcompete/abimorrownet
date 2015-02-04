@@ -1,0 +1,9 @@
+<h3>Ein Produkt anlegen</h3>
+<%= simple_form_for :product, url: {action: 'create'}, :html => { :multipart => true } do |f| %>
+<%= f.input :title, label: "Titel" %>
+<%= f.input :description, as: :text, label: "Beschreibung" %>
+<%= f.input :price, as: :decimal, label: "Preis (in Euro)" %>
+<%= f.input :shippable, as: :boolean, label: "versandfähig" %>
+<%= f.input :available, as: :boolean, label: "verfügbar" %>
+<%= f.button :submit, raw("Produkt anlegen &raquo;"), class: 'btn-primary' %>
+<% end %>

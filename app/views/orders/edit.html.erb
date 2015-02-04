@@ -1,0 +1,15 @@
+<h3>Bestellung bearbeiten</h3>
+<%= simple_form_for(@order, method: :patch) do |f| %>
+<%= f.input :description, label: "Anmerkungen" %>
+<%= f.association :products, label: "Produkte" %>
+<%= f.input :address, label: "Adresse" %>
+<%= f.input :plz, label: "Postleitzahl" %>
+<%= f.input :city, label: "Ort" %>
+<%= f.input :name, label: "Name", required: true, input_html: {value: (current_user.full_name rescue '')} %>
+<%= f.input :email, label: "E-Mail", required: true, input_html: {value: (current_user.email rescue '')} %>
+<%= f.input :shipped, label: "Lieferung nach Hause?" %>
+<%= f.input :processed, label: "Bearbeitet?" %>
+<%= f.input :shipping_id, label: "Paketnummer" %>
+<%= f.button :submit, raw("Bestellung ändern &raquo;"), class: 'btn-primary' %>
+<% end %>
+<%= render partial: 'admin/deletable', locals: {model_name: "Bestellung", path: order_path(@order), hide_ruler: false} %>

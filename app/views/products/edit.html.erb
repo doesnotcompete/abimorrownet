@@ -1,0 +1,10 @@
+<h3>"<%= @product.title %>" bearbeiten</h3>
+<%= simple_form_for(@product, method: :patch) do |f| %>
+<%= f.input :title, label: "Titel" %>
+<%= f.input :description, as: :text, label: "Beschreibung" %>
+<%= f.input :price, as: :decimal, label: "Preis (in Euro)" %>
+<%= f.input :shippable, as: :boolean, label: "versandfähig" %>
+<%= f.input :available, as: :boolean, label: "verfügbar" %>
+<%= f.button :submit, raw("Produkt ändern &raquo;"), class: 'btn-primary' %>
+<% end %>
+<%= render partial: 'admin/deletable', locals: {model_name: "Produkt", path: product_path(@product), hide_ruler: false} %>

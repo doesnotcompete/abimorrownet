@@ -4,19 +4,13 @@ class VotingOptionsController < ApplicationController
   before_filter :load_voting
 
   def new
-    unless current_user.admin? || @voting.interactive? || @voting.election?
-      redirect_to root_url
-      return false
-    end
+    authorize :voting_option, :create?
 
     @option = VotingOption.new
   end
 
   def create
-    unless current_user.admin? || @voting.interactive? || @voting.election?
-      redirect_to root_url
-      return false
-    end
+    authorize :voting_option, :create?
 
     if @voting.voting_options.count > 300
       redirect_to root_url, notice: "Zu viele Optionen!"
@@ -49,12 +43,10 @@ class VotingOptionsController < ApplicationController
   end
 
   def destroy
-    unless current_user.admin?
-      redirect_to root_url
-      return false
-    end
-
     @option = VotingOption.find(params[:id])
+
+    authorize @option
+
     unless @option.votes.count > 0
       if @option.destroy
         redirect_to @voting, notice: "Option gelöscht."
@@ -73,10 +65,7 @@ class VotingOptionsController < ApplicationController
   end
 
   def cleanup
-    unless current_user.admin?
-      redirect_to root_url
-      return false
-    end
+    authorize :voting_option, :destroy?
 
     @options = VotingOption.where(voting: @voting)
     @options.each do |option|

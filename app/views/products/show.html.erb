@@ -1,0 +1,5 @@
+<h2><%= @product.title %></h2>
+<p>Preis: <%= @product.price %> €</p>
+<p><%= @product.description %></p>
+<p>Versand: <%= @product.shippable ? "Ja" : "Nein" %> | <%= @product.available ? "Verfügbar" : "Nicht verfügbar" %></p>
+<%= render partial: 'admin/editable', locals: {model_name: "Produkt", path: edit_product_path(@product), hide_ruler: false} %>

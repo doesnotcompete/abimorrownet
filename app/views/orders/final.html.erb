@@ -1,0 +1,9 @@
+<h3>Deine Bestellung abschließen</h3>
+<%= simple_form_for @order, url: {action: 'shipping'}, :html => { :multipart => true } do |f| %>
+<p>Danke, dass du unsere Abizeitung bestellen möchtest. Bitte wähle zunächst die gewünschten Pakete aus.</p>
+<%= f.association :products, as: :select, label_method: lambda { |item| "#{item.title} (#{item.price} €/St.)".html_safe rescue "Unbekannter Artikel" } %>
+<p>Wähle nun den gewünschten Lieferweg aus.</p>
+<%= f.collection_radio_buttons :shipped, [['post', 'Auf dem Postweg nach Hause liefern'] ,['school', 'In Die Schule liefern']],:first, :last %>
+<p>Auf der nächsten Seite kannst du weitere Details zu deiner Bestellung angeben.</p>
+<%= f.button :submit, raw("Fortfahren &raquo;"), class: 'btn-primary' %>
+<% end %>

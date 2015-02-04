@@ -9,4 +9,5 @@
   <tbody>
   </tbody>
 </table>
-<%= render partial: 'admin/creatable', locals: {model_name: "Lehrer", path: new_teacher_path, hide_ruler: false} %>
+<hr />
+<%= link_to raw("<span class='glyphicon glyphicon-plus' aria-hidden='true'></span> Lehrer erstellen"), new_teacher_path, class: 'btn btn-sm btn-success' %>

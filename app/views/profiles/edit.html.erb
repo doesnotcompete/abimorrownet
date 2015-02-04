@@ -2,6 +2,7 @@
 <%= simple_form_for(@profile, method: :patch) do |f| %>
 <%= f.input :first_name, label: "Vorname" %>
 <%= f.input :last_name, label: "Nachname" %>
+<%= if current_user.admin? then f.input :premium, label: "Premium-Nutzer" end %>
 <%= f.simple_fields_for :user do |g| %>
   <%= g.association :group, label: "Seminarfach" %>
 <% end %>

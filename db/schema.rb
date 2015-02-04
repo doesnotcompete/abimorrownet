@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150120161955) do
+ActiveRecord::Schema.define(version: 20150204190214) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -124,6 +124,46 @@ ActiveRecord::Schema.define(version: 20150120161955) do
 
   add_index "groups", ["slug"], name: "index_groups_on_slug", unique: true, using: :btree
 
+  create_table "order_positions", force: true do |t|
+    t.integer  "order_id"
+    t.integer  "product_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "quantity"
+  end
+
+  add_index "order_positions", ["order_id"], name: "index_order_positions_on_order_id", using: :btree
+  add_index "order_positions", ["product_id"], name: "index_order_positions_on_product_id", using: :btree
+
+  create_table "orders", force: true do |t|
+    t.text     "description"
+    t.integer  "user_id"
+    t.text     "address"
+    t.string   "plz"
+    t.string   "city"
+    t.boolean  "processed"
+    t.integer  "assigned_id"
+    t.boolean  "shipped"
+    t.string   "shipping_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "email"
+    t.string   "name"
+  end
+
+  add_index "orders", ["assigned_id"], name: "index_orders_on_assigned_id", using: :btree
+  add_index "orders", ["user_id"], name: "index_orders_on_user_id", using: :btree
+
+  create_table "products", force: true do |t|
+    t.string   "title"
+    t.text     "description"
+    t.decimal  "price"
+    t.boolean  "shippable"
+    t.boolean  "available"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "profiles", force: true do |t|
     t.text     "about"
     t.integer  "profileable_id"
@@ -133,6 +173,7 @@ ActiveRecord::Schema.define(version: 20150120161955) do
     t.string   "first_name"
     t.string   "last_name"
     t.string   "slug"
+    t.boolean  "premium"
   end
 
   add_index "profiles", ["slug"], name: "index_profiles_on_slug", unique: true, using: :btree
@@ -256,6 +297,7 @@ ActiveRecord::Schema.define(version: 20150120161955) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.boolean  "election"
+    t.boolean  "premium"
   end
 
 end

@@ -1,0 +1,44 @@
+<h3>Lieferdetails bereitstellen</h3>
+<p>Wir benötigen noch einige weitere Details, um deine Bestellung abschließen zu können.</p>
+<hr />
+<ul>
+<% @products.each do |product| %>
+  <li><%= "#{product.title} (#{product.price} €)" %></li>
+<% end %>
+</ul>
+<hr />
+<b>Lieferanschrift:</b>
+<%= simple_form_for @order, url: {action: 'create'}, :html => { :multipart => true } do |f| %>
+<% if @school_shipping %>
+<div class="vcard">
+  <div class="org">KGS Rastede</div>
+<p class="adr">
+<span class="street-address">Wilhelmstraße 5</span><br>
+<span class="postal-code">26180</span>
+<span class="country-name">Rastede</span>
+</p>
+</div>
+<b>Rechnungsanschrift:</b>
+<%= f.input :address, label: "Adresse" %>
+<%= f.input :plz, label: "Postleitzahl" %>
+<%= f.input :city, label: "Ort" %>
+<% else %>
+<%= f.input :address, label: "Adresse" %>
+<%= f.input :plz, label: "Postleitzahl" %>
+<%= f.input :city, label: "Ort" %>
+<p>Standardmäßig stellen wir Rechnungen an deine Lieferanschrift aus. Sollte deine Rechnungsanschrift von deiner Lieferanschrift abweichen, so teile uns dies bitte mit.</p>
+<p>Die Lieferung erfolgt mit DPD. Es entstehen zusätzliche Kosten von <strong>5,45 €</strong>.</p>
+<% end %>
+<%= f.input :name, label: "Name", required: true, input_html: {value: (current_user.full_name rescue '')} %>
+<%= f.input :email, label: "E-Mail", required: true, input_html: {value: (current_user.email rescue '')} %>
+<%= f.input :description, label: "Anmerkungen" %>
+<hr />
+<%= render partial: 'product_listing', locals: {shipped: !@school_shipping, products: @products} %>
+<hr />
+<b>GESAMT: <%= @total %> €</b>
+<hr />
+<p>Du erhältst Statusupdates zu deiner Bestellung an die angegebene E-Mail-Adresse. Mit der Auswahl von "Zahlungspflichtig bestellen" kommt ein Kaufvertrag zwischen dir
+und dem Abiturjahrgang 2015 der KGS Rastede, vertreten durch Kevin Koopmann, zu Stande. Du kannst diesen Vertrag binnen 14 Tagen nach Abschluss ohne Angabe von Gründen widerrufen.
+Dazu genügt eine kurze, formlose Nachricht an <%= mail_to "hallo@abimorrow.net" %>. Bitte zahle deine Bestellung innerhalb von höchstens 30 Tagen.</p>
+<%= f.button :submit, raw("Zahlungspflichtig bestellen &raquo;"), class: 'btn-primary' %>
+<% end %>

@@ -4,27 +4,17 @@ class VotesController < ApplicationController
   before_filter :load_voting
 
   def new
-    unless current_user.admin?
-      redirect_to root_url, notice: "Nicht berechtigt."
-      return false
-    end
+    authorize :vote, :create?
   end
 
   def new_selection
-    unless current_user.admin?
-      redirect_to root_url, notice: "Nicht berechtigt."
-      return false
-    end
+    authorize :vote, :create?
 
     @max_choices = params[:max_choices]
   end
 
   def create
-    #TEMP
-    unless current_user.admin?
-      redirect_to root_url, notice: "Nicht berechtigt."
-      return false
-    end
+    authorize :vote, :create?
 
     if params[:commit] == 'all'
       if Vote.create_votes_for_all(@voting, params[:votes][:max_choices])
@@ -52,21 +42,18 @@ class VotesController < ApplicationController
   def show
     @vote = Vote.includes(:voted_options).find(params[:id])
 
+    authorize @vote
     #TEMP
-    unless current_user.admin? || @vote.locked? || @vote.user == current_user
-      redirect_to root_url, notice: "Nicht berechtigt."
-      return false
-    end
+    #unless current_user.admin? || @vote.locked? || @vote.user == current_user
+    #  redirect_to root_url, notice: "Nicht berechtigt."
+    #  return false
+    #end
   end
 
   def index
-    #TEMP
-    unless current_user.admin?
-      redirect_to root_url, notice: "Nicht berechtigt."
-      return false
-    end
-
     @votes = Vote.where(voting: params[:voting_id])
+
+    authorize @votes
   end
 
   def validate_vote
@@ -85,10 +72,11 @@ class VotesController < ApplicationController
   def lock
     @vote = Vote.find(params[:vote_id])
     #TEMP
-    unless @vote.user == current_user
-      redirect_to root_url, notice: "Nicht berechtigt."
-      return false
-    end
+    #unless @vote.user == current_user
+    #  redirect_to root_url, notice: "Nicht berechtigt."
+    #  return false
+    #end
+    authorize @vote
 
     @vote.locked = true
     @vote.user = nil

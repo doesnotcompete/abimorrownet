@@ -21,7 +21,7 @@ class VotingPolicy < ApplicationPolicy
   end
 
   def results?
-    @user.admin? || @voting.finished?
+    @user.admin? || (@voting.finished? && (!@voting.premium || @user.profile.premium))
   end
 
   class Scope < Scope

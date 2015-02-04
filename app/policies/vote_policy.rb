@@ -4,23 +4,23 @@ class VotePolicy < ApplicationPolicy
     @vote = vote
   end
 
-  def show
-    if @vote.locked?
-      true
-    else
-      @vote.user == @user || @user.admin?
-    end
-  end
-
-  def lock
-    @vote.user == @user
-  end
-
-  def index
+  def create?
     @user.admin?
   end
 
-  def create
+  def show?
+    @user.admin? || @vote.locked? || @vote.user == @user
+  end
+
+  def lock?
+    @vote.user == @user
+  end
+
+  def index?
+    @user.admin?
+  end
+
+  def create?
     @user.admin?
   end
 
