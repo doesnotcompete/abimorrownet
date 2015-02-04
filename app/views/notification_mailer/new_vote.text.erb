@@ -1,0 +1,10 @@
+Hallo <%= @vote.user.profile.first_name %>,
+
+du bist berechtigt, an der Abstimmung "<%= @vote.voting.title %>" teilzunehmen.
+Bitte rufe <%= voting_vote_url(@vote.voting, @vote) %> auf, um deine Stimme abzugeben.
+
+Viele Grüße
+Dein Abizeitungskomitee
+
+===
+Bitte rufe <%= stop_notifications_url(@vote.user, @vote.user.stop_key) rescue 'FEHLER | an hallo@abimorrow.net wenden' %> auf, wenn du keine weiteren Nachrichten erhalten möchtest.

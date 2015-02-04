@@ -4,6 +4,7 @@
 <%= f.input :last_name, label: "Nachname" %>
 <%= if current_user.admin? then f.input :premium, label: "Premium-Nutzer" end %>
 <%= f.simple_fields_for :user do |g| %>
+  <%= g.input :notify, label: "Dürfen wir Benachrichtigungen per E-Mail an dich senden?" %>
   <%= g.association :group, label: "Seminarfach" %>
 <% end %>
 <hr />

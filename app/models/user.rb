@@ -24,12 +24,21 @@ class User < ActiveRecord::Base
 
   scope :invited, -> { where("invitation_token IS NOT NULL") }
   scope :active, -> { joins(:profile) }
+  scope :notify, -> { where(notify: true) }
 
 
   def self.from_omniauth(auth)
     where(provider: auth.provider, uid: auth.uid).first do |user|
       user.email = auth.info.email
       user.password = Devise.friendly_token[0,20]
+    end
+  end
+
+  def self.enable_notifications_for_all
+    User.all.each do |user|
+      user.stop_key = SecureRandom.hex(6)
+      user.notify = true
+      user.save!
     end
   end
 

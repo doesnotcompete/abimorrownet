@@ -17,7 +17,7 @@ class VotesController < ApplicationController
     authorize :vote, :create?
 
     if params[:commit] == 'all'
-      if Vote.create_votes_for_all(@voting, params[:votes][:max_choices])
+      if Vote.create_votes_for_all(@voting, params[:votes][:max_choices], params[:votes][:notify])
         flash[:notice] = "Wahlkarten erstellt."
         redirect_to @voting
       else
@@ -26,7 +26,7 @@ class VotesController < ApplicationController
       end
     else
       if params[:votes][:users]
-        if Vote.create_votes_for_users(@voting, params[:votes][:max_choices], User.find(params[:votes][:users].reject! { |c| c.empty? }))
+        if Vote.create_votes_for_users(@voting, params[:votes][:max_choices], User.find(params[:votes][:users].reject! { |c| c.empty? }), params[:votes][:notify])
           flash[:notice] = "Wahlkarten erstellt."
           redirect_to root_url
         else

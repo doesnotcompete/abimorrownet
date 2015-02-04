@@ -34,6 +34,8 @@ Rails.application.routes.draw do
   get "votings/:voting_id/results" => "votings#results", as: :voting_results
   delete "votings/:voting_id/cleanup" => "voting_options#cleanup", as: :cleanup_voting
 
+  get "notifications/:user_id/stop/:stop_key" => "users#stop_notifications", as: :stop_notifications
+
   get "votes/validate" => "votes#validate_vote", as: :vote_validation
   post "votes/validate" => "votes#validate", as: :validate_vote
 

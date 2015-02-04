@@ -1,0 +1,5 @@
+<% unless @failed %>
+<p>Du erhältst keine weiteren Benachrichtigungen von uns. Über "Mein Profil" kannst du die Benachrichtigungen jederzeit wieder aktivieren.</p>
+<% else %>
+<p>Die Aktion ist leider fehlgeschlagen. Bitte schalte die Benachrichtigungen über "Mein Profil" aus, oder wende dich an <%= mail_to "hallo@abimorrow.net" %>.</p>
+<% end %>

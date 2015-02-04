@@ -7,7 +7,7 @@ class Vote < ActiveRecord::Base
   validates :max_choices, presence: true
 
   class << self
-    def create_votes_for_all(voting, max_choices)
+    def create_votes_for_all(voting, max_choices, notify)
       User.all.each do |user|
         vote = self.new
         vote.user = user
@@ -15,11 +15,14 @@ class Vote < ActiveRecord::Base
         vote.max_choices = max_choices
         vote.uid = SecureRandom.base64(8)
         vote.save
+        if (user.notify && notify)
+          NotificationMailer.new_vote(vote).deliver
+        end
       end
       return true
     end
 
-    def create_votes_for_users(voting, max_choices, users)
+    def create_votes_for_users(voting, max_choices, users, notify)
       users.each do |user|
         vote = self.new
         vote.user = user
@@ -27,6 +30,9 @@ class Vote < ActiveRecord::Base
         vote.max_choices = max_choices
         vote.uid = SecureRandom.base64(8)
         vote.save
+        if (user.notify && notify)
+          NotificationMailer.new_vote(vote).deliver
+        end
       end
       return true
     end

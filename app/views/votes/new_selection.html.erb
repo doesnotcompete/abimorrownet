@@ -3,6 +3,7 @@
 <p>Du bist dabei, Stimmkarten für die Abstimmung "<%= @voting.title %>" anzulegen. Die Stimmkartenempfänger haben <b><%= @max_choices %> Stimmen</b>.</p>
 <%= f.input :max_choices, as: :integer, input_html: {value: @max_choices}, label: "Stimmen je Karte" %>
 <%= f.input :users, as: :select, input_html: { multiple: true}, collection: User.active, label_method: lambda { |item| "#{item.first_name} #{item.last_name}".html_safe rescue "#{item.email}" }, label: "Mitglied" %>
+<%= f.input :notify, as: :boolean, label: "per E-Mail benachrichtigen?" %>
 <hr />
 <p>Die Wahlkarten werden an die ausgewählten Nutzer gesendet.</p>
 <%= f.button :submit, raw("Erstellen &raquo;"), class: 'btn-primary', data: { confirm: "Möchtest du wirklich Wahlkarten versenden? Diese Aktion lässt sich nicht rückgängig machen."}, name: 'selective' %>

@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_filter :authenticate_user!
+  before_filter :authenticate_user!, except: [:stop_notifications]
 
   def destroy
     user = User.find(params[:id])
@@ -29,6 +29,16 @@ class UsersController < ApplicationController
     authorize :user, :list_invited?
     respond_to do |format|
       format.json { render json: InvitedUserDatatable.new(view_context) }
+    end
+  end
+
+  def stop_notifications
+    @user = User.find(params[:user_id])
+    if @user.stop_key == params[:stop_key]
+      @user.notify = false
+      @user.save!
+    else
+      @failed = true
     end
   end
 
