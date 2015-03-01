@@ -1,17 +1,19 @@
+<div>
 <% if quote.author == current_user || current_user.moderator? || current_user.profile == quote.quotable || quote.approved? %>
 <blockquote><%= quote.text %><br /><small>zuletzt geändert am <%= quote.updated_at.strftime("%d.%m.%Y um %H.%M") %> Uhr</small></blockquote>
 <% end %>
 <% if policy(quote).destroy? %>
-<%= link_to "Löschen", profile_quote_path(quote.quotable, quote), method: :delete, data: {confirm: "Bist du sicher? Der Kommentar wird sofort unwiderbringlich gelöscht."} %>
+<%= link_to "Löschen", profile_quote_path(quote.quotable, quote), method: :delete, remote: true, class: "remove-quote", data: {confirm: "Bist du sicher? Der Kommentar wird sofort unwiderbringlich gelöscht."} %>
 <% end %>
 <% if policy(quote).edit? %>
 <%= link_to "Ändern", edit_profile_quote_path(quote.quotable, quote) %>
 <% end %>
 <% if policy(quote).approve? && !quote.approved? %>
-<%= link_to "Freigeben", approve_profile_quote_path(quote.quotable, quote), method: :post %>
+<%= link_to "Freigeben", approve_profile_quote_path(quote.quotable, quote), method: :post, class: "approve-quote", remote: true %>
 <% unless current_user.moderator? %><p><small>Hinweis: Nach der Freigabe ist eine Änderung nur noch durch Administratoren und Moderatoren möglich.</small></p><% end %>
 <% end %>
 <% if quote.author.profile == quote.quotable && !quote.approved? %>
 <p><small>Hinweis: Kommentare, die du für dich selbst geschrieben hast, müssen von einem Moderator freigegeben werden.</small></p>
 <% end %>
 <hr />
+</div>

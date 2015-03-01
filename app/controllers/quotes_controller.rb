@@ -54,7 +54,7 @@ class QuotesController < ApplicationController
     authorize @quote
 
     if @quote.destroy
-      redirect_to :back, notice: "Kommentar gelöscht."
+      redirect_to @quotable, notice: "Kommentar gelöscht."
     else
       render :show
     end
