@@ -5,7 +5,7 @@ ready = ->
   $('.remove-quote').on 'ajax:complete', ->
     $(this).parent().after("<em>Kommentar gelöscht.</em><hr />")
     $(this).parent().toggle("blind")
-  $('.approve-quote').on 'ajax:success', ->
+  $('.approve-quote').on 'ajax:complete', ->
     $(this).parent().after("<em>Kommentar freigegeben.</em><hr />")
     $(this).parent().toggle("highlight", {color: "#91e374"})
 
