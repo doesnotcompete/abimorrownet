@@ -27,6 +27,7 @@ class ContentDatatable < AjaxDatatablesRails::Base
         # example: record.attribute,
         record.title,
         record.kind,
+        record.updated_at.strftime("%d.%m.%Y um %H.%m Uhr"),
         link_to(raw("Ansehen &raquo;"), record)
       ]
     end
@@ -34,7 +35,7 @@ class ContentDatatable < AjaxDatatablesRails::Base
 
   def get_raw_records
     # insert query here
-    Content.all
+    Content.all.order('updated_at')
   end
 
   # ==== Insert 'presenter'-like methods below if necessary
