@@ -15,7 +15,7 @@ class Vote < ActiveRecord::Base
         vote.max_choices = max_choices
         vote.uid = SecureRandom.base64(8)
         vote.save
-        if (user.notify && notify)
+        if (user.notify && notify == 1)
           NotificationMailer.new_vote(vote).deliver
         end
       end
@@ -30,7 +30,7 @@ class Vote < ActiveRecord::Base
         vote.max_choices = max_choices
         vote.uid = SecureRandom.base64(8)
         vote.save
-        if (user.notify && notify)
+        if (user.notify && notify == 1)
           NotificationMailer.new_vote(vote).deliver
         end
       end
