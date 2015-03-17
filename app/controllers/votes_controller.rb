@@ -16,7 +16,7 @@ class VotesController < ApplicationController
   def create
     authorize :vote, :create?
 
-    if params[:commit] == 'all'
+    if params[:commit] == "Erstellen"
       if Vote.create_votes_for_all(@voting, params[:votes][:max_choices], params[:votes][:notify])
         flash[:notice] = "Wahlkarten erstellt."
         redirect_to @voting

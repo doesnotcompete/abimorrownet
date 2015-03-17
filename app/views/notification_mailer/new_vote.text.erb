@@ -1,4 +1,4 @@
-Hallo <%= @vote.user.profile.first_name %>,
+Hallo <%= @vote.user.profile.first_name rescue "abimorrow.net-Nutzer" %>,
 
 du bist berechtigt, an der Abstimmung "<%= @vote.voting.title %>" teilzunehmen.
 Nachfolgend findest du die Beschreibung der Abstimmung. Lies dir die Beschreibung bitte genau durch, da sie die Fragestellung enthält, über die du abstimmst.
