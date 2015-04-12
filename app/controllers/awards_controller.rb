@@ -31,7 +31,13 @@ class AwardsController < ApplicationController
 
     @winners = @voting.count_users
 
-    @award.tiers.times { |i| @award.nominations.create(tier: i+1, user: User.find(@winners[i][0]), accepted: nil) }
+    @award.tiers.times do |i|
+      user = User.find(@winners[i][0])
+      nom = @award.nominations.create(tier: i+1, user: user, accepted: nil)
+      if user.notify then
+        NotificationMailer.nominated(nom).deliver
+      end
+    end
     redirect_to [@voting, @award]
   end
 

@@ -18,6 +18,12 @@
   <%= render partial: 'notifications/votes', collection: current_user.votes, as: :vote %>
 </ul>
 <% end %>
+<% unless current_user.nominations.empty? %>
+<h3>Deine Auszeichnungen</h3>
+<ul>
+  <%= render partial: 'notifications/nominations', collection: current_user.nominations, as: :nomination %>
+</ul>
+<% end %>
 <hr />
 <h3>Ankündigungen</h3>
 <%= render partial: 'notifications/announcements' %>

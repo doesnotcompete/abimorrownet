@@ -9,6 +9,8 @@ class User < ActiveRecord::Base
   has_many :votes
   has_many :votings, through: :votes
 
+  has_many :nominations
+
   has_many :contents
 
   has_one :profile, as: :profileable
