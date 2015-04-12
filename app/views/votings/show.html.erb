@@ -10,12 +10,10 @@
 <h3>Optionen</h3>
 <ul>
   <% if @voting.election? %>
-  <% @results.each_with_index do |result, index|
-    if result then
-      user = User.find(index) %>
-  <li><%= link_to user.full_name, profile_path(user.profile) %> - <%= result %> Stimme(n)</li>
-  <% end
-  end %>
+  <% @results.each do |result_set|
+      user = User.find(result_set[0]) %>
+  <li><%= link_to user.full_name, profile_path(user.profile) %> - <%= result_set[1] %> Stimme(n)</li>
+  <% end %>
   <% else
   @voting.voting_options.each do |option| %>
   <li><%= link_to option.title, voting_voting_option_path(@voting, option), method: :delete, data: { confirm: "Möchtest du diese Option löschen?"} %> - <%= option.votes.where(locked: true).count %> Stimme(n)</li><% end %>

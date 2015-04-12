@@ -17,7 +17,15 @@ class Voting < ActiveRecord::Base
       end
     end
 
-    return results
+    results_refac = []
+
+    results.each_with_index do |result, index|
+      if result then
+        results_refac << [index, result]
+      end
+    end
+
+    return results_refac.sort_by{|e| -e[1]}
   end
 
   def active?
