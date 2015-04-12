@@ -7,6 +7,19 @@ class Voting < ActiveRecord::Base
   scope :active, -> { where('end_time > ? AND start_time < ?', DateTime.now, DateTime.now) }
   scope :finished, -> { where('end_time > ?', DateTime.now) }
 
+  def count_users
+    results = []
+    self.votes.each do |vote|
+      if vote.locked then
+        vote.voting_options.each do |option|
+          (results[option.user_id] += 1) rescue (results[option.user_id] = 1)
+        end
+      end
+    end
+
+    return results
+  end
+
   def active?
     self.end_time > DateTime.now && self.start_time < DateTime.now rescue true
   end

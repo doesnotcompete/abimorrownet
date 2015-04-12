@@ -25,6 +25,7 @@ class VotingsController < ApplicationController
 
   def show
     @voting = Voting.find(params[:id])
+    @results = @voting.count_users
   end
 
   def edit
