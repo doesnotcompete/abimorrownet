@@ -8,6 +8,7 @@ class NotificationMailer < ActionMailer::Base
 
   def nominated(nomination)
     @nomination = nomination
-    mail(to: nomination.user.email, subject: 'Auszeichnung durch Abstimmung #{nomination.award.title}')
+    subj = "Auszeichnung durch Abstimmung: #{@nomination.award.title}"
+    mail(to: nomination.user.email, subject: subj)
   end
 end

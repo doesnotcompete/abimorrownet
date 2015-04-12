@@ -21,7 +21,7 @@
 <% unless current_user.nominations.empty? %>
 <h3>Deine Auszeichnungen</h3>
 <ul>
-  <%= render partial: 'notifications/nominations', collection: current_user.nominations, as: :nomination %>
+  <%= render partial: 'notifications/nominations', collection: current_user.nominations.not_dismissed, as: :nomination %>
 </ul>
 <% end %>
 <hr />
