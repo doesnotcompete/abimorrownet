@@ -18,6 +18,9 @@ Rails.application.routes.draw do
   resources :votings do
     resources :voting_options
     resources :votes
+    resources :awards do
+      resources :nominations
+    end
   end
 
   resources :products
@@ -33,6 +36,12 @@ Rails.application.routes.draw do
   get "votings/:voting_id/votes/new/selective/:max_choices" => "votes#new_selection", as: :new_selective_votes
   get "votings/:voting_id/results" => "votings#results", as: :voting_results
   delete "votings/:voting_id/cleanup" => "voting_options#cleanup", as: :cleanup_voting
+
+  get "votings/:voting_id/awards/:award_id/nominate" => "awards#nominate", as: :nominate_for_awards
+
+  get "votings/:voting_id/awards/:award_id/nominations/:nomination_id/accept" => "nominations#accept", as: :accept_nomination
+  get "votings/:voting_id/awards/:award_id/nominations/:nomination_id/dismiss" => "nominations#dismiss", as: :dismiss_nomination
+  get "votings/:voting_id/awards/:award_id/nominations/:nomination_id/reset" => "nominations#reset", as: :reset_nomination
 
   get "notifications/:user_id/stop/:stop_key" => "users#stop_notifications", as: :stop_notifications
 

@@ -1,6 +1,7 @@
 class Voting < ActiveRecord::Base
   has_many :voting_options
   has_many :votes
+  has_many :awards
 
   validates :title, :start_time, :end_time, presence: true
 

@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  title: MyString
+  tiers: 1
+  voting_id: 
+
+two:
+  title: MyString
+  tiers: 1
+  voting_id: 

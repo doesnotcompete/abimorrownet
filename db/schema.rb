@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150204214445) do
+ActiveRecord::Schema.define(version: 20150412165640) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -57,6 +57,16 @@ ActiveRecord::Schema.define(version: 20150204214445) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "awards", force: true do |t|
+    t.string   "title"
+    t.integer  "tiers"
+    t.integer  "voting_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "awards", ["voting_id"], name: "index_awards_on_voting_id", using: :btree
 
   create_table "comments", force: true do |t|
     t.text     "text"
@@ -123,6 +133,18 @@ ActiveRecord::Schema.define(version: 20150204214445) do
   end
 
   add_index "groups", ["slug"], name: "index_groups_on_slug", unique: true, using: :btree
+
+  create_table "nominations", force: true do |t|
+    t.integer  "award_id"
+    t.integer  "user_id"
+    t.integer  "tier"
+    t.boolean  "accepted"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "nominations", ["award_id"], name: "index_nominations_on_award_id", using: :btree
+  add_index "nominations", ["user_id"], name: "index_nominations_on_user_id", using: :btree
 
   create_table "order_positions", force: true do |t|
     t.integer  "order_id"

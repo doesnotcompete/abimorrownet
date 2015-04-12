@@ -25,7 +25,10 @@ class VotingsController < ApplicationController
 
   def show
     @voting = Voting.find(params[:id])
-    if @voting.election? then @results = @voting.count_users end
+    if @voting.election? then
+      @results = @voting.count_users
+      @awards = @voting.awards
+    end
   end
 
   def edit

@@ -33,4 +33,16 @@
 <p>Sobald die Abstimmung abgeschlossen ist, kannst du hier die Ergebnisse sehen. Wenn du an dieser Abstimmung teilnehmen möchtest, rufe deine Stimmkarte über das <%= link_to "Dashboard", root_url %> auf.</p>
 <% end %>
 <% end %>
+<hr />
+<h2>Auszeichnungen</h2>
+<% if @awards then %>
+<ul>
+  <% @awards.each do |award| %>
+  <li><%= link_to award.title, [@voting, award] %></li>
+  <% end %>
+</ul>
+<% end %>
+<% if current_user.admin? then %>
+<%= if @voting.election? then link_to  raw('<span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Neue Auszeichnung'), new_voting_award_path(@voting.id), class: 'btn btn-success btn-sm' end %>
+<% end %>
 <%= render partial: 'admin/editable', locals: {model_name: "Abstimmung", path: edit_voting_path(@voting), hide_ruler: false} %>

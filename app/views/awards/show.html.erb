@@ -1,0 +1,12 @@
+<h2><%= @award.title %> <small>(Auszeichnung in der Abstimmung <%= link_to @voting.title, @voting %>)</small></h2>
+<% unless @nominations.empty? %>
+<ul>
+  <% @nominations.each do |nomination| %>
+  <li><%= link_to nomination.user.full_name, [@voting, @award, nomination] %> - Platz <%= nomination.tier %></li>
+  <% end %>
+</ul>
+<% end %>
+<% if current_user.admin? %>
+<%= link_to  raw('Automatisch nominieren &raquo;'), nominate_for_awards_url(@voting.id, @award.id), class: 'btn btn-success btn-sm' %>
+<% end %>
+<%= render partial: 'admin/deletable', locals: {model_name: "Auszeichnung", path: [@voting, @award], hide_ruler: false} %>

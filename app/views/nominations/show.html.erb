@@ -1,0 +1,28 @@
+<div class="row">
+<%= image_tag "prize-ribbon.jpg", width: '150', style: 'float:left' %>
+<h1><%= @nomination.user.full_name %></h1>
+<p>belegte in "<%= @nomination.award.title %>" den <%= @nomination.tier %>. Platz.</p>
+</div>
+<hr />
+<h3>Weitere Informationen zur Auszeichnung</h3>
+<dl>
+  <dt>Titel der verknüpften Abstimmung:</dt>
+  <dd><%= @nomination.award.voting.title %></dd>
+  <dt>Anzahl der Stimmen für Nominierte(n):</dt>
+  <dd><%= @votes %></dd>
+  <dt>Gesamtzahl der Stimmen in der Abstimmung:</dt>
+  <dd><%= @total_votes %></dd>
+  <dt>Stimmanteil:</dt>
+  <dd><%= @votes.to_f/@total_votes %> %</dd>
+  <dt>Zeitpunkt der Nominierung:</dt>
+  <dd><%= @nomination.created_at.strftime("%d.%m.%Y um %H.%M Uhr") %></dd>
+  <dt>Wahl angenommen:</dt>
+  <dd><%= @nomination.accepted ? "Ja" : "Nein" %> <b><% if @nomination.accepted.nil? %>(ausstehend)<% end %></b></dd>
+</dl>
+<% if (@nomination.accepted.nil? && @nomination.user == current_user) || current_user.admin? %>
+<%= link_to  raw('Wahl annehmen &raquo;'), accept_nomination_url(params[:voting_id], params[:award_id], @nomination), class: 'btn btn-success btn-sm' %>
+<%= link_to  raw('Wahl ablehnen &raquo;'), dismiss_nomination_url(params[:voting_id], params[:award_id], @nomination), class: 'btn btn-danger btn-sm', data: {confirm: 'Bist du sicher? In diesem Fall rückt die Person mit der nächstniedrigeren Platzierung nach.'} %>
+<% end %>
+<% if current_user.admin? && !@nomination.accepted.nil? %>
+<%= link_to  raw('Zurücksetzen &raquo;'), reset_nomination_url(params[:voting_id], params[:award_id], @nomination), class: 'btn btn-warning btn-sm' %>
+<% end %>

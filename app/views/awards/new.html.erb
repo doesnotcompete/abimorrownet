@@ -1,0 +1,7 @@
+<%= simple_form_for :awards, url: {action: 'create'}, :html => { :multipart => true } do |f| %>
+<h2>Auszeichnung erstellen</h2>
+<p>Du bist dabei, eine Auszeichnung für die Abstimmung "<%= @voting.title %>" anzulegen.</p>
+<%= f.input :title, as: :string, label: 'Titel', input_html: {value: @voting.title} %>
+<%= f.input :tiers, as: :integer, label: 'Anzahl der Preisstufen' %>
+<%= if @voting.election? then f.button :submit, raw("Erstellen &raquo;"), class: 'btn-primary' end %>
+<% end %>
