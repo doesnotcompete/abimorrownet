@@ -19,11 +19,12 @@
   <li><%= link_to option.title, voting_voting_option_path(@voting, option), method: :delete, data: { confirm: "Möchtest du diese Option löschen?"} %> - <%= option.votes.where(locked: true).count %> Stimme(n)</li><% end %>
   <% end %>
 </ul>
+<p>(<%= @locked_votes %> Stimme(n) insgesamt, <%= @participation * 100 %> % Stimmbeteiligung)</p>
 <%= unless @voting.election? then link_to  raw('<span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Neue Option'), new_voting_voting_option_path(@voting.id), class: 'btn btn-success btn-sm' end %>
 <%= if @voting.election? then link_to  "Aufräumen", cleanup_voting_path(@voting), method: :delete, class: 'btn btn-danger btn-sm', data: { confirm: "Bist du sicher? Wenn du fortfährst, werden alle Optionen mit 0 Stimmen gelöscht." } end %>
 <% end %>
 <% if policy(@voting).results? %>
-<div class="ct-chart" style="height: <%= "#{@voting.voting_options.count * 35}px" %>"></div>
+<div class="ct-chart" style="height: <%= "#{@voting.count_users.size * 35}px" %>"></div>
 <% end %>
 <% if current_user.admin? %>
 <h2>Stimmkarten</h2>
@@ -33,6 +34,7 @@
 <p>Sobald die Abstimmung abgeschlossen ist, kannst du hier die Ergebnisse sehen. Wenn du an dieser Abstimmung teilnehmen möchtest, rufe deine Stimmkarte über das <%= link_to "Dashboard", root_url %> auf.</p>
 <% end %>
 <% end %>
+<% if policy(@voting).results? %>
 <hr />
 <h2>Auszeichnungen</h2>
 <% if @awards then %>
@@ -41,6 +43,7 @@
   <li><%= link_to award.title, [@voting, award] %></li>
   <% end %>
 </ul>
+<% end %>
 <% end %>
 <% if current_user.admin? then %>
 <%= if @voting.election? then link_to  raw('<span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Neue Auszeichnung'), new_voting_award_path(@voting.id), class: 'btn btn-success btn-sm' end %>

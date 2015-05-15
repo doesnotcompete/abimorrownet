@@ -1,15 +1,25 @@
 <h2>Bestellübersicht</h2>
+<h3>Vielen Dank für deine Bestellung!</h3>
 <p><strong>Anmerkungen:</strong> <%= @order.description %></p>
 <% if @order.user %>
 <p>Benutzer: <%= @order.user.full_name %></p>
+<% else %>
+<p>Name: <%= @order.name %></p>
 <% end %>
 <hr />
 <h3>Bestellte Produkte</h3>
 <%= render partial: 'product_listing', locals: {shipped: @order.shipped, products: @order.products} %>
-<p><b style="font-size:1.75rem">Summe: <%= @order.sum %> €</b></p>
+<p><b style="font-size:1.75rem">Summe: <%= number_to_currency(@order.sum) %></b></p>
 <% if (current_user.admin? rescue false) %>
+<p><b>Adresse: </b><br />
+<%= @order.address %><br />
+<%= @order.plz %> <%= @order.city %><br />
+<%= @order.email %>
 <hr />
 <p>Zahlstatus: <%= @order.processed ? "Gezahlt." : "Nicht gezahlt." %></p>
 <%= unless @order.processed then link_to raw("<span class='glyphicon glyphicon-piggy-bank' aria-hidden='true'></span> Bestellung gezahlt"), mark_order_as_paid_path(@order), method: :patch, class: 'btn btn-success' end %>
+<% end %>
+<% if current_user && !current_user.admin? %>
+<%= link_to raw("&laquo; Zum Dashboard zurück"), root_url, class: 'btn btn-primary' %>
 <% end %>
 <%= render partial: 'admin/editable', locals: {model_name: "Bestellung", path: edit_order_path(@order), hide_ruler: false} %>

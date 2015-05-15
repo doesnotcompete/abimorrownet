@@ -12,6 +12,7 @@ Devise.setup do |config|
   # with default "from" parameter.
   config.mailer_sender = '"abimorrowland - KGS Rastede" <hallo@abimorrowland.de>'
 
+  config.allow_insecure_token_lookup = true
   # Configure the class responsible to send e-mails.
   # config.mailer = 'Devise::Mailer'
 
@@ -269,7 +270,7 @@ Devise.setup do |config|
   # Add a new OmniAuth provider. Check the wiki for more information on setting
   # up on your models and hooks.
   # config.omniauth :github, 'APP_ID', 'APP_SECRET', scope: 'user,public_repo'
-  config.omniauth :facebook, ENV["FB_ID"], ENV["FB_SECRET"]
+  config.omniauth :facebook, '1450762098521178', '6b288fd17f3bc17265b505327fc03005' 
 
   # ==> Warden configuration
   # If you want to use other strategies, that are not supported by Devise, or

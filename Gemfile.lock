@@ -156,6 +156,7 @@ GEM
     multi_json (1.10.1)
     multi_xml (0.5.5)
     multipart-post (2.0.0)
+    newrelic_rpm (3.9.9.275)
     oauth2 (1.0.0)
       faraday (>= 0.8, < 0.10)
       jwt (~> 1.0)
@@ -392,6 +393,7 @@ DEPENDENCIES
   jquery-rails
   kaminari
   meta_request
+  newrelic_rpm
   omniauth-facebook
   paperclip (~> 4.2)
   pg

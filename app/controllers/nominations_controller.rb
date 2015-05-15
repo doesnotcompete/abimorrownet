@@ -6,7 +6,7 @@ class NominationsController < ApplicationController
   def show
     @nomination = Nomination.find(params[:id])
     @votes = (@award.voting.count_users[@nomination.tier - 1][1] rescue 0)
-    @total_votes = @award.voting.votes.count
+    @total_votes = @award.voting.votes.where(locked: true).count
   end
 
   def accept

@@ -5,7 +5,7 @@ Wir bestätigen dir hiermit den Eingang deiner Bestellung mit der Nummer <%= @or
 
 =============================
 <% @order.products.each do |product| %>
-<%= "#{product.title}: #{product.price}" %>
+<%= "#{product.title}: #{number_to_currency(product.price)}" %>
 <% end %>
 =============================
 <% if @order.shipped %>
@@ -19,15 +19,15 @@ Wir haben folgende Adresse von dir erfasst:
 <%= @order.address %>
 <%= "#{@order.plz} #{@order.city}" %>
 
-Für deine Bestellung gilt die Vorbesteller-Preisgarantie.
-
-Wir haben deine Zugänge zu digitalen Inhalten und Abstimmungsergebnissen bereits freigeschaltet. Bitte sei fair und zahle deine Bestellung pünktlich.
-
-Bitte leiste deine Zahlung von <%= @order.sum %> € binnen 30 Tagen auf folgendes Konto:
+Bitte leiste deine Zahlung von <%= number_to_currency(@order.sum) %> binnen 30 Tagen auf folgendes Konto:
 
 Arend Baumgartner
 IBAN: DE69 2802 0050 1646 6708 00
 BIC: OLBODEH2XXX
+
+Bitte verwende folgenden Verwendungszweck:
+<%= @order.name %> - ZEITUNG
+BESTELLNR. <%= @order.id %>
 
 Vielen Dank für deine Unterstützung.
 

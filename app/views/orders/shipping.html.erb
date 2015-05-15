@@ -3,7 +3,7 @@
 <hr />
 <ul>
 <% @products.each do |product| %>
-  <li><%= "#{product.title} (#{product.price} €)" %></li>
+  <li><%= "#{product.title} (#{number_to_currency(product.price)})" %></li>
 <% end %>
 </ul>
 <hr />
@@ -27,7 +27,7 @@
 <%= f.input :plz, label: "Postleitzahl" %>
 <%= f.input :city, label: "Ort" %>
 <p>Standardmäßig stellen wir Rechnungen an deine Lieferanschrift aus. Sollte deine Rechnungsanschrift von deiner Lieferanschrift abweichen, so teile uns dies bitte mit.</p>
-<p>Die Lieferung erfolgt mit DPD. Es entstehen zusätzliche Kosten von <strong>5,45 €</strong>.</p>
+<p>Die Lieferung erfolgt mit DPD. Es entstehen zusätzliche Kosten von <strong>4,95 €</strong>.</p>
 <% end %>
 <%= f.input :name, label: "Name", required: true, input_html: {value: (current_user.full_name rescue '')} %>
 <%= f.input :email, label: "E-Mail", required: true, input_html: {value: (current_user.email rescue '')} %>
@@ -35,7 +35,7 @@
 <hr />
 <%= render partial: 'product_listing', locals: {shipped: !@school_shipping, products: @products} %>
 <hr />
-<b>GESAMT: <%= @total %> €</b>
+<b>GESAMT: <%= number_to_currency(@total) %></b>
 <hr />
 <p>Du erhältst Statusupdates zu deiner Bestellung an die angegebene E-Mail-Adresse. Mit der Auswahl von "Zahlungspflichtig bestellen" kommt ein Kaufvertrag zwischen dir
 und dem Abiturjahrgang 2015 der KGS Rastede, vertreten durch Kevin Koopmann, zu Stande. Du kannst diesen Vertrag binnen 14 Tagen nach Abschluss ohne Angabe von Gründen widerrufen.

@@ -4,6 +4,7 @@
   Möglichkeit, deine Benachrichtigungseinstellungen und dein Profil anzupassen.</p></div>
 <p class ="text-info">Datenschutzhinweis: Die Daten, die du uns bereitstellst, werden nur zu unseren Servern in Frankreich und Deutschland gesendet und spätestens am <strong>31. Oktober 2015</strong> gelöscht, es sei denn, wir vereinbaren bis dahin etwas anderes mit dir. E-Mails an deine @abimorrowland.de-Adresse werden von uns nicht gespeichert.</p>
 <hr />
+<p>Bitte lege ein Passwort fest, mit dem du dich anmeldest.</p>
 <%= simple_form_for resource, :as => resource_name, :url => invitation_path(resource_name), :html => { method: :put } do |f| %>
   <%= devise_error_messages! %>
   <%= f.hidden_field :invitation_token %>

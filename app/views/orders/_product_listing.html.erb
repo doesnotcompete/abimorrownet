@@ -1,6 +1,6 @@
 <ul>
   <% products.each do |product| %>
-  <li><%= "#{product.title}: #{product.price} €" %></li>
+  <li><%= "#{product.title}: #{number_to_currency(product.price)}" %></li>
   <ul>
     <li><%= "#{product.description}" %></li>
   </ul>

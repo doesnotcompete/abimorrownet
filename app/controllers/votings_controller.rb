@@ -29,6 +29,13 @@ class VotingsController < ApplicationController
       @results = @voting.count_users
       @awards = @voting.awards
     end
+    @all_votes = @voting.votes
+    @locked_votes = 0
+    @all_votes.where(locked: true).each do |vote|
+      @locked_votes += vote.voted_options.count
+    end
+
+    @participation = @all_votes.where(locked: true).count.to_f / @all_votes.count.to_f
   end
 
   def edit
@@ -54,11 +61,12 @@ class VotingsController < ApplicationController
 
     @results = @voting.voting_options
     if @voting.election?
+      @results = @voting.count_users
       @label = []
       @series = []
-      @results.each do |option|
-        @label << option.user.full_name
-        @series << option.votes.where(locked: true).count
+      @results.each do |resultset|
+        @label << User.find(resultset[0]).full_name
+        @series << resultset[1]
       end
     else
       @label = @results.pluck(:title)

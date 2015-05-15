@@ -14,6 +14,8 @@ gem 'coffee-rails', '~> 4.0.0'
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
 # gem 'therubyracer',  platforms: :ruby
 
+gem 'newrelic_rpm'
+
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
 gem 'chosen-rails'
@@ -43,8 +45,6 @@ gem 'friendly_id', github: 'norman/friendly_id'
 
 gem 'rails-i18n', '~> 4.0.0' # For 4.0.x
 
-gem "paperclip", "~> 4.2"
-
 group :test do
   gem 'rspec'
   gem 'rspec-rails'
@@ -73,4 +73,3 @@ end
 
 # Use debugger
 # gem 'debugger', group: [:development, :test]
-gem 'newrelic_rpm'

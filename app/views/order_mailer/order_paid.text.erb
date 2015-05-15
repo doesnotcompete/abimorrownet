@@ -1,7 +1,7 @@
 Hallo <%= @order.name %>,
 
 nochmals vielen Dank für deine Bestellung via abimorrow.net!
-Wir bestätigen dir den Eingang deiner Zahlung von <%= @order.sum %> €.
+Wir bestätigen dir den Eingang deiner Zahlung von <%= number_to_currency(@order.sum) %>.
 Deine Bestellung ist damit vollständig bezahlt. Sobald wir die Abizeitung liefern können, versenden wir sie schnellstmöglich.
 
 Dein Abizeitungskomitee

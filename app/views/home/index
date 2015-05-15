@@ -1,0 +1,12 @@
+<h1>Ahoi, <%= current_user.profile.first_name %>.</h1>
+<p>Bitte hilf uns bei der Erstellung der Abizeitung, indem du Inhalte, Zitate und Kommentare hinterlässt; das Abizeitungskomitee ist auf deine Mithilfe angewiesen.</p>
+<%= render partial: 'notifications/no_group' %>
+<%= render partial: 'notifications/quotes_to_approve' %>
+<%= link_to raw("Einführung erneut ansehen &raquo;"), intro_path %>
+<% unless current_user.committees.empty? %>
+<h3>Deine Komitees</h3>
+<ul>
+<%= render partial: 'notifications/my_committees', collection: current_user.committees, as: :committee %>
+</ul>
+<% end %>
+<%= render partial: 'notifications/announcements' %>
