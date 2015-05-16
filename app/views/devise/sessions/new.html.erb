@@ -1,3 +1,7 @@
+<h2>Abizeitung <small>Jetzt vorbestellen!</small></h2>
+<p>Vielen Dank, dass du vorbeigekommen bist. Wir akzeptieren ab sofort Vorbestellungen unserer Abizeitung aus allen Jahrg&auml;ngen. Um vom Vorteilspreis von nur 10 Euro profitieren zu k&ouml;nnen, sende deine Bestellung bitte bis zum 3. Juni ab.</p>
+<%= link_to raw("Jetzt bestellen &raquo;"), new_order_path, class: 'btn btn-primary' %>
+<hr />
 <div class="alert alert-info"><b>Hinweis: </b>Bitte melde dich mit deiner @abimorrowland.de-Adresse an. Deine Adresse hat die Form "&lt;vorname&gt;.&lt;nachname&gt;@abimorrowland.de". Wenn du Hilfe bei der Anmeldung benötigst, oder wenn du noch keine Einladung erhalten hast, wende dich bitte an <a href="mailto:support@abimorrow.net">hallo@abimorrow.net</a>.</div>
 <h2>Anmelden</h2>
 <%= simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
