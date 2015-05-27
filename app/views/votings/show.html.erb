@@ -23,7 +23,7 @@
 <%= unless @voting.election? then link_to  raw('<span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Neue Option'), new_voting_voting_option_path(@voting.id), class: 'btn btn-success btn-sm' end %>
 <%= if @voting.election? then link_to  "Aufräumen", cleanup_voting_path(@voting), method: :delete, class: 'btn btn-danger btn-sm', data: { confirm: "Bist du sicher? Wenn du fortfährst, werden alle Optionen mit 0 Stimmen gelöscht." } end %>
 <% end %>
-<% if policy(@voting).results? %>
+<% if policy(@voting).results? && @voting.election? %>
 <div class="ct-chart" style="height: <%= "#{@voting.count_users.size * 35}px" %>"></div>
 <% end %>
 <% if current_user.admin? %>
