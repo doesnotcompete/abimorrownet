@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  content_id: 
+  reason: MyString
+  description: MyText
+  email: MyString
+  processed: false
+  legit: false
+
+two:
+  content_id: 
+  reason: MyString
+  description: MyText
+  email: MyString
+  processed: false
+  legit: false

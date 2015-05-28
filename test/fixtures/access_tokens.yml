@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  token: MyString
+  profile_id: 
+  validUntil: 2015-05-27 20:41:25
+  admin: false
+  extended: false
+
+two:
+  token: MyString
+  profile_id: 
+  validUntil: 2015-05-27 20:41:25
+  admin: false
+  extended: false

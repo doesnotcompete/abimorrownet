@@ -1,0 +1,4 @@
+<%= simple_form_for @association, url: create_content_association_path, method: :post, :html => { :multipart => true } do |f| %>
+  <%= f.association :profile, label: "Profil", label_method: lambda { |profile| "#{profile.full_name}" } %>  <hr />
+  <%= f.button :submit, raw("Verknüpfen &raquo;"), class: 'btn-primary' %>
+<% end %>

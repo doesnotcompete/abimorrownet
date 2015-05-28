@@ -1,0 +1,16 @@
+<div class="progress">
+  <div class="progress-bar" role="progressbar" aria-valuenow="15" aria-valuemin="0" aria-valuemax="100" style="width: 15%;">
+    15%
+  </div>
+</div>
+<h1>Überprüfung Ihrer Kommentare</h1>
+<p>In diesem Schritt haben Sie die Möglichkeit, die Kommentare, die in Ihrem Steckbrief erscheinen werden, zu überprüfen und ggf. zu blockieren.</p>
+<p>Blockierte Kommentare werden nicht abgedruckt. Sie müssen nicht begründen, warum Sie einen Kommentar sperren möchten.</p>
+<hr />
+<%= render partial: 'validations/comment', collection: @comments, as: :comment %>
+<% if @locked_count > 0 %>
+<p>Sie haben <%= @locked_count %> Kommentar(e) gesperrt.</p>
+<% end %>
+<p>Sind Sie mit Ihren Kommentaren zufrieden? Dann fahren Sie mit der Überprüfung von assoziierten Inhalten fort.</p>
+<p><em>Hinweis: Sie können später noch einmal zu diesem Schritt zurückkehren.</em></p>
+<%= link_to raw("Fortfahren &raquo;"), validate_contents_path(@token.token), class: 'btn btn-primary' %>

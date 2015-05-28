@@ -1,0 +1,10 @@
+<div class="progress">
+  <div class="progress-bar" role="progressbar" aria-valuenow="30" aria-valuemin="0" aria-valuemax="100" style="width: 30%;">
+    30%
+  </div>
+</div>
+<h1>Mit Ihrem Profil assoziierte Inhalte prüfen</h1>
+<p>In diesem Schritt können Sie weitere Inhalte, die mit Ihrem Profil verknüpft sind, überprüfen. In erster Linie handelt es sich hierbei um Zitate.</p>
+<p>Inhalte, die Sie beleidigen, oder die unvollständig oder nicht authentisch sind, können Sie zur Überprüfung markieren. Gerne können Sie knappen Inhalten auch weitere Details hinzufügen. Ein Mitglied der Redaktion wird den Inhalt auf Verstöße gegen den Pressekodex prüfen. Besuchen Sie <%= link_to "die Website des Deutschen Presserats", "http://www.presserat.de/pressekodex/pressekodex/", target: "_blank" %> für eine Liste der Richtlinien, nach denen wir die Überprüfung vornehmen. Sie erhalten eine Nachricht per E-Mail, in der wir Ihnen mitteilen, wie wir über den Fall entschieden haben.</p>
+<hr />
+<%= render partial: 'validations/content', collection: @contents, as: :content %>

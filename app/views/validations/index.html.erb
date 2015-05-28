@@ -1,0 +1,21 @@
+<div class="progress">
+  <div class="progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%;">
+    0%
+  </div>
+</div>
+<h1>Überprüfung von Inhalten <small>(allgemeiner Audit)</small></h1>
+<p>Guten Tag, Frau/Herr <%= @profile.last_name %>,</p>
+<p>vielen Dank, dass Sie vorbeigekommen sind. Auf den nachfolgenden Seiten möchten wir Ihnen die Gelegenheit geben, alle Inhalte in unserer Abizeitung, die Sie betreffen, einzusehen und zu überprüfen.</p>
+<p>Die Inhaltsüberprüfung wird etwa 5 Minuten Ihrer Zeit in Anspruch nehmen.</p>
+<p>Bitte prüfen Sie zunächst, ob die folgenden Angaben zu Ihrer Person korrekt sind:</p>
+<hr />
+<dl>
+  <dt>Voller Name:</dt>
+  <dd><%= @profile.full_name %></dd>
+  <dt>Status:</dt>
+  <dd><%= @profile.profileable_type == "Teacher" ? "LehrerIn" : "SchülerIn" %></dd>
+</dl>
+<hr />
+<p><em>Hinweis: Bitte schließen Sie die Inhalteüberprüfung bis zum <%= @token.validUntil.strftime("%e.%-m. um %k.%M Uhr") %> ab.</em></p>
+<%= link_to "Ja, das ist richtig.", validate_comments_path(@token.token), class: 'btn btn-success' %>
+<%= link_to "Nein, das ist falsch.", validation_wrong_identity_path(@token.token), class: 'btn btn-danger' %>
