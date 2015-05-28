@@ -45,6 +45,8 @@ gem 'rails-i18n', '~> 4.0.0' # For 4.0.x
 
 gem "paperclip", "~> 4.2"
 
+gem "sidekiq"
+
 group :test do
   gem 'rspec'
   gem 'rspec-rails'

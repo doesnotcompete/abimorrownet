@@ -22,7 +22,7 @@ class User < ActiveRecord::Base
 
   validates :email, presence: true
 
-  delegate :first_name, :last_name, :full_name, to: :profile
+  delegate :first_name, :last_name, :full_name, :quotes, to: :profile
 
   scope :invited, -> { where("invitation_token IS NOT NULL") }
   scope :active, -> { joins(:profile) }

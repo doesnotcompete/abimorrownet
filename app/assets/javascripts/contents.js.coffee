@@ -3,6 +3,7 @@
 # You can use CoffeeScript in this file: http://coffeescript.org/
 //= require 'datatables'
 //= require 'dataTables.bootstrap'
+//= require chosen.jquery.min
 $(document).on "page:change", ->
   $('#contents-table').dataTable
     processing: true
@@ -15,3 +16,7 @@ $(document).on "page:change", ->
     # optional, if you want full pagination controls.
     # Check dataTables documentation to learn more about
     # available options.
+    
+$(document).on "page:change", ->
+  $("#content_association_profile_id").chosen
+    allow_single_deselect: true

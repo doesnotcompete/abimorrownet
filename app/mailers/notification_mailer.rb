@@ -11,4 +11,9 @@ class NotificationMailer < ActionMailer::Base
     subj = "Auszeichnung durch Abstimmung: #{@nomination.award.title}"
     mail(to: nomination.user.email, subject: subj)
   end
+  
+  def access_token(token)
+    @token = token
+    mail(to: token.profile.profileable.email, subject: "Überprüfung von Inhalten in der Abizeitung")
+  end
 end

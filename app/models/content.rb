@@ -1,5 +1,6 @@
 class Content < ActiveRecord::Base
   belongs_to :user
+  has_many :content_associations
 
   has_attached_file :file
   do_not_validate_attachment_file_type :file

@@ -11,10 +11,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150412165640) do
+ActiveRecord::Schema.define(version: 20150528142741) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "access_tokens", force: true do |t|
+    t.string   "token"
+    t.integer  "profile_id"
+    t.datetime "validUntil"
+    t.boolean  "admin"
+    t.boolean  "extended"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "access_tokens", ["profile_id"], name: "index_access_tokens_on_profile_id", using: :btree
 
   create_table "active_admin_comments", force: true do |t|
     t.string   "namespace"
@@ -94,6 +106,17 @@ ActiveRecord::Schema.define(version: 20150412165640) do
   end
 
   add_index "committees", ["slug"], name: "index_committees_on_slug", unique: true, using: :btree
+
+  create_table "content_associations", force: true do |t|
+    t.integer  "content_id"
+    t.integer  "profile_id"
+    t.boolean  "locked"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "content_associations", ["content_id"], name: "index_content_associations_on_content_id", using: :btree
+  add_index "content_associations", ["profile_id"], name: "index_content_associations_on_profile_id", using: :btree
 
   create_table "contents", force: true do |t|
     t.string   "title"
@@ -209,6 +232,7 @@ ActiveRecord::Schema.define(version: 20150412165640) do
     t.integer  "creator_id"
     t.boolean  "approved",      default: false
     t.datetime "deleted_at"
+    t.boolean  "locked"
   end
 
   add_index "quotes", ["creator_id"], name: "index_quotes_on_creator_id", using: :btree

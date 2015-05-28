@@ -35,7 +35,7 @@ class ProfileDatatable < AjaxDatatablesRails::Base
   end
 
   def get_raw_records
-    Profile.includes(user: :profile).all
+    Profile.includes(user: :profile).students
   end
 
   # ==== Insert 'presenter'-like methods below if necessary

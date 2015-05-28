@@ -71,6 +71,18 @@ Rails.application.routes.draw do
   get "users/invited" => "users#list_invited", as: :invited_users
   get "users/become" => "users#become", as: :become_user
   post "users/become" => "users#become_user", as: :sign_in_as_user
+  
+  get "validations/:token" => "validations#index", as: :main_validations
+  get "validations/:token/comments" => "validations#comments", as: :validate_comments
+  get "validations/:token/contents" => "validations#contents", as: :validate_contents
+  patch "validations/:token/comments/:comment_id/lock" => "validations#lock_comment", as: :lock_comment
+  get "tokens" => "validations#access_tokens", as: :own_access_tokens
+  get "validations/:token/wrong_identity" => "validations#wrong_identity", as: :validation_wrong_identity
+  get "validations/:token/error" => "validations#fatal_error", as: :validation_error
+  
+  get "contents/:content_id/association/new" => "contents#new_association", as: :new_content_association
+  post "contents/:content_id/association/new" => "contents#create_association", as: :create_content_association
+  delete "contents/:content_id/association/:assoc_id" => "contents#destroy_association", as: :destroy_content_association
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

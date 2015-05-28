@@ -7,4 +7,13 @@
 <p><small>Eingereicht von <%= @content.user.full_name %> (<%= mail_to @content.user.email, "Rückfrage senden", subject: "[Rückfrage] abimorrownet: Inhalt " + @content.id.to_s + " (" + @content.title + ")", body: "Hallo #{@content.user.first_name},\n\nbezüglich deiner Einreichung " + @content.title + " in abimorrownet würde ich gerne eine Rückfrage an dich richten:\n\nDu kannst deine Einreichung unter " + content_url(@content) + " ansehen und ändern. Vielen Dank für deine Mithilfe.\n\nViele Grüße\n" + current_user.first_name + " " + current_user.last_name %>).</small></p>
 <% end %>
 <hr />
+<h3>Profilassoziationen</h3>
+<small>(zum Entfernen anklicken)</small>
+<ul>
+<% @content.content_associations.each do |assoc| %>
+  <li><%= link_to assoc.profile.full_name, destroy_content_association_path(@content, assoc), method: :delete %></li>
+<% end %>
+</ul>
+<% if current_user.moderator? %><%= link_to "Assoziation hinzufügen", new_content_association_path(@content), class: 'btn btn-success' %><% end %>
+<hr />
 <% if current_user.moderator? || @content.user == current_user %><%= link_to "Inhalt bearbeiten", edit_content_path(@content) %><% end %> | <%= render partial: 'admin/deletable', locals: {model_name: "Inhalt", path: content_path(@content), hide_ruler: true} %>
