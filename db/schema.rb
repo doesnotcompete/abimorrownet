@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150528142741) do
+ActiveRecord::Schema.define(version: 20150528165903) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -24,6 +24,7 @@ ActiveRecord::Schema.define(version: 20150528142741) do
     t.boolean  "extended"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "final"
   end
 
   add_index "access_tokens", ["profile_id"], name: "index_access_tokens_on_profile_id", using: :btree
@@ -117,6 +118,19 @@ ActiveRecord::Schema.define(version: 20150528142741) do
 
   add_index "content_associations", ["content_id"], name: "index_content_associations_on_content_id", using: :btree
   add_index "content_associations", ["profile_id"], name: "index_content_associations_on_profile_id", using: :btree
+
+  create_table "content_problems", force: true do |t|
+    t.integer  "content_id"
+    t.string   "reason"
+    t.text     "description"
+    t.string   "email"
+    t.boolean  "processed"
+    t.boolean  "legit"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "content_problems", ["content_id"], name: "index_content_problems_on_content_id", using: :btree
 
   create_table "contents", force: true do |t|
     t.string   "title"

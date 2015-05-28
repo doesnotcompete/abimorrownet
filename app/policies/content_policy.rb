@@ -7,6 +7,10 @@ class ContentPolicy < ApplicationPolicy
   def create?
     true
   end
+  
+  def create_association?
+    @user.moderator?
+  end
 
   def index?
     @user.moderator?

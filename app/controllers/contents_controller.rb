@@ -8,10 +8,14 @@ class ContentsController < ApplicationController
   end
   
   def new_association
+    authorize :content, :create_association?
+    
     @association = ContentAssociation.new
   end
   
   def create_association
+    authorize :content, :create_association?
+    
     content = Content.find(params[:content_id])
     profile = Profile.find(params[:content_association][:profile_id])
     @association = ContentAssociation.create(content: content, profile: profile)
@@ -19,6 +23,8 @@ class ContentsController < ApplicationController
   end
   
   def destroy_association
+    authorize :content, :create_association?
+    
     @association = ContentAssociation.find(params[:assoc_id])
     @association.destroy
     redirect_to Content.find(params[:content_id])

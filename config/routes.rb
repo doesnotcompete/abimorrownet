@@ -75,6 +75,8 @@ Rails.application.routes.draw do
   get "validations/:token" => "validations#index", as: :main_validations
   get "validations/:token/comments" => "validations#comments", as: :validate_comments
   get "validations/:token/contents" => "validations#contents", as: :validate_contents
+  get "validations/:token/contents/:content_id/report" => "validations#report_content", as: :report_content
+  post "validations/:token/contents/:content_id/report" => "validations#create_report", as: :create_content_problem
   patch "validations/:token/comments/:comment_id/lock" => "validations#lock_comment", as: :lock_comment
   get "tokens" => "validations#access_tokens", as: :own_access_tokens
   get "validations/:token/wrong_identity" => "validations#wrong_identity", as: :validation_wrong_identity
