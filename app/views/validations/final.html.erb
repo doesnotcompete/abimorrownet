@@ -1,0 +1,25 @@
+<h1>Zusammenfassung</h1>
+<p>In diesem letzten Schritt erhalten Sie einen Überblick über Ihre Änderungen. Sie haben die Möglichkeit, einzelne Schritte erneut zu durchlaufen.</p>
+<hr />
+<h3>Kommentare</h3>
+<p><%= @comments.count - @locked_count %> Kommentar(e) werden gedruckt. Sie haben <%= @locked_count %> Kommentar(e) gesperrt.</p>
+<%= link_to raw("&laquo; Zurück und ändern"), validate_comments_path(@token.token) %>
+<hr />
+<h3>Inhalte</h3>
+<hr />
+<h3>Bestellungen</h3>
+<% if @orders.count > 0 %>
+<p>Sie erhalten unsere Abizeitung. Freuen Sie sich auf viele großartige Inhalte, wie Berichte und Kommentare zu bildungspolitischen Entscheidungen und wichtigen Ereignissen an unserer Schule während der letzten Jahre, erheiternde und inspirierende kreative Inhalte, wie Gedichte und Karikaturen, sowie aufschlussreiche Artikel zu möglichen späteren Karriere- und Bildungswege, und nicht zuletzt unsere ewige Verbundenheit.</p>
+<%= link_to raw("Bestellung ansehen &raquo;"), order_path(@orders.first) %>
+<% else %>
+<p>Möglicherweise haben Sie unsere Abizeitung noch nicht vorbestellt. Verpassen Sie nicht die vielen großartigen Inhalte, wie Berichte und Kommentare zu bildungspolitischen Entscheidungen und wichtigen Ereignissen an unserer Schule während der letzten Jahre, erheiternde und inspirierende kreative Inhalte, wie Gedichte und Karikaturen, sowie aufschlussreiche Artikel zu möglichen späteren Karriere- und Bildungswege und bestellen Sie die Zeitung jetzt für nur 10 € vor.</p>
+<%= link_to raw("Sofort 1 Exemplar vorbestellen &raquo;"), create_quick_order_path, class: 'btn btn-warning', method: :post, data: {confirm: 'Sind Sie sicher? Wir verarbeiten sofort 1 Vorbestellung für unsere Abizeitung zum Preis von 10 €.'} %><br />
+<%= link_to raw("Stattdessen mit anderen Optionen bestellen &raquo;"), new_order_path %>
+<% end %>
+<hr />
+<p>Bitte stimmen Sie den folgenden Bedingungen zu.</p>
+<ul>
+  <li>Ich bestätige, dass ich mit dem Abdruck aller Inhalte, die mir angezeigt wurden, und die ich nicht gesperrt oder gemeldet habe, einverstanden bin. Ich verzichte auf Rechtsansprüche, die sich aus den akzeptierten Inhalten gegen die Redaktion ergeben könnten.</li>
+  <li>Ich lizenziere alle Inhalte, die ich der Redaktion bereitgestellt habe (sofern anwendbar), unter der <%= link_to "Creative Commons Namensnennung - Weitergabe unter gleichen Bedingungen 4.0 International-Lizenz", "http://creativecommons.org/licenses/by-sa/4.0/deed.de", target: "_blank" %>.</li>
+</ul>
+<%= link_to raw("Ich bin einverstanden. Weiter zur Vorschau &raquo;"), "#", class: 'btn btn-success' %>

@@ -56,6 +56,7 @@ class ValidationsController < ApplicationController
       "Verstoß gegen Ziffer 12 – Diskriminierungen",
       "Verstoß gegen Ziffer 13 – Unschuldsvermutung",
       "Verstoß gegen Ziffer 14 – Medizin-Berichterstattung",
+      "Das Zitat ist nicht authentisch.",
       "Sonstiger Grund (bitte erläutern)"]
   end
   
@@ -80,6 +81,32 @@ class ValidationsController < ApplicationController
   def fatal_error
     @token = AccessToken.find_by(token: params[:token])
     @profile = @token.profile
+  end
+  
+  def final
+    @token = AccessToken.find_by(token: params[:token])
+    @profile = @token.profile
+    
+    @comments = @token.profile.profileable.quotes
+    
+    @locked_count = 0
+    @comments.each do |comment|
+      if comment.locked then @locked_count += 1 end
+    end 
+    
+    @contents = @token.profile.contents
+    @orders = Order.where("name ILIKE ?", @profile.full_name)
+  end
+  
+  def quick_order
+    # dirty
+    
+    @token = AccessToken.find_by(token: params[:token])
+    @profile = @token.profile
+    
+    Order.create(products: [Product.find_by(price: 10)], email: @profile.profileable.email, name: @profile.full_name, description: "Expressbestellung")
+    
+    redirect_to validation_final_path(@token.token)
   end
     
 end
