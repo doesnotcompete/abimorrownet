@@ -3,8 +3,8 @@
     100%
   </div>
 </div>
-<p>Etwas ist grauenvoll schief gelaufen. Bitte wenden Sie sich an <%= mail_to "hallo@abimorrow.net" %>.</p>
+<p>Leider konnten wir keine Vorschau erzeugen. Ihre Angaben wurden jedoch gespeichert.</p>
 <hr />
-<h3>Sind Sie mit Ihrem Steckbrief zufriden?</h3>
+<h3>Sind Sie mit Ihrem Steckbrief zufrieden?</h3>
 <p>Die Inhalteprüfung ist jetzt beendet. Vielen Dank, dass Sie sich Zeit genommen haben, an der Erstellung unserer Abizeitung mitzuwirken. Über den Link in der E-Mail, die Sie erhalten haben, können Sie bis zum <%= @token.validUntil.strftime("%e.%-m. um %k.%M Uhr") %> jederzeit hierher zurückkehren.</p>
 <p>Wenn Sie noch etwas ändern möchten, <%= link_to "kehren Sie zur Zusammenfassung zurück", validation_final_path(@token.token) %>.</p>

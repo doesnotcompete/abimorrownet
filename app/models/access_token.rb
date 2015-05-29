@@ -6,7 +6,7 @@ class AccessToken < ActiveRecord::Base
     
     if notify 
       puts "Notifying..."
-      NotificationMailer.delay.access_token(token) 
+      NotificationMailer.access_token(token).deliver
     end
     return token
   end

@@ -18,5 +18,9 @@
 <hr />
 <p>Ist alles richtig? Haben wir Ihren Namen richtig geschrieben?</p>
 <p><em>Hinweis: Bitte schließen Sie die Inhalteüberprüfung bis zum <%= @token.validUntil.strftime("%e.%-m. um %k.%M Uhr") %> ab.</em></p>
+<% if @token.final %>
+<%= link_to "Ja, das ist richtig.", validation_final_path(@token.token), class: 'btn btn-success' %>
+<% else %>
 <%= link_to "Ja, das ist richtig.", validate_comments_path(@token.token), class: 'btn btn-success' %>
+<% end %>
 <%= link_to "Nein, etwas stimmt nicht.", validation_wrong_identity_path(@token.token), class: 'btn btn-danger' %>
