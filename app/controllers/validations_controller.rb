@@ -30,8 +30,14 @@ class ValidationsController < ApplicationController
   
   def lock_comment
     comment = Quote.find(params[:comment_id])
-    comment.locked = !comment.locked
-    comment.save!
+    
+    if comment.quotable == @token.profile.profileable || comment.quotable == @token.profile
+      comment.locked = !comment.locked
+      comment.save!
+    else
+      redirect_to validate_comments_path(params[:token]), notice: "Nicht berechtigt."
+      return
+    end
     
     if comment.persisted?
       redirect_to validate_comments_path(params[:token]), notice: "Kommentarstatus geändert."
