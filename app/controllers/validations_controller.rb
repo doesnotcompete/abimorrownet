@@ -1,8 +1,10 @@
 class ValidationsController < ApplicationController
+  before_filter :get_token
+  before_filter :check_validity, except: [:invalid, :fatal_error]
+  
   respond_to :html, :json
   
   def index
-    @token = AccessToken.find_by(token: params[:token])
     @profile = @token.profile
     
     respond_to do |wants|
@@ -11,7 +13,6 @@ class ValidationsController < ApplicationController
   end
   
   def comments
-    @token = AccessToken.find_by(token: params[:token])
     @comments = @token.profile.profileable.quotes
     
     @locked_count = 0
@@ -21,8 +22,10 @@ class ValidationsController < ApplicationController
   end
   
   def contents
-    @token = AccessToken.find_by(token: params[:token])
     @contents = @token.profile.contents
+  end
+  
+  def questions
   end
   
   def lock_comment
@@ -38,7 +41,6 @@ class ValidationsController < ApplicationController
   end
   
   def report_content
-    @token = AccessToken.find_by(token: params[:token])
     @content = Content.find(params[:content_id])
     
     @report = ContentProblem.new
@@ -61,10 +63,9 @@ class ValidationsController < ApplicationController
   end
   
   def create_report
-    @token = AccessToken.find_by(token: params[:token])
     @content = Content.find(params[:content_id])
     
-    ContentProblem.create(reason: params[:content_problem][:reason], description: params[:content_problem][:description], email: params[:content_problem][:email], content: @content)
+    ContentProblem.create(reason: params[:content_problem][:reason], description: params[:content_problem][:description], profile: @token.profile, content: @content)
     
     redirect_to validate_contents_path(@token.token)
   end
@@ -74,17 +75,14 @@ class ValidationsController < ApplicationController
   end
   
   def wrong_identity
-    @token = AccessToken.find_by(token: params[:token])
     @profile = @token.profile
   end
   
   def fatal_error
-    @token = AccessToken.find_by(token: params[:token])
-    @profile = @token.profile
+    @profile = @token.profile if @token
   end
   
   def final
-    @token = AccessToken.find_by(token: params[:token])
     @profile = @token.profile
     
     @comments = @token.profile.profileable.quotes
@@ -101,12 +99,26 @@ class ValidationsController < ApplicationController
   def quick_order
     # dirty
     
-    @token = AccessToken.find_by(token: params[:token])
     @profile = @token.profile
     
     Order.create(products: [Product.find_by(price: 10)], email: @profile.profileable.email, name: @profile.full_name, description: "Expressbestellung")
     
     redirect_to validation_final_path(@token.token)
+  end
+  
+  def invalid
+  end
+  
+  def get_token
+    @token = AccessToken.find_by(token: params[:token])
+  end
+  
+  def check_validity
+    unless @token
+      redirect_to validation_error_path(0)
+      return
+    end
+    redirect_to invalid_token_path(@token.token) unless @token.is_valid?
   end
     
 end

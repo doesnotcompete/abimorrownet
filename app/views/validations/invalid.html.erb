@@ -1,0 +1,4 @@
+<h1>Zugangscode abgelaufen</h1>
+<p>Guten Tag, Herr/Frau <%= @token.profile.last_name %>,</p>
+<p>leider ist die Auditphase bereits abgeschlossen. Ihr Zugangscode war bis zum <%= @token.validUntil.strftime("%e.%-m. um %k.%M Uhr") %> gültig.</p>
+<p>Wenn Sie noch kurzfristig eine Änderung vornehmen lassen möchten, wenden Sie sich an <%= mail_to "hallo@abimorrow.net" %>. Vielen Dank.</p>

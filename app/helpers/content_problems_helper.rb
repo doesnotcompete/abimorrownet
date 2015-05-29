@@ -1,0 +1,2 @@
+module ContentProblemsHelper
+end

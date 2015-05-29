@@ -22,6 +22,8 @@ Rails.application.routes.draw do
       resources :nominations
     end
   end
+  
+  resources :content_problems
 
   resources :products
   resources :orders
@@ -75,6 +77,7 @@ Rails.application.routes.draw do
   get "validations/:token" => "validations#index", as: :main_validations
   get "validations/:token/comments" => "validations#comments", as: :validate_comments
   get "validations/:token/contents" => "validations#contents", as: :validate_contents
+  get "validations/:token/questions" => "validations#questions", as: :validate_questions
   get "validations/:token/contents/:content_id/report" => "validations#report_content", as: :report_content
   post "validations/:token/contents/:content_id/report" => "validations#create_report", as: :create_content_problem
   
@@ -82,10 +85,15 @@ Rails.application.routes.draw do
   
   get "validations/:token/final" => "validations#final", as: :validation_final
   
+  post "content_problems/:id/accept" => "content_problems#accept", as: :accept_report
+  get "content_problems/:id/reject" => "content_problems#prepare_rejection", as: :prepare_report_rejection
+  post "content_problems/:id/reject" => "content_problems#reject", as: :reject_report
+  
   patch "validations/:token/comments/:comment_id/lock" => "validations#lock_comment", as: :lock_comment
   get "tokens" => "validations#access_tokens", as: :own_access_tokens
   get "validations/:token/wrong_identity" => "validations#wrong_identity", as: :validation_wrong_identity
   get "validations/:token/error" => "validations#fatal_error", as: :validation_error
+  get "validations/:token/invalid" => "validations#invalid", as: :invalid_token
   
   get "contents/:content_id/association/new" => "contents#new_association", as: :new_content_association
   post "contents/:content_id/association/new" => "contents#create_association", as: :create_content_association

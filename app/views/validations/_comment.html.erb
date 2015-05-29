@@ -2,7 +2,7 @@
 <small>ID: <%= comment.id %></small>
 </blockquote>
 <% if comment.locked %>
-<p>Gesperrt. Dieser Kommentar wird nicht gedruckt. <%= link_to "Entsperren", lock_comment_url(@token.token, comment, "n"), method: :patch %></p>
+<p>Gesperrt. Dieser Kommentar wird nicht gedruckt. <%= link_to "Entsperren", lock_comment_url(@token.token, comment), method: :patch %></p>
 <% else %>
 <%= link_to "Sperren", lock_comment_url(@token.token, comment), method: :patch %>
 <% end %>

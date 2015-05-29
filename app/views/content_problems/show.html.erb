@@ -1,0 +1,15 @@
+<h1><%= @report.reason %> <small>(<%= @report.created_at.strftime("%d.%m.%y um %H.%M Uhr") %>)</small></h1>
+<p><%= @report.description %></p>
+<hr />
+<h3>Details & Antworten</h3>
+<p>Beanstandet von: <%= link_to @report.profile.full_name, @report.profile %></p>
+<p>Kontaktadresse: <%= mail_to @report.profile.email %></p>
+<% if @report.processed %>
+<p>Der Antrag wurde bearbeitet und ist 
+<% if  @report.legit %>
+zulässig
+<% else %>
+unzulässig
+<% end %>.</p>
+<% end %>
+<%= link_to "Dem Antrag entsprechen.", accept_report_path(@report), class: 'btn btn-success', method: :post, data: {confirm: "Sicher?"} %> <%= link_to "Den Antrag ablehnen.", prepare_report_rejection_path(@report), class: 'btn btn-danger' %>

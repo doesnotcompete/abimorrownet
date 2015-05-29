@@ -4,7 +4,6 @@
   <p><b>Beanstandeter Inhalt:</b> <%= "#{@content.title} (Nr. #{@content.id})" %></p>
   <%= f.input :reason, label: "Grund", collection: @reason_list %>
   <%= f.input :description, label: "Details" %>
-  <%= f.input :email, label: "E-Mail-Adresse zur Kontaktaufnahme", value: @token.profile.profileable.email %>
   <hr />
   <%= link_to raw("&laquo; Abbrechen"), validate_contents_path(@token.token), class: 'btn btn-warning' %> <%= f.button :submit, raw("Problem melden &raquo;"), class: 'btn-primary' %>
 <% end %>

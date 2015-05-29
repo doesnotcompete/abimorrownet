@@ -1,5 +1,5 @@
 <span style="<% if content.content_problems.count > 0 %>text-decoration: line-through;<% end %>"><h3><%= content.title %></h3>
 <p><%= content.text %></p></span>
 <% if content.content_problems.count > 0 %><p><small>Zu diesem Inhalt sind Probleme gemeldet.</small></p><% end %>
-<%= link_to "Problem melden oder Details ergänzen", report_content_path(@token.token, content) %>
+<%= link_to raw("Problem melden oder Details ergänzen &raquo;"), report_content_path(@token.token, content) %>
 <hr />

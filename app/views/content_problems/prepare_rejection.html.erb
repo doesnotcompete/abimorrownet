@@ -1,0 +1,5 @@
+<h1>Ein Inhalteproblem begründet zurückweisen</h1>
+<%= form_tag(reject_report_path(@report), method: "post") do %>
+  <%= text_area_tag(:message,  "", size: "40x6") %>
+  <%= submit_tag("Senden") %>
+<% end %>

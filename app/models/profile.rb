@@ -39,6 +39,10 @@ class Profile < ActiveRecord::Base
     self.profileable.first_name + " " + self.profileable.last_name
   end
   
+  def is_teacher?
+    self.profileable_type == "Teacher"
+  end
+  
   def self.generateForTeachers
     Teacher.all.each do |teacher|
       Profile.create(profileable: teacher, first_name: teacher.first_name, last_name: teacher.last_name)

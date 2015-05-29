@@ -8,3 +8,5 @@
 <p>Inhalte, die Sie beleidigen, oder die unvollständig oder nicht authentisch sind, können Sie zur Überprüfung markieren. Gerne können Sie knappen Inhalten auch weitere Details hinzufügen. Ein Mitglied der Redaktion wird den Inhalt auf Verstöße gegen den Pressekodex prüfen. Besuchen Sie <%= link_to "die Website des Deutschen Presserats", "http://www.presserat.de/pressekodex/pressekodex/", target: "_blank" %> für eine Liste der Richtlinien, nach denen wir die Überprüfung vornehmen. Sie erhalten eine Nachricht per E-Mail, in der wir Ihnen mitteilen, wie wir über den Fall entschieden haben.</p>
 <hr />
 <%= render partial: 'validations/content', collection: @contents, as: :content %>
+<p><em>Hinweis: Sie können später noch einmal zu diesem Schritt zurückkehren.</em></p>
+<%= link_to raw("Fortfahren &raquo;"), validate_questions_path(@token.token), class: 'btn btn-primary' %>
