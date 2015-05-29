@@ -103,6 +103,7 @@ Rails.application.routes.draw do
   
   patch "validations/:token/comments/:comment_id/lock" => "validations#lock_comment", as: :lock_comment
   get "tokens" => "validations#access_tokens", as: :access_tokens
+  post "tokens/new" => "validations#create_single_token", as: :create_single_token
   get "validations/:token/wrong_identity" => "validations#wrong_identity", as: :validation_wrong_identity
   get "validations/:token/error" => "validations#fatal_error", as: :validation_error
   get "validations/:token/invalid" => "validations#invalid", as: :invalid_token

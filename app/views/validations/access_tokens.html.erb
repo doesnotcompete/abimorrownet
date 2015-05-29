@@ -12,3 +12,10 @@
     <%= render partial: 'validations/token', collection: @tokens, as: :token %>
   </tbody>
 </table>
+<% if current_user.admin? %>
+<h3>Zugriffscodes erzeugen</h3>
+<%= simple_form_for @token, url: create_single_token_path, method: :post do |f| %>
+  <%= f.input :profile, as: :select, collection: Profile.all, label_method: lambda { |item| "#{item.first_name} #{item.last_name}".html_safe rescue "#{item.email}" }, label: "Mitglied" %>
+  <%= f.button :submit, raw("Code erzeugen &raquo;"), class: 'btn btn-warning' %>
+<% end %>
+<% end %>

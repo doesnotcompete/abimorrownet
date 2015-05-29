@@ -1,6 +1,6 @@
 class ValidationsController < ApplicationController
-  before_filter :get_token, except: [:access_tokens]
-  before_filter :check_validity, except: [:invalid, :fatal_error, :access_tokens]
+  before_filter :get_token, except: [:access_tokens, :create_single_token]
+  before_filter :check_validity, except: [:invalid, :fatal_error, :access_tokens, :create_single_token]
   
   respond_to :html, :json
   
@@ -113,6 +113,15 @@ class ValidationsController < ApplicationController
     
     @tokens = AccessToken.where(profile: current_user.profile) unless current_user.admin?
     @tokens = AccessToken.all if current_user.admin?
+    
+    @token = AccessToken.new
+  end
+  
+  def create_single_token
+    @profile = Profile.find(params[:access_token][:profile])
+    
+    AccessToken.generateFor(@profile, true)
+    redirect_to access_tokens_path
   end
   
   def wrong_identity
