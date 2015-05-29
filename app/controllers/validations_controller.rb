@@ -1,6 +1,6 @@
 class ValidationsController < ApplicationController
-  before_filter :get_token
-  before_filter :check_validity, except: [:invalid, :fatal_error]
+  before_filter :get_token, except: [:access_tokens]
+  before_filter :check_validity, except: [:invalid, :fatal_error, :access_tokens]
   
   respond_to :html, :json
   
@@ -26,6 +26,37 @@ class ValidationsController < ApplicationController
   end
   
   def questions
+    if @token.profile.profileable_type == "Teacher" then
+      @questions = Question.where(teacher: true)
+    else
+      @questions = Question.where(teacher: false)
+    end
+  end
+  
+  def new_answer
+    @question = Question.find(params[:question_id])
+    @answer = Answer.new(question: @question, profile: @token.profile)
+  end
+  
+  def create_answer
+    @question = Question.find(params[:question_id])
+    @answer = Answer.create(question: @question, profile: @token.profile, text: params[:answer][:text], file: params[:answer][:file])
+    
+    redirect_to validate_questions_path(@token.token)
+  end
+  
+  def edit_answer
+    @question = Question.find(params[:question_id])
+    @answer = Answer.find(params[:answer_id])
+    return unless @answer.profile = @token.profile || (current_user.admin? rescue true)
+  end
+  
+  def update_answer
+    @question = Question.find(params[:question_id])
+    @answer = Answer.find(params[:answer_id])
+    return unless @answer.profile = @token.profile || (current_user.admin? rescue true)
+    
+    @answer.update(question: @question, profile: @token.profile, text: params[:answer][:text], file: params[:answer][:file])
   end
   
   def lock_comment
@@ -77,11 +108,21 @@ class ValidationsController < ApplicationController
   end
   
   def access_tokens
-    @tokens = AccessToken.where(profile: current_user.profile)
+    authenticate_user!
+    ensure_profile!
+    
+    @tokens = AccessToken.where(profile: current_user.profile) unless current_user.admin?
+    @tokens = AccessToken.all if current_user.admin?
   end
   
   def wrong_identity
     @profile = @token.profile
+  end
+  
+  def change_name
+    @profile = @token.profile
+    @profile.update(first_name: params[:profile][:first_name], last_name: params[:profile][:last_name])
+    redirect_to main_validations_path(@token.token), notice: "Name aktualisiert."
   end
   
   def fatal_error
@@ -89,6 +130,9 @@ class ValidationsController < ApplicationController
   end
   
   def final
+    @token.final = true
+    @token.save
+    
     @profile = @token.profile
     
     @comments = @token.profile.profileable.quotes
@@ -99,7 +143,26 @@ class ValidationsController < ApplicationController
     end 
     
     @contents = @token.profile.contents
+    @reported_count = @profile.content_problems.count
+    
+    @answers = Answer.where(profile: @profile)
+    
+    if @token.profile.profileable_type == "Teacher" then
+      @questions = Question.where(teacher: true)
+    else
+      @questions = Question.where(teacher: false)
+    end
+    
+    @unanswered_count = 0
+
+    @questions.each do |question|
+      if question.answers.where(profile: @profile).empty? then @unanswered_count += 1 end
+    end 
+    
     @orders = Order.where("name ILIKE ?", @profile.full_name)
+  end
+  
+  def preview
   end
   
   def quick_order

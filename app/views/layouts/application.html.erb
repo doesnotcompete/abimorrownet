@@ -41,7 +41,8 @@
             <ul class="dropdown-menu" role="menu">
               <li><a href="#"><b>- Abizeitung -</b></a></li>
               <%= render partial: 'layouts/navigation_element', locals: {text: "Inhalte und Zitate einreichen", path: new_content_path} %>
-              <% if current_user && current_user.moderator? %><%= render partial: 'layouts/navigation_element', locals: {text: "Back-Office", path: contents_path} %><% end %>
+              <% if current_user && current_user.moderator? %><%= render partial: 'layouts/navigation_element', locals: {text: "Back-Office", path: contents_path} %>
+              <%= render partial: 'layouts/navigation_element', locals: {text: "Steckbrieffragen", path: questions_path} %><% end %>
               <%= render partial: 'layouts/navigation_element', locals: {text: "Jetzt bestellen", path: new_order_path} %>
               <% if current_user && current_user.admin? %><li><a href="#"><b>- Bestellungen -</b></a></li><%= render partial: 'layouts/navigation_element', locals: {text: "Bestellungen", path: orders_path} %><%= render partial: 'layouts/navigation_element', locals: {text: "Produkte", path: products_path} %><% end %>
               <li class="divider"></li>
@@ -57,6 +58,7 @@
             <ul class="dropdown-menu" role="menu">
               <% if current_user.admin? %><li><%= link_to 'Einladen', new_user_invitation_path %></li><% end %>
               <% if current_user.profile %><li><%= link_to 'Mein Profil', profile_path(current_user.profile) %></li><% end %>
+              <% if current_user.profile %><li><%= link_to 'Zugriffscodes', access_tokens_path %></li><% end %>
               <li><%= link_to 'Account bearbeiten', edit_user_registration_path %></li>
               <li class="divider"></li>
               <li><%= link_to "Abmelden", destroy_user_session_path, method: :delete %></li>

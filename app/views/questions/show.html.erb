@@ -1,0 +1,15 @@
+<h1><%= @question.title %></h1>
+<p><%= @question.description %></p>
+<p>Upload erlaubt: <%= @question.fileAllowed ? "Ja" : "Nein" %></p>
+<p>Nur für LehrerInnen: <%= @question.teacher ? "Ja" : "Nein" %></p>
+<%= link_to raw("Antworten anzeigen &raquo;"), question_answers_path(@question), class: 'btn btn-primary' %>
+<hr />
+<h3>Bearbeiten</h3>
+<%= simple_form_for @question, method: :patch do |f| %>
+  <%= f.input :title, label: "Titel" %>
+  <%= f.input :description, label: "Beschreibung" %>
+  <%= f.input :teacher, label: "nur für Lehrer?" %>
+  <%= f.input :fileAllowed, label: "Dateiupload zulassen?" %>
+  <hr />
+  <%= f.button :submit, "Ändern" %>
+<% end %>

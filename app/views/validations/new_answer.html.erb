@@ -1,0 +1,13 @@
+<h1><%= @question.title %></h1>
+<p><%= @question.description %></p>
+<%= simple_form_for @answer, url: create_validation_answer_path(@token.token, @question), method: :post do |f| %>
+  <%= f.input :text, label: "Text" %>
+  <% if @question.fileAllowed %>
+  <p>Für diese Antwort können Sie ein Bild hochladen.</p>
+  <%= f.input :file, label: "Bild hochladen" %>
+  <% end %>
+  <hr />
+  <%= f.button :submit, raw("Antwort speichern &raquo;") %>
+<% end %>
+<hr />
+<p><%= link_to raw("&laquo; Änderungen verwerfen"), validate_questions_path(@token.token), class: 'btn btn-danger', data: {confirm: "Sind Sie sicher?"} %></p>

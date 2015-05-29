@@ -14,4 +14,4 @@
 <% end %>
 <p>Sind Sie mit Ihren Kommentaren zufrieden? Dann fahren Sie mit der Überprüfung von assoziierten Inhalten fort.</p>
 <p><em>Hinweis: Sie können später noch einmal zu diesem Schritt zurückkehren.</em></p>
-<%= link_to raw("Fortfahren &raquo;"), validate_contents_path(@token.token), class: 'btn btn-primary' %>
+<%= render partial: 'validations/continue_button', locals: {path: validate_contents_path(@token.token)} %>

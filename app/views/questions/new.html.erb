@@ -1,0 +1,8 @@
+<%= simple_form_for @question, url: {action: 'create'} do |f| %>
+  <%= f.input :title, label: "Titel" %>
+  <%= f.input :description, label: "Beschreibung" %>
+  <%= f.input :teacher, label: "nur für Lehrer?" %>
+  <%= f.input :fileAllowed, label: "Dateiupload zulassen?" %>
+  <hr />
+  <%= f.button :submit, "Erstellen" %>
+<% end %>

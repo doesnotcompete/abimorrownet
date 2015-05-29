@@ -5,3 +5,7 @@
 </div>
 <h1>Weitere Fragen beantworten</h1>
 <p>Bitte nehmen Sie sich kurz Zeit, die folgenden Fragen zu beantworten. Wir werden Ihre Antworten für die Inhalte der Abizeitung verwenden.</p>
+<hr />
+<%= render partial: 'validations/question', collection: @questions, as: :question %>
+<p>Wenn Sie alle Fragen, die Sie beantworten möchten, beantwortet haben, fahren Sie fort.</p>
+<%= render partial: 'validations/continue_button', locals: {path: validation_final_path(@token.token)} %>

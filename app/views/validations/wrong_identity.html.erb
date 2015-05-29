@@ -1,4 +1,12 @@
-<h1>Das sind nicht Sie?</h1>
-<p>Ups, das tut uns Leid. Wenn wir Ihren Namen falsch geschrieben haben, oder wenn <%= @profile.full_name %> eine ganz andere Person ist, schreiben Sie uns bitte kurz an <%= mail_to "hallo@abimorrow.net" %>, damit wir den Fehler korrigieren können.</p>
+<h3>Ihr Name ist falsch geschrieben?</h3>
+<p>Ups, das tut uns Leid. Bitte korrigieren Sie Ihren Namen im folgenden Feld.</p>
+<%= simple_form_for @profile, url: validation_change_name_path, method: :post do |f| %>
+  <%= f.input :first_name, label: "Vorname" %>
+  <%= f.input :last_name, label: "Nachname" %>
+  <%= f.button :submit, "Ändern" %>
+<% end %>
+<hr />
+<h3>Das sind nicht Sie?</h1>
+<p>Ups, das tut uns Leid. Wenn <%= @profile.full_name %> eine ganz andere Person ist, schreiben Sie uns bitte kurz an <%= mail_to "hallo@abimorrow.net" %>, damit wir den Fehler korrigieren können.</p>
 <p>Wir entschuldigen uns für etwaige Unannehmlichkeiten.</p>
 <%= link_to raw("&laquo; Stattdessen zurück und fortfahren"), main_validations_path(@token.token), class: 'btn btn-warning' %>

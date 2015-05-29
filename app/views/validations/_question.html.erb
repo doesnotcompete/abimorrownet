@@ -1,0 +1,12 @@
+<span style="<% if (@token.profile.answers & question.answers).length > 0 %>color: darkgrey;<% end %>">
+<h3><%= question.title %></h3>
+<% if question.description %>
+<p><%= truncate(question.description, omission: "...", length: 45) %></p>
+<% end %>
+</span>
+<% if (@token.profile.answers & question.answers).length > 0 %>
+<%= link_to raw("Antwort ändern &raquo;"), edit_validation_answer_path(@token.token, question, (@token.profile.answers & question.answers).first) %>
+<% else %>
+<%= link_to raw("Frage beantworten &raquo;"), new_validation_answer_path(@token.token, question) %>
+<% end %>
+<hr />

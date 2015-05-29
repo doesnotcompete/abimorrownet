@@ -1,0 +1,3 @@
+<h1>Antwort für <%= @answer.question.title %> <small>von <%= @answer.profile.full_name %></small></h1>
+<p><%= @answer.text %></p>
+<%= image_tag @answer.file.url if @answer.file %>

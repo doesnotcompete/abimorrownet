@@ -6,7 +6,7 @@
 <h1>Überprüfung von Inhalten <small>(allgemeiner Audit)</small></h1>
 <p>Guten Tag, Frau/Herr <%= @profile.last_name %>,</p>
 <p>vielen Dank, dass Sie vorbeigekommen sind. Auf den nachfolgenden Seiten möchten wir Ihnen die Gelegenheit geben, alle Inhalte in unserer Abizeitung, die Sie betreffen, einzusehen und zu überprüfen.</p>
-<p>Die Inhaltsüberprüfung wird etwa 5 Minuten Ihrer Zeit in Anspruch nehmen.</p>
+<p>Sollten im Laufe des Vorgangs irgendwelche Probleme auftreten, helfen wir Ihnen gerne weiter. Schreiben Sie einfach eine kurze Nachricht an <%= mail_to "hallo@abimorrow.net" %>.</p>
 <p>Bitte prüfen Sie zunächst, ob die folgenden Angaben zu Ihrer Person korrekt sind:</p>
 <hr />
 <dl>
@@ -16,6 +16,7 @@
   <dd><%= @profile.profileable_type == "Teacher" ? "LehrerIn" : "SchülerIn" %></dd>
 </dl>
 <hr />
+<p>Ist alles richtig? Haben wir Ihren Namen richtig geschrieben?</p>
 <p><em>Hinweis: Bitte schließen Sie die Inhalteüberprüfung bis zum <%= @token.validUntil.strftime("%e.%-m. um %k.%M Uhr") %> ab.</em></p>
 <%= link_to "Ja, das ist richtig.", validate_comments_path(@token.token), class: 'btn btn-success' %>
-<%= link_to "Nein, das ist falsch.", validation_wrong_identity_path(@token.token), class: 'btn btn-danger' %>
+<%= link_to "Nein, etwas stimmt nicht.", validation_wrong_identity_path(@token.token), class: 'btn btn-danger' %>

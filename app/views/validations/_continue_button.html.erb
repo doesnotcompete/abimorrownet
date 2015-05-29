@@ -1,0 +1,5 @@
+<% if @token.final %>
+  <%= link_to raw("Speichern und zur Zusammenfassung &raquo;"), validation_final_path(@token.token), class: 'btn btn-primary' %>
+<% else %>
+  <%= link_to raw("Fortfahren &raquo;"), path, class: 'btn btn-primary' %>
+<% end %>

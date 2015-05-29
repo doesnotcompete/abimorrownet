@@ -1,2 +1,14 @@
 <h1>Zugriffscodes</h1>
 <p>Über Zugriffscodes kannst du auf die Inhalteprüfung von abimorrow.net zugreifen. Wird hier kein Code angezeigt? Wende dich an <%= mail_to "hallo@abimorrow.net" %>. Vielen Dank.</p>
+<h3>Alle Zugriffscodes</h3>
+<table class="table table-striped table-bordered">
+  <thead>
+    <th>Token</th>
+    <th>Profil</th>
+    <th>gültig bis</th>
+    <th>abgeschlossen</th>
+  </thead>
+  <tbody>
+    <%= render partial: 'validations/token', collection: @tokens, as: :token %>
+  </tbody>
+</table>

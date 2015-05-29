@@ -1,0 +1,10 @@
+<h1>Antworten zur Frage "<%= @question.title %>"</h1>
+<table class="table table-striped table-bordered">
+  <thead>
+    <th>antwort von</th>
+    <th>Aktion</th>
+  </thead>
+  <tbody>
+    <%= render partial: 'answers/answer_list_entry', collection: @answers, as: :answer %>
+  </tbody>
+</table>

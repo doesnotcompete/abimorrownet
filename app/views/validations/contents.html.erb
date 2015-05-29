@@ -10,4 +10,4 @@
 <% if @contents.empty? %><p>Mit Ihrem Profil sind keine Inhalte verknüpft.</p><% end %>
 <%= render partial: 'validations/content', collection: @contents, as: :content %>
 <p><em>Hinweis: Sie können später noch einmal zu diesem Schritt zurückkehren.</em></p>
-<%= link_to raw("Fortfahren &raquo;"), validate_questions_path(@token.token), class: 'btn btn-primary' %>
+<%= render partial: 'validations/continue_button', locals: {path: validate_questions_path(@token.token)} %>

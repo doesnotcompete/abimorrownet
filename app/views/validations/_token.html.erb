@@ -1,0 +1,6 @@
+<tr>
+  <td><%= link_to token.token, main_validations_path(token.token) %></td>
+  <td><%= link_to token.profile.full_name, token.profile %></td>
+  <td><%= token.validUntil.strftime("%d.%m.%y um %H.%M Uhr") %></td>
+  <td><%= token.final ? "Ja" : "Nein" %></td>
+</tr>

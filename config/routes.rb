@@ -24,6 +24,10 @@ Rails.application.routes.draw do
   end
   
   resources :content_problems
+  
+  resources :questions do
+    resources :answers
+  end
 
   resources :products
   resources :orders
@@ -81,16 +85,24 @@ Rails.application.routes.draw do
   get "validations/:token/contents/:content_id/report" => "validations#report_content", as: :report_content
   post "validations/:token/contents/:content_id/report" => "validations#create_report", as: :create_content_problem
   
+  get "validations/:token/questions/:question_id/answers/new" => "validations#new_answer", as: :new_validation_answer
+  get "validations/:token/questions/:question_id/answers/:answer_id/edit" => "validations#edit_answer", as: :edit_validation_answer
+  patch "validations/:token/questions/:question_id/answers/:answer_id/edit" => "validations#update_answer", as: :update_validation_answer
+  post "validations/:token/questions/:question_id/answers/new" => "validations#create_answer", as: :create_validation_answer
+  
   post "validations/:token/quick_order" => "validations#quick_order", as: :create_quick_order
   
   get "validations/:token/final" => "validations#final", as: :validation_final
+  get "validations/:token/preview" => "validations#preview", as: :validation_preview
   
   post "content_problems/:id/accept" => "content_problems#accept", as: :accept_report
   get "content_problems/:id/reject" => "content_problems#prepare_rejection", as: :prepare_report_rejection
   post "content_problems/:id/reject" => "content_problems#reject", as: :reject_report
   
+  post "validations/:token/change_name" => "validations#change_name", as: :validation_change_name
+  
   patch "validations/:token/comments/:comment_id/lock" => "validations#lock_comment", as: :lock_comment
-  get "tokens" => "validations#access_tokens", as: :own_access_tokens
+  get "tokens" => "validations#access_tokens", as: :access_tokens
   get "validations/:token/wrong_identity" => "validations#wrong_identity", as: :validation_wrong_identity
   get "validations/:token/error" => "validations#fatal_error", as: :validation_error
   get "validations/:token/invalid" => "validations#invalid", as: :invalid_token
