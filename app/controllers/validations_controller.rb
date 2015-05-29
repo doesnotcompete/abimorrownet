@@ -118,6 +118,10 @@ class ValidationsController < ApplicationController
   end
   
   def create_single_token
+    authenticate_user!
+    ensure_profile!
+    return unless current_user.admin?
+    
     @profile = Profile.find(params[:access_token][:profile])
     
     AccessToken.generateFor(@profile, true)
