@@ -1,6 +1,6 @@
 class QuotesController < ApplicationController
-  before_filter :authenticate_user!
-  before_filter :ensure_profile!
+  before_filter :authenticate_user!, except: [:update, :edit]
+  before_filter :ensure_profile!, except: [:update, :edit]
   before_filter :load_quotable
 
   def new
@@ -22,14 +22,19 @@ class QuotesController < ApplicationController
   def edit
     @quote = Quote.find(params[:id])
 
-    authorize @quote
+    #authorize @quote
   end
 
   def update
     @quote = Quote.find(params[:quote_id])
-    authorize @quote
+    return unless (session[:validation_token] && (@quote.quotable_type == "Profile" ? (@quote.quotable.access_tokens.any? {|token| token.token == session[:validation_token]}) : (@quote.quotable.profile.access_tokens.any? {|token| token.token == session[:validation_token]}) ) || @user.moderator?)
     if @quote.update(quote_params)
-      redirect_to @quote.quotable
+      if session[:comment_edit_redirect_to_validations]
+        redirect_to validate_comments_path(session[:validation_token])
+      else
+        redirect_to @quote.quotable
+      end
+      #redirect_to (session[:comment_edit_redirect_to_validations] ? validate_comments_path(session[:validation_token]) : @quote.quotable)
     else
       render :edit, notice: "Fehler."
     end

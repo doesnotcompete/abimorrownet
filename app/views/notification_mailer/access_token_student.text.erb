@@ -1,0 +1,12 @@
+Hallo, <%= @token.profile.first_name %>,
+
+vor der Veröffentlichung unserer Abizeitung am 2. Juli würden wir dir gerne die Gelegenheit geben, alle Inhalte, die dich betreffen könnten, zu überprüfen.
+Zusätzlich zu unserer redaktionellen Aufarbeitung und zur späteren Überprüfung durch die Schulleitung kannst du so direkt Einfluss auf Inhalte nehmen, die wir in der Masse der Einreichungen übersehen und die unangemessen sein könnten.
+
+Im Laufe des Vorgangs erhältst zudem die Möglichkeit, selbst Inhalte einzureichen und unsere Abizeitung vorzubestellen, sofern du dies noch nicht getan hast.
+
+Besuche einfach <%= main_validations_url(@token.token) %>, um zu beginnen. Bitte beachte, dass die Teilnahme an diesem Verfahren nur bis zum <%= @token.validUntil.strftime("%e.%-m. um %k.%M Uhr") %> möglich ist.
+Wir danken dir vielmals für deine Unterstützung.
+
+Viele Grüße
+Dein Abizeitungskomitee

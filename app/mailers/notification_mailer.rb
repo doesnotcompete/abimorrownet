@@ -17,6 +17,11 @@ class NotificationMailer < ActionMailer::Base
     mail(to: token.profile.profileable.email, subject: "Überprüfung von Inhalten in der Abizeitung")
   end
   
+  def access_token_student(token)
+    @token = token
+    mail(to: token.profile.profileable.email, subject: "Überprüfung von Inhalten in der Abizeitung")
+  end
+  
   def accept_report(report)
     @report = report
     mail(to: report.profile.email, subject: "Antrag auf Inhalteüberprüfung: problematischer Inhalt")

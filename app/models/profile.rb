@@ -8,6 +8,8 @@ class Profile < ActiveRecord::Base
   has_many :contents, through: :content_associations
   has_many :content_problems
   has_many :answers
+  
+  has_many :access_tokens
 
   validates :first_name, :last_name, presence: true
 

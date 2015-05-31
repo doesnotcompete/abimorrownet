@@ -14,6 +14,7 @@ class ValidationsController < ApplicationController
   
   def comments
     @comments = @token.profile.profileable.quotes
+    @profile = @token.profile
     
     @locked_count = 0
     @comments.each do |comment|
@@ -193,6 +194,8 @@ class ValidationsController < ApplicationController
   
   def get_token
     @token = AccessToken.find_by(token: params[:token])
+    session[:validation_token] = @token.token
+    session[:comment_edit_redirect_to_validations] = true
   end
   
   def check_validity

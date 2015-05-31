@@ -4,6 +4,9 @@
   </div>
 </div>
 <h1>Überprüfung von Inhalten <small>(allgemeiner Audit)</small></h1>
+<% if @profile.profileable_type == "User" %>
+<p class="bg-primary"><b>Hinweis:</b> Wir werden dich im folgenden mit "Sie" ansprechen, da wir den Entwicklungsaufwand für dieses System reduzieren wollten. Wir bitten um dein Verständnis.</p>
+<% end %>
 <p>Guten Tag, Frau/Herr <%= @profile.last_name %>,</p>
 <p>vielen Dank, dass Sie vorbeigekommen sind. Auf den nachfolgenden Seiten möchten wir Ihnen die Gelegenheit geben, alle Inhalte in unserer Abizeitung, die Sie betreffen, einzusehen und zu überprüfen.</p>
 <p>Sollten im Laufe des Vorgangs irgendwelche Probleme auftreten, helfen wir Ihnen gerne weiter. Schreiben Sie einfach eine kurze Nachricht an <%= mail_to "hallo@abimorrow.net" %>.</p>

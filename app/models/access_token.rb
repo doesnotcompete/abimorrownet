@@ -6,7 +6,12 @@ class AccessToken < ActiveRecord::Base
     
     if notify 
       puts "Notifying..."
-      NotificationMailer.access_token(token).deliver
+      
+      if target.profileable_type == "User"
+        NotificationMailer.delay.access_token_student(token)
+      else
+        NotificationMailer.delay.access_token(token)
+      end
     end
     return token
   end
