@@ -7,7 +7,7 @@
 <% end %>
 </ul>
 <hr />
-<b>Lieferanschrift:</b>
+<b>Rechnungs- und Lieferanschrift:</b>
 <%= simple_form_for @order, url: {action: 'create'}, :html => { :multipart => true } do |f| %>
 <% if @school_shipping %>
 <div class="vcard">
@@ -28,7 +28,7 @@
 <%= f.input :plz, label: "Postleitzahl" %>
 <%= f.input :city, label: "Ort" %>
 <p>Standardmäßig stellen wir Rechnungen an deine Lieferanschrift aus. Sollte deine Rechnungsanschrift von deiner Lieferanschrift abweichen, so teile uns dies bitte mit.</p>
-<p>Die Lieferung erfolgt mit DPD. Es entstehen zusätzliche Kosten von <strong>4,95 €</strong>.</p>
+<p>Du erhältst ein Ticket zum Selbstausdrucken. Es entstehen zusätzliche Kosten von <strong>0,00 €</strong>.</p>
 <% end %>
 <%= f.input :name, label: "Name", required: true, input_html: {value: (current_user.full_name rescue '')} %>
 <%= f.input :email, label: "E-Mail", required: true, input_html: {value: (current_user.email rescue '')} %>
@@ -40,6 +40,6 @@
 <hr />
 <p>Du erhältst Statusupdates zu deiner Bestellung an die angegebene E-Mail-Adresse. Mit der Auswahl von "Zahlungspflichtig bestellen" kommt ein Kaufvertrag zwischen dir
 und dem Abiturjahrgang 2015 der KGS Rastede, vertreten durch Kevin Koopmann, zu Stande. Du kannst diesen Vertrag binnen 14 Tagen nach Abschluss ohne Angabe von Gründen widerrufen.
-Dazu genügt eine kurze, formlose Nachricht an <%= mail_to "hallo@abimorrow.net" %>. Bitte zahle deine Bestellung innerhalb von höchstens 30 Tagen.</p>
+Dazu genügt eine kurze, formlose Nachricht an <%= mail_to "hallo@abimorrow.net" %>. Bitte zahle deine Bestellung innerhalb von höchstens 14 Tagen.</p>
 <%= f.button :submit, raw("Zahlungspflichtig bestellen &raquo;"), class: 'btn-primary' %>
 <% end %>

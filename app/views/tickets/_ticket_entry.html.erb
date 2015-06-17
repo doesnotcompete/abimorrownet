@@ -1,0 +1,5 @@
+<tr>
+  <td><%= order.products.first.title %></td>
+  <td><%= order.ticket ? "ausgestellt" : "ausstehend" %></td>
+  <td><%= order.ticket ? link_to(raw("Ticket &raquo;"), order.ticket) : link_to(raw("Ticket erstellen &raquo;"), new_order_ticket_path(order, order.ticket)) %> | <%= link_to raw("Bestellung ansehen &raquo;"), order %></td>
+</tr>

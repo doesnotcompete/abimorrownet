@@ -1,5 +1,6 @@
 <h2>Bestellübersicht</h2>
 <h3>Vielen Dank für deine Bestellung!</h3>
+<p>Deine Bestellung ist abgeschlossen. Wir haben dir eine E-Mail mit Details zur Bezahlung gesendet. <% if @order.ticketable %>Für diese Bestellung kannst du ein Ticket ausstellen.<% end %></p>
 <p><strong>Anmerkungen:</strong> <%= @order.description %></p>
 <% if @order.user %>
 <p>Benutzer: <%= @order.user.full_name %></p>

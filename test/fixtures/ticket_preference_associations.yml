@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  ticket_id: 
+  profile_id: 
+  priority: 1
+  accepted: false
+
+two:
+  ticket_id: 
+  profile_id: 
+  priority: 1
+  accepted: false

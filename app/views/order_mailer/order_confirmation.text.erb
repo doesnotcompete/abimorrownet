@@ -9,7 +9,7 @@ Wir bestätigen dir hiermit den Eingang deiner Bestellung mit der Nummer <%= @or
 <% end %>
 =============================
 <% if @order.shipped %>
-Du wünscht eine Lieferung an eine Postanschrift. Dieser Service kostet 5,45 €.
+Du wünscht eine Lieferung als Inhalt zum Selbstausdrucken. Dieser Service ist kostenfrei.
 <% else %>
 Du wünscht eine Lieferung in die Schule. In Kürze erhältst du weitere Informationen zur Lieferung.
 <% end %>
@@ -19,15 +19,13 @@ Wir haben folgende Adresse von dir erfasst:
 <%= @order.address %>
 <%= "#{@order.plz} #{@order.city}" %>
 
-Bitte leiste deine Zahlung von <%= number_to_currency(@order.sum) %> binnen 30 Tagen auf folgendes Konto:
+Bitte leiste deine Zahlung von <%= number_to_currency(@order.sum) %> binnen 14 Tagen auf folgendes Konto:
 
 Arend Baumgartner
 IBAN: DE69 2802 0050 1646 6708 00
 BIC: OLBODEH2XXX
 
-Bitte verwende folgenden Verwendungszweck:
-<%= @order.name %> - ZEITUNG
-BESTELLNR. <%= @order.id %>
+Falls du von einem Konto überweist, das nicht dir gehört, gibt im Verwendungszweck bitte deinen Namen an.
 
 Vielen Dank für deine Unterstützung.
 

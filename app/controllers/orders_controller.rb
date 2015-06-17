@@ -22,7 +22,7 @@ class OrdersController < ApplicationController
       @total += product.price
     end
 
-    unless @school_shipping then @total += 5.45 end
+    unless @school_shipping then @total += 0.00 end
   end
 
   def create
@@ -34,10 +34,16 @@ class OrdersController < ApplicationController
       @order.user = current_user
       current_user.profile.premium = true
     end
+    
     @order.save!
 
     @products.each do |product|
       @order.order_position.create(product: product)
+      
+      if product.ticketable
+        @order.ticketable = true
+        @order.save!
+      end
     end
 
     session[:school_shipping] = nil;

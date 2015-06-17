@@ -5,5 +5,6 @@
 <%= f.input :price, as: :decimal, label: "Preis (in Euro)" %>
 <%= f.input :shippable, as: :boolean, label: "versandfähig" %>
 <%= f.input :available, as: :boolean, label: "verfügbar" %>
+<%= f.input :ticketable, as: :boolean, label: "Eintrittskarte?" %>
 <%= f.button :submit, raw("Produkt anlegen &raquo;"), class: 'btn-primary' %>
 <% end %>

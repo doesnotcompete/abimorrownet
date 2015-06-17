@@ -1,0 +1,11 @@
+<h3>Tickets</h3>
+<table class="table table-striped table-bordered">
+  <thead>
+    <th>Name</th>
+    <th>Ticketstatus</th>
+    <th>Aktion</th>
+  </thead>
+  <tbody>
+    <%= render partial: 'ticket_entry', collection: @orders, as: :order %>
+  </tbody>
+</table>

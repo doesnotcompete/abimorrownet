@@ -4,6 +4,8 @@ class Order < ActiveRecord::Base
 
   has_many :order_position
   has_many :products, through: :order_position
+  
+  has_one :ticket
 
   accepts_nested_attributes_for :products
 
@@ -16,7 +18,7 @@ class Order < ActiveRecord::Base
       @total += pos.product.price
     end
 
-    if self.shipped then @total += 5.45 end
+    if self.shipped then @total += 0.00 end
 
     return @total
   end

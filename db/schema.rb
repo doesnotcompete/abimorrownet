@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150529125757) do
+ActiveRecord::Schema.define(version: 20150617202552) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -225,6 +225,7 @@ ActiveRecord::Schema.define(version: 20150529125757) do
     t.datetime "updated_at"
     t.string   "email"
     t.string   "name"
+    t.boolean  "ticketable"
   end
 
   add_index "orders", ["assigned_id"], name: "index_orders_on_assigned_id", using: :btree
@@ -238,6 +239,7 @@ ActiveRecord::Schema.define(version: 20150529125757) do
     t.boolean  "available"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "ticketable"
   end
 
   create_table "profiles", force: true do |t|
@@ -300,6 +302,32 @@ ActiveRecord::Schema.define(version: 20150529125757) do
   end
 
   add_index "teachers", ["slug"], name: "index_teachers_on_slug", unique: true, using: :btree
+
+  create_table "ticket_preference_associations", force: true do |t|
+    t.integer  "ticket_id"
+    t.integer  "profile_id"
+    t.integer  "priority"
+    t.boolean  "accepted"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "ticket_preference_associations", ["profile_id"], name: "index_ticket_preference_associations_on_profile_id", using: :btree
+  add_index "ticket_preference_associations", ["ticket_id"], name: "index_ticket_preference_associations_on_ticket_id", using: :btree
+
+  create_table "tickets", force: true do |t|
+    t.integer  "product_id"
+    t.boolean  "validated"
+    t.text     "people",      default: [], array: true
+    t.text     "preferences", default: [], array: true
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "number"
+    t.integer  "order_id"
+  end
+
+  add_index "tickets", ["order_id"], name: "index_tickets_on_order_id", using: :btree
+  add_index "tickets", ["product_id"], name: "index_tickets_on_product_id", using: :btree
 
   create_table "users", force: true do |t|
     t.string   "email",                  default: "",    null: false
