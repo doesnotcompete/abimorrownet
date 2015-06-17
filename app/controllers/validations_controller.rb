@@ -58,6 +58,8 @@ class ValidationsController < ApplicationController
     return unless @answer.profile = @token.profile || (current_user.admin? rescue true)
     
     @answer.update(question: @question, profile: @token.profile, text: params[:answer][:text], file: params[:answer][:file])
+
+    redirect_to validate_questions_path(@token.token)
   end
   
   def lock_comment

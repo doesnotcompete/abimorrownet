@@ -2,18 +2,21 @@ class AccessToken < ActiveRecord::Base
   belongs_to :profile
   
   def self.generateFor(target, notify)
-    token = AccessToken.create(token: SecureRandom.hex(6), validUntil: 7.days.from_now, profile: target)
+    existing_tokens = AccessToken.where(profile: target).where("\"validUntil\" > ?", Time.now)
+    if existing_tokens.empty?
+      token = AccessToken.create(token: SecureRandom.hex(6), validUntil: 7.days.from_now, profile: target)
     
-    if notify 
-      puts "Notifying..."
+      if notify 
+        puts "Notifying..."
       
-      if target.profileable_type == "User"
-        NotificationMailer.delay.access_token_student(token)
-      else
-        NotificationMailer.delay.access_token(token)
+        if target.profileable_type == "User"
+          NotificationMailer.delay.access_token_student(token)
+        else
+          NotificationMailer.delay.access_token(token)
+        end
       end
+      return token
     end
-    return token
   end
   
   def self.generateForAll(notify)
