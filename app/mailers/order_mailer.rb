@@ -10,4 +10,10 @@ class OrderMailer < ActionMailer::Base
     @order = order
     mail(to: @order.email, subject: 'Zahlung bestätigt')
   end
+  
+  def ticket_created(ticket)
+    @ticket = ticket
+    attachments['Ticket.pdf'] = File.read(@ticket.ticket_path)
+    mail(to: @ticket.order.email, subject: 'Deine Eintrittskarte für den Abiball')
+  end
 end

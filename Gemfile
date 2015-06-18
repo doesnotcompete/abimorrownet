@@ -47,6 +47,8 @@ gem "paperclip", "~> 4.2"
 
 gem "sidekiq"
 
+gem 'pdf-forms'
+
 group :test do
   gem 'rspec'
   gem 'rspec-rails'

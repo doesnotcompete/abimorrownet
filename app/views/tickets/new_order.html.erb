@@ -2,7 +2,6 @@
 <%= simple_form_for @order, url: order_shipping_path, method: :post, :html => { :multipart => true } do |f| %>
 <p>Danke, dass du Tickets kaufen möchtest. Bitte wähle aus, welche Karte du bestellen möchtest.</p>
 <%= f.association :products, collection: @products, as: :select, label: 'Karte', label_method: lambda { |item| "#{item.title} (#{number_to_currency(item.price)}/St.)".html_safe rescue "Unbekannter Artikel" } %>
-<p>Gib nun bitte die Personen an, auf die wir das Ticket ausstellen sollen. <b>Bitte gib den vollständigen Namen jeder Person an, und trenne die Namen durch ein Komma(,); z.B.: 'John Doe, Johnny Appleseed'</b></p>
 <p>Unmittelbar nach deiner Bestellung hast du die Möglichkeit, dein Ticket auszufüllen und herunterzuladen.</p>
 <%= f.button :submit, raw("Fortfahren &raquo;"), class: 'btn-primary' %>
 <% end %>

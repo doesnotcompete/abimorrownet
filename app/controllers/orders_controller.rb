@@ -51,7 +51,11 @@ class OrdersController < ApplicationController
 
     if @order.persisted?
       OrderMailer.order_confirmation(@order).deliver
-      redirect_to @order
+      if @order.products.first.ticketable
+        redirect_to new_order_ticket_path(@order)
+      else
+        redirect_to @order
+      end
     else
       render :new, notice: "Fehler"
     end

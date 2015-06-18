@@ -6,6 +6,7 @@
 <%= f.input :shippable, as: :boolean, label: "versandfähig" %>
 <%= f.input :available, as: :boolean, label: "verfügbar" %>
 <%= f.input :ticketable, as: :boolean, label: "Eintrittskarte?" %>
+<%= f.input :max_people, as: :decimal, label: "Höchstanzahl an Begleitpersonen" %>
 <%= f.button :submit, raw("Produkt ändern &raquo;"), class: 'btn-primary' %>
 <% end %>
 <%= render partial: 'admin/deletable', locals: {model_name: "Produkt", path: product_path(@product), hide_ruler: false} %>

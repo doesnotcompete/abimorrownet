@@ -6,5 +6,6 @@
 <%= f.input :shippable, as: :boolean, label: "versandfähig" %>
 <%= f.input :available, as: :boolean, label: "verfügbar" %>
 <%= f.input :ticketable, as: :boolean, label: "Eintrittskarte?" %>
+<%= f.input :max_people, as: :decimal, label: "Höchstanzahl an Begleitpersonen" %>
 <%= f.button :submit, raw("Produkt anlegen &raquo;"), class: 'btn-primary' %>
 <% end %>

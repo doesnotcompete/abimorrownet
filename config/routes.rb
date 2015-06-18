@@ -31,7 +31,7 @@ Rails.application.routes.draw do
 
   resources :products
   resources :orders do
-    resources :ticket
+    resource :ticket
   end
   post "orders/shipping" => "orders#shipping", as: :order_shipping
   patch "orders/:id/paid" => "orders#paid", as: :mark_order_as_paid
@@ -116,6 +116,7 @@ Rails.application.routes.draw do
   delete "contents/:content_id/association/:assoc_id" => "contents#destroy_association", as: :destroy_content_association
   
   get "tickets/orders/new" => "tickets#new_order", as: :new_ticket_order
+  get "tickets/:id/download" => "tickets#download", as: :download_ticket
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
