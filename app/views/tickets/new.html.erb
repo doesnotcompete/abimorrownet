@@ -1,0 +1,12 @@
+<h3>Ticket ausstellen</h3>
+<%= simple_form_for @ticket, url: {action: 'create'}, :html => { :multipart => true } do |f| %>
+<p>Wir haben deine Transaktion verarbeitet. Du kannst jetzt dein Ticket ausstellen und herunterladen; auch zu einem späteren Zeitpunkt kannst du über den Menüpunkt "Meine Tickets" unter "Weiteres" jederzeit zurückkehren.</p>
+<p>Gib nun bitte deiner Begleitpersonen an, auf die wir das Ticket zusätzlich ausstellen sollen. <b>Bitte gib deinen eigenen Namen hier nicht an; gib den vollständigen Namen jeder Person an, die dich begleiten wird, und trenne die Namen durch ein Komma(,); z.B.: 'John Doe, Johnny Appleseed'.</b> Du kannst höchtens <%= @order.products.first.max_people %> Begleitperson(en) mitnehmen.</p>
+<%= f.input :people, as: :text, label: "Begleitpersonen, kommasepariert" %>
+<p>Bitte gib jetzt in absteigender Priorität die Familien an, neben denen du gerne sitzen würdest. Beachte bitte, dass wir keine Auskunft darüber geben können, ob bestimmte Personen überhaupt zum Abiball erscheinen.</p>
+<%= f.simple_fields_for :ticket_preference_associations do |p| %>
+<%= p.association :profile, collection: @profiles, as: :select, label: 'Bevorzugte SitznachbarInnen', label_method: lambda { |item| "#{item.first_name} #{item.last_name}".html_safe rescue "Unbekannter Nutzer" } %>
+<% end %>
+<%= render partial: 'unpaid_notice', locals: {order: @order} %>
+<%= f.button :submit, raw("Ticket erstellen &raquo;"), class: 'btn-primary', data: {confirm: 'Bist du sicher? Nach dem Ausstellen deiner Eintrittskarte ist eine Änderung nur noch durch das Komitee möglich. Du erreichst das Abizeitungskomitee unter hallo@abimorrow.net.'} %>
+<% end %>

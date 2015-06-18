@@ -1,0 +1,3 @@
+<% unless order.processed %>
+<div class="alert alert-warning"><p><b>Bestellung nicht bezahlt: </b>Die mit deinem Ticket verbundene Bestellung ist noch nicht bezahlt. Beachte bitte, dass dein Ticket nicht gültig ist, solange wir deine Zahlung von <%= number_to_currency(order.sum) %> nicht erhalten haben. Berücksichtige bitte eine Verarbeitungszeit von 2 Bankarbeitstagen.</p></div>
+<% end %>

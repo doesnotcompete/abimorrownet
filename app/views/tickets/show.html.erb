@@ -1,0 +1,7 @@
+<h2><%= @ticket.product.title %></h2>
+<p>Vielen Dank, dass du den Abiball besuchen wirst. Wir haben dein Ticket ausgestellt. Bitte zeige dein Ticket am Einlass vor. Wenn du möchtest, kannst du den Abschnitt unterhalb der Linie abtrennen oder falten.</p>
+<p>Anzahl berechtigter Begleitpersonen: <%= @ticket.product.max_people %></p>
+<p>Berechtigte Begleitpersonen: <%= @ticket.people.join(", ") %></p>
+<p>Sitzplatzwünsche: <%= (@ticket.ticket_preference_associations.map {|i| i.profile.full_name}).join(", ") %></p>
+<%= render partial: 'unpaid_notice', locals: {order: @ticket.order} %>
+<%= link_to raw("<span class='glyphicon glyphicon-download' aria-hidden='true'></span> Ticket herunterladen"), download_ticket_path(@ticket), class: 'btn btn-sm btn-success' %>
