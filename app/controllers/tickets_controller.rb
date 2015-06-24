@@ -5,7 +5,7 @@ class TicketsController < ApplicationController
   before_filter :ensure_ticket_does_not_exist, only: [:new, :create]
   
   def new_order
-    @products = Product.where(ticketable: true)
+    @products = Product.where(available: true).where(ticketable: true)
     @order = Order.new
   end
   
@@ -20,7 +20,10 @@ class TicketsController < ApplicationController
   def new
     @ticket = Ticket.new
     3.times { @ticket.ticket_preference_associations.new }
-    @profiles = Profile.all
+    @profiles = Profile.where(profileable_type: "User")
+  end
+
+  def delegate
   end
   
   def create
@@ -34,6 +37,12 @@ class TicketsController < ApplicationController
         redirect_to new_order_ticket_path(@order), notice: "Zu viele Begleitpersonen angegeben."
         return
       end
+
+      if people.count < @order.products.first.max_people
+        redirect_to new_order_ticket_path(@order), notice: "Zu wenige Begleitpersonen angegeben. Falsches Ticket bestellt? Wende dich bitte an hallo@abimorrow.net."
+        return
+      end
+
       
       @ticket = Ticket.create(order: @order, people: people, number: rand(1000000..9999999), product: @order.products.first)
       puts params
@@ -44,7 +53,7 @@ class TicketsController < ApplicationController
       @ticket.create_pdf
     end
     
-    OrderMailer.ticket_created(@ticket).deliver
+    OrderMailer.delay.ticket_created(@ticket)
     
     redirect_to @ticket
   end

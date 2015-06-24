@@ -3,13 +3,15 @@ Hallo <%= @order.name %>,
 vielen Dank für deine Bestellung via abimorrow.net!
 Wir bestätigen dir hiermit den Eingang deiner Bestellung mit der Nummer <%= @order.id %>. Nachfolgend erhältst du eine Übersicht über deine bestellten Produkte:
 
-=============================
-<% @order.products.each do |product| %>
-<%= "#{product.title}: #{number_to_currency(product.price)}" %>
+---
+<% @order.products.each do |product, index| %>
+<%= "#{index.to_s}. #{product.title}: #{number_to_currency(product.price)}" %>
+ - <%= product.description %>
 <% end %>
-=============================
+---
+
 <% if @order.shipped %>
-Du wünscht eine Lieferung als Inhalt zum Selbstausdrucken. Dieser Service ist kostenfrei.
+Du wünscht eine Lieferung als Inhalt zum Selbstausdrucken.
 <% else %>
 Du wünscht eine Lieferung in die Schule. In Kürze erhältst du weitere Informationen zur Lieferung.
 <% end %>

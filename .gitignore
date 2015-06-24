@@ -18,6 +18,8 @@ config/secrets.yml
 config/newrelic.yml
 config/database.yml
 config/environments/production.rb
+export
+tickets
 
 ## Environment normalisation:
 /.bundle

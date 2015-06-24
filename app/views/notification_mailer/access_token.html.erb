@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+<body>
+<p>Sehr geehrte(r) Herr/Frau <%= @token.profile.last_name %>,</p>
+
+<p>vor der Veröffentlichung unserer Abizeitung am 2. Juli würden wir Ihnen gerne die Gelegenheit geben, alle Inhalte, die Sie betreffen könnten, zu überprüfen.
+Zusätzlich zu unserer redaktionellen Aufarbeitung und zur späteren Überprüfung durch die Schulleitung können Sie so direkt Einfluss auf Inhalte nehmen, die wir in der Masse der Einreichungen übersehen und die unangemessen sein könnten.</p>
+
+<p>Im Laufe des Vorgangs erhalten Sie zudem die Möglichkeit, selbst Inhalte einzureichen und unsere Abizeitung vorzubestellen, sofern Sie dies noch nicht getan haben. Insbesondere wenn Sie selbst einen Kurs unseres Jahrgangs unterrichtet haben, würden wir uns über einen kurzen Text, der sich an Ihren Kurs richtet und auf die vergangenen 2 Jahre zurückblickt, sehr freuen.</p>
+
+<p>Besuchen Sie einfach <%= link_to main_validations_url(@token.token), main_validations_url(@token.token) %>, um zu beginnen. Bitte beachten Sie, dass die Teilnahme an diesem Verfahren nur bis zum <%= @token.validUntil.strftime("%e.%-m. um %k.%M Uhr") %> möglich ist.
+Wir danken Ihnen vielmals für Ihre Unterstützung.</p>
+
+<p>Mit freundlichen Grüßen<br />
+<b>Das Abizeitungskomitee des Abiturjahrgangs 2015</b></p>
+</body>
+</html>

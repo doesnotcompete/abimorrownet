@@ -16,14 +16,12 @@ class Quote < ActiveRecord::Base
 
   def self.export_all(exp_class)
     require 'csv'
-    groups = Group.all
-    
-    groups.each do |group|
-    csv_path = "#{Rails.root}/export/#{group.title}.csv"
+    csv_path = "#{Rails.root}/export/#{exp_class.to_s}.csv"
 
     teacher = (exp_class.to_s == "Teacher")
     questions = Question.where(teacher: teacher)
     question_array = questions.map {|q| q.title}
+    question_ids = questions.map {|q| q.id}
 
     CSV.open(csv_path, "wb") do |csv|
       headers = ["quotable_id", "first_name", "last_name", "quotes"]
@@ -31,9 +29,7 @@ class Quote < ActiveRecord::Base
         headers << q
       end
       csv << headers
-      users = User.where(group: group)
-      users.each do |u|
-        c = u.profile
+      exp_class.all.each do |c|
         quotes = Quote.where(quotable: c).where("quotes.locked IS NULL OR quotes.locked = 'f'").order(quotable_id: :asc)
         puts quotes
         quote_array = quotes.map {|q| q.text}
@@ -44,8 +40,8 @@ class Quote < ActiveRecord::Base
         answers = []
         questions.each do |question, index|
           answer = Answer.find_by(question: question, profile_id: profile_id)
-          if (question.id == 3 rescue false)
-            answers << ("Macintosh HD:abimorrownet:#{'%03i' % answer.id}:original:#{answer.file_file_name}" rescue "")
+          if (question_ids[index] == 3 rescue false)
+            answers << ("#{'%03i' % answer.id}/original/#{answer.file_file_name}" rescue "")
           end
           answers << (answer ? answer.text : "")
         end
@@ -58,6 +54,5 @@ class Quote < ActiveRecord::Base
         csv << row
       end
     end
-  end
   end
 end
