@@ -1,6 +1,7 @@
 <h3>Ein Ticket bestellen</h3>
 <%= simple_form_for @order, url: order_shipping_path, method: :post, :html => { :multipart => true } do |f| %>
 <p>Danke, dass du Tickets kaufen möchtest. Bitte wähle aus, welche Karte du bestellen möchtest.</p>
+<p><div class="alert alert-warning" role="alert"><b>Hinweis:</b> Für Bestellungen, die nach Donnerstag, dem 25.06. um 18.00 Uhr eingehen, ist die Berücksichtigung von Sitzplatzwünschen nur noch eingeschränkt möglich.</div></p>
 <%= f.association :products, collection: @products, as: :select, label: 'Karte', label_method: lambda { |item| "#{item.title} (#{number_to_currency(item.price)}/St.)".html_safe rescue "Unbekannter Artikel" } %>
 <p>Unmittelbar nach deiner Bestellung hast du die Möglichkeit, dein Ticket auszufüllen und herunterzuladen.</p>
 <%= f.button :submit, raw("Fortfahren &raquo;"), class: 'btn-primary' %>

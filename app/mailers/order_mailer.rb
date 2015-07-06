@@ -10,6 +10,11 @@ class OrderMailer < ActionMailer::Base
     @order = order
     mail(to: @order.email, subject: 'Zahlung bestätigt')
   end
+
+  def reminder(order)
+    @order = order
+    mail(to: @order.email, subject: 'Zahlungserinnerung')
+  end
   
   def ticket_created(ticket)
     @ticket = ticket

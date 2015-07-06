@@ -1,0 +1,14 @@
+Hallo <%= @order.name %>,
+
+unseren Unterlagen zufolge hast du deine Bestellung <%= @order.id %> (enthält "<%= @order.products.first.title %>") noch nicht vollständig bezahlt. Es sind noch <%= number_to_currency(@order.sum) %> offen.
+
+Bitte überweise den noch fälligen Betrag zeitnah auf folgendes Konto:
+
+Arend Baumgartner
+IBAN: DE69 2802 0050 1646 6708 00
+
+Gib deinen Namen im Verwendungszweck an, wenn du von einem fremden Konto überweisen solltest.
+Danke für deine Unterstützung.
+
+Viele Grüße
+Dein Abizeitungskomitee

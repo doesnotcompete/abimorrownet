@@ -2,10 +2,10 @@ class Order < ActiveRecord::Base
   belongs_to :user
   belongs_to :assigned, class_name: 'User'
 
-  has_many :order_position
+  has_many :order_position, dependent: :destroy
   has_many :products, through: :order_position
   
-  has_one :ticket
+  has_one :ticket, dependent: :destroy
 
   accepts_nested_attributes_for :products
 

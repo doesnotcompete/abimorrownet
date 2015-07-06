@@ -1,0 +1,35 @@
+csv_path = "#{Rails.root}/export/zeitung.csv"
+
+CSV.open(csv_path, "wb") do |row|
+row << ["product", "name", "address", "city"]
+@orders = Order.joins(:order_position).merge(OrderPosition.where("product_id = 2 OR product_id = 3 OR product_id = 4 OR product_id = 5"))
+@orders.each do |o|
+row << [o.products.first.title, o.name, o.address, o.city]
+end
+end
+
+
+CSV.open(csv_path, "wb") do |row|
+row << ["number", "product_id", "product_title", "max_people", "preferences", "people", "order_id", "order_name"]
+Ticket.all.each do |ticket|
+neighbours = []
+ticket.ticket_preference_associations.each do |assoc|
+neighbours << assoc.profile.full_name
+end
+row << [ticket.number, ticket.product_id, ticket.product.title, ticket.product.max_people, neighbours, ticket.people, ticket.order_id, ticket.order.name]
+
+
+csv_path = "#{Rails.root}/export/preferences.csv"
+
+CSV.open(csv_path, "wb") do |row|
+row << ["order_name", "number", "remote_assocs", "own_assocs"]
+Ticket.all.each do |ticket|
+remote_assocs = []
+assocs = TicketPreferenceAssociation.where(profile: ticket.order.user.profile)
+assocs.each do |assoc|
+remote_assocs << (assoc.ticket.order.user.full_name rescue "")
+end
+own_assocs = TicketPreferenceAssociation.where(ticket: ticket).map {|assoc| assoc.profile.full_name}
+row << [ticket.order.name, ticket.number, remote_assocs, own_assocs]
+
+no_ticket_names = no_ticket.map {|d| d.profile.full_name rescue d.email}
