@@ -108,10 +108,44 @@ class OrdersController < ApplicationController
     @order.destroy!
     redirect_to orders_url, notice: "Bestellung gelöscht."
   end
+  
+  def delivery
+    @order = Order.find_by(token: params[:token])
+    
+    if ((@order.delivery_address || !@order) rescue false)
+      redirect_to invalid_delivery_path(@order.token)
+    end
+    
+    @address = DeliveryAddress.new(order: @order)
+  end
+  
+  def save_delivery
+    @order = Order.find_by(token: params[:token])
+    if ((@order.delivery_address || !@order) rescue false)
+      redirect_to invalid_delivery_path(@order.token)
+      return
+    end
+    
+    @address = @order.create_delivery_address(address_params)
+    
+    if @address.persisted?
+      redirect_to delivery_success_path(@order.token)
+    else
+      flash[:notice] = "Etwas ist schiefgelaufen. Stelle bitte sicher, dass du einen Lieferweg ausgewählt hast."
+      redirect_to plan_delivery_path(@order.token)
+    end
+  end
+  
+  def invalid_delivery
+  end
 
   private
 
   def order_params
     params.require(:order).permit(:description, :address, :plz, :city, :email, :name, :processed)
+  end
+  
+  def address_params
+    params.require(:delivery_address).permit(:kind, :street, :city)
   end
 end

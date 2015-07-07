@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150618192610) do
+ActiveRecord::Schema.define(version: 20150706235310) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -164,6 +164,19 @@ ActiveRecord::Schema.define(version: 20150618192610) do
 
   add_index "contents", ["user_id"], name: "index_contents_on_user_id", using: :btree
 
+  create_table "delivery_addresses", force: true do |t|
+    t.integer  "order_id"
+    t.string   "street"
+    t.string   "city"
+    t.string   "plz"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "type"
+    t.string   "kind"
+  end
+
+  add_index "delivery_addresses", ["order_id"], name: "index_delivery_addresses_on_order_id", using: :btree
+
   create_table "friendly_id_slugs", force: true do |t|
     t.string   "slug",                      null: false
     t.integer  "sluggable_id",              null: false
@@ -226,6 +239,7 @@ ActiveRecord::Schema.define(version: 20150618192610) do
     t.string   "email"
     t.string   "name"
     t.boolean  "ticketable"
+    t.string   "token"
   end
 
   add_index "orders", ["assigned_id"], name: "index_orders_on_assigned_id", using: :btree

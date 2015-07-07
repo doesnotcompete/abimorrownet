@@ -6,6 +6,7 @@ class Order < ActiveRecord::Base
   has_many :products, through: :order_position
   
   has_one :ticket, dependent: :destroy
+  has_one :delivery_address, dependent: :destroy
 
   accepts_nested_attributes_for :products
 
@@ -21,5 +22,14 @@ class Order < ActiveRecord::Base
     if self.shipped then @total += 0.00 end
 
     return @total
+  end
+  
+  def self.plan_delivery_for_all(product_id)
+    @orders = Order.joins(:order_position).merge(OrderPosition.where("product_id = ?", product_id))
+    @orders.each do |o|
+      o.token = SecureRandom.hex(6)
+      o.save
+      OrderMailer.plan_delivery(o).deliver
+    end
   end
 end

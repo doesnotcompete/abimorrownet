@@ -1,0 +1,7 @@
+Hallo <%= @order.name %>,
+
+wir haben großartige Neuigkeiten zu deiner Bestellung Nr. <%= @order.id %>: "<%= @order.products.first.title %>" ist jetzt lieferbar!
+Bitte plane jetzt die Lieferung deiner Zeitung, indem du <%= plan_delivery_url(@order.token) %> besuchst. Für viele Destinationen können wir dir deine Zeitung sogar nach Hause liefern. 
+Nochmals danke für deine Unterstützung.
+
+Dein Abizeitungskomitee

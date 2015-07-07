@@ -1,0 +1,13 @@
+<h1>Zustellung planen</h1>
+<%= simple_form_for @address, url: create_delivery_address_path, method: :post, :html => { :multipart => true } do |f| %>
+<p>Bitte wähle aus, wie wir deine Zeitung zustellen sollen. Für viele Destinationen bieten wir eine Lieferung bis zu deiner Haustür am Erscheinungstag an. Andernfalls bieten wir eine Abholung im Forum am Mi, Do und Fr jeweils in den Zeitfenstern 9.40-10.00 Uhr und 11.30-11.50 Uhr an.</p>
+<%= f.collection_radio_buttons :kind, [['school', 'Im Forum abholen'], ['home', 'Kostenfrei nach Hause liefern']],:first, :last, checked: 1 %>
+<p>Die Lieferung nach Hause ist für folgende Destinationen verfügbar: <b>Wiefelstede (einschließlich Metjendorf und Bokel), Rastede (einschließlich Leuchtenburg, Wahnbek, Hankhausen I und Hankhausen II, aber ohne Außenbezirke wie Delfshausen), Oldenburg (nur Ofenerdiek und Ofenerfeld)</b></p>
+<p>Leider ist eine Lieferung insbesondere zu folgenden Zielen <b>nicht</b> möglich: <b>Westerstede, Bad Zwischenahn, Oldenburg (außer Ofenerdiek und Ofenerfeld) und Ziele, die weit außerhalb der Ortsgrenzen der o.g. Orte liegen</b>. Zustellanträge zu Destinationen, die außerhalb der Ortsgrenzen liegen, unterliegen einer Einzelfallprüfung. Wir informieren dich per E-Mail, wenn wir im Einzelfall eine Zustellung nicht durchführen können. Wir leiten deine Zeitung in diesem Fall in die KGS zur Abholung um.</p>
+<hr />
+<em>Nur wenn du eine Zustellung nach Hause wünschst:</em>
+<%= f.input :street, label: "Straße und Nr.", input_html: {value: (@order.address rescue '')} %>
+<%= f.input :city, label: "Ort", input_html: {value: (@order.city rescue '')} %>
+<p>Deine Lieferung erfolgt voraussichtlich am 8.7. Wir senden dir am Morgen des Zustelltages eine Avisebenachrichtigung per E-Mail.</p>
+<%= f.button :submit, raw("Zustellung planen &raquo;"), class: 'btn-primary', data: { confirm: 'Bist du sicher? Du kannst deine Angaben gleich nicht mehr ändern.' } %>
+<% end %>

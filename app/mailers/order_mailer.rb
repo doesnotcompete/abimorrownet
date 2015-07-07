@@ -16,6 +16,11 @@ class OrderMailer < ActionMailer::Base
     mail(to: @order.email, subject: 'Zahlungserinnerung')
   end
   
+  def plan_delivery(order)
+    @order = order
+    mail(to: @order.email, subject: 'Zustellung planen: deine Bestellung ist versandbereit')
+  end
+  
   def ticket_created(ticket)
     @ticket = ticket
     attachments['Ticket.pdf'] = File.read(@ticket.ticket_path)

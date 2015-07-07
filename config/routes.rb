@@ -35,6 +35,13 @@ Rails.application.routes.draw do
   end
   post "orders/shipping" => "orders#shipping", as: :order_shipping
   patch "orders/:id/paid" => "orders#paid", as: :mark_order_as_paid
+  
+  get "orders/:token/delivery" => "orders#delivery", as: :plan_delivery
+  get "orders/:token/delivery/invalid" => "orders#invalid_delivery", as: :invalid_delivery
+  get "orders/:token/delivery/success" => "orders#delivery_success", as: :delivery_success
+  post "orders/:token/delivery" => "orders#save_delivery", as: :create_delivery_address
+
+   
   resources :tickets
 
   get "tickets/info/delegate" => "tickets#delegate", as: :delegate_ticket
