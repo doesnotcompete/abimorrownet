@@ -1,0 +1,19 @@
+Hallo <%= @order.name %>,
+
+deine Bestellung mit der Nummer <%= @order.id %> wurde gerade versandbereit gemacht und wird heute ausgerollt. Wir unternehmen einen Zustellversuch an folgende Anschrift:
+
+<%= @order.delivery_address.street %> in <%= @order.delivery_address.city %>
+
+<% unless @order.processed %>
+Unseren Unterlagen zufolge hast du deine Bestellung möglicherweise noch nicht bezahlt. Das ist kein Problem; bei einer Expressbestellung hattest du auch noch gar keine Gelegenheit dazu. Der Zusteller wird heute versuchen, das Geld in bar zu vereinnahmen. Du bist nicht zu Hause? Kein Problem: Überweise den noch fälligen Betrag von <%= @order.sum %> einfach binnen 7 Tagen auf folgendes Konto:
+
+Arend Baumgartner
+DE69 2802 0050 1646 6708 00
+
+<% end %>
+Wir stellen im Zeitraum von 13.00-21.00 Uhr zu. Du bist nicht zu Hause? Kein Problem: in diesem Fall legen wir die Zeitung in deinen Briefkasten, sofern sie passt.
+
+Bitte sei nicht enttäuscht, wenn es mit der Zustellung heute nicht klappt oder wir deine Sendung kurzfristig in die Schule umleiten müssen. Unsere Zusteller erhalten für die Auslieferung der Zeitung keine Entlohnung und müssen teils sehr weite Strecken mit dem Fahrrad zurücklegen. Wir können keine Liefergarantien geben.
+
+Viele Grüße
+Dein Abizeitungskomitee

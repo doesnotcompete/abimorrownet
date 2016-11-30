@@ -2,5 +2,6 @@
   <td><%= order.id %></td>
   <td><%= order.name %></td>
   <td><%= number_to_currency(order.sum) %> <%= raw(order.processed ? '<span class="label label-success">bezahlt</span>' : '<span class="label label-danger">nicht bezahlt</span>') %></td>
+  <td><%= order.delivery_address ? 'Ja' : 'Nein' %><% if order.delivery_address %><%= order.delivery_address.kind == "home" ? '(nach Hause)' : '(in die Schule)' %><% end %></td>
   <td><%= link_to raw("Ansehen &raquo;"), order %></td>
 </tr>

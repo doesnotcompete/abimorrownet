@@ -1,2 +1,7 @@
 <h1>Zustellung geplant.</h1>
 <p>Wir haben deine Zustellung geplant. Vielen Dank für deine Unterstützung.</p>
+<% if @order.delivery_address.kind == "home" %>
+<p>Lieferziel: <%= "#{@order.delivery_address.street} in #{@order.delivery_address.city}" %><p>
+<% else %>
+<p>Eine Abholung ist am Mittwoch, Donnerstag und Freitag (8. bis 10.7.) im Forum möglich.<p>
+<% end %>

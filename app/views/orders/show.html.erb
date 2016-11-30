@@ -18,6 +18,9 @@
 <%= @order.email %>
 <hr />
 <p>Zahlstatus: <%= @order.processed ? "Gezahlt." : "Nicht gezahlt." %></p>
+<% if @order.delivery_address %>
+<p>Lieferweg: <%= @order.delivery_address.kind == "home" ? "#{@order.delivery_address.street} in #{@order.delivery_address.city}" : "Schule" %></p>
+<% end %>
 <%= unless @order.processed then link_to raw("<span class='glyphicon glyphicon-piggy-bank' aria-hidden='true'></span> Bestellung gezahlt"), mark_order_as_paid_path(@order), method: :patch, class: 'btn btn-success' end %>
 <% end %>
 <% if current_user && !current_user.admin? %>

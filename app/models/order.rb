@@ -29,7 +29,7 @@ class Order < ActiveRecord::Base
     @orders.each do |o|
       o.token = SecureRandom.hex(6)
       o.save
-      OrderMailer.plan_delivery(o).deliver
+      OrderMailer.delay.plan_delivery(o)
     end
   end
 end

@@ -13,6 +13,8 @@ class User < ActiveRecord::Base
 
   has_many :contents
 
+  has_many :orders
+
   has_one :profile, as: :profileable
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable

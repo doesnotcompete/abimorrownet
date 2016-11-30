@@ -68,7 +68,7 @@ class OrdersController < ApplicationController
   end
 
   def index
-    @orders = Order.all
+    @orders = Order.includes(:delivery_address).all
 
     authorize @orders
   end
@@ -112,8 +112,13 @@ class OrdersController < ApplicationController
   def delivery
     @order = Order.find_by(token: params[:token])
     
-    if ((@order.delivery_address || !@order) rescue false)
+    #if ((!@order) rescue false)
+    if true
       redirect_to invalid_delivery_path(@order.token)
+    end
+
+    if (@order.delivery_address)
+      redirect_to delivery_success_path(@order.token)
     end
     
     @address = DeliveryAddress.new(order: @order)
@@ -137,6 +142,10 @@ class OrdersController < ApplicationController
   end
   
   def invalid_delivery
+  end
+
+  def delivery_success
+    @order = Order.find_by(token: params[:token])
   end
 
   private

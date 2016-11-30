@@ -33,3 +33,5 @@ own_assocs = TicketPreferenceAssociation.where(ticket: ticket).map {|assoc| asso
 row << [ticket.order.name, ticket.number, remote_assocs, own_assocs]
 
 no_ticket_names = no_ticket.map {|d| d.profile.full_name rescue d.email}
+
+unless @preorder_names.include?((u.full_name rescue ""))

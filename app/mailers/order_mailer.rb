@@ -15,6 +15,26 @@ class OrderMailer < ActionMailer::Base
     @order = order
     mail(to: @order.email, subject: 'Zahlungserinnerung')
   end
+
+  def no_problems(order)
+    @order = order
+    mail(to: @order.email, subject: 'Bist du mit deiner Abizeitung zufrieden?')
+  end
+
+  def delayed(order)
+    @order = order
+    mail(to: @order.email, subject: 'Ankündigung einer Laufzeitverzögerung')
+  end
+
+  def avis(order)
+    @order = order
+    mail(to: @order.email, subject: 'Lieferavis für deine Abizeitung')
+  end
+
+  def delayed_du(order)
+    @order = order
+    mail(to: @order.email, subject: 'Ankündigung einer Laufzeitverzögerung')
+  end
   
   def plan_delivery(order)
     @order = order
